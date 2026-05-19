@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="uz" class="dark" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>A'lo Ta'lim — Premium Elite Platform</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            premiumDark: '#050611',
+            premiumCard: 'rgba(13, 18, 35, 0.65)',
+            premiumBorder: 'rgba(255, 255, 255, 0.07)',
+            accentBlue: '#2563EB',
+            accentCyan: '#06B6D4',
+            accentEmerald: '#10B981',
+            accentRose: '#F43F5E',
+            accentAmber: '#F59E0B',
+            accentViolet: '#8B5CF6'
+          },
+          boxShadow: {
+            glowBlue: '0 0 20px rgba(37, 99, 235, 0.4)',
+            glowEmerald: '0 0 20px rgba(16, 185, 129, 0.4)',
+            neonBlur: '0 0 30px rgba(6, 182, 212, 0.3)',
+            softCard: '0 20px 60px rgba(0, 0, 0, 0.4)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --glass-bg: rgba(255, 255, 255, 0.55); /* 4K Shaffoflik uchun o'zgartirildi */
+      --glass-border: rgba(0, 0, 0, 0.06);
+      --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --grid-color: rgba(0, 0, 0, 0.04);
+    }
+
+    html.dark {
+      --bg-color: #050611;
+      --glass-bg: rgba(15, 23, 42, 0.55); /* 4K Shaffoflik uchun o'zgartirildi */
+      --glass-border: rgba(255, 255, 255, 0.09);
+      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --grid-color: rgba(255, 255, 255, 0.03);
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    /* Premium 4K Glassmorphism Classes */
+    .premium-glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(28px) saturate(200%);
+      -webkit-backdrop-filter: blur(28px) saturate(200%);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow), 0 4px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .premium-glass:hover.hover-lift {
+      transform: translateY(-4px);
+      border-color: rgba(37, 99, 235, 0.4);
+      box-shadow: 0 12px 40px 0 rgba(37, 99, 235, 0.15);
+    }
+
+    /* Matnni nusxalash va mobil qurilmalarda tanlashni butunlay yo'qotish */
+    .no-select {
+      -webkit-touch-callout: none; /* iOS Safari uchun qat'iy taqiq */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* Background Grid & Particles */
+    .bg-grid-pattern {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(circle at center, black, transparent 80%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      animation: float 20s infinite linear;
+      opacity: 0.5;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+      33% { transform: translateY(-50px) translateX(30px) rotate(120deg); }
+      66% { transform: translateY(20px) translateX(-40px) rotate(240deg); }
+      100% { transform: translateY(0px) translateX(0px) rotate(360deg); }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(148,163,184,.3); border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #2563EB; }
+
+    /* Interactive States */
+    .tab-active { color: #2563EB; border-bottom: 2px solid #2563EB; background: rgba(37, 99, 235, 0.1); }
+    .admin-tab-active { background: #2563EB; color: white; border-color: #2563EB; box-shadow: 0 0 15px rgba(37, 99, 235, 0.4); }
+
+    /* Toast Animations */
+    .toast-enter { transform: translateY(20px); opacity: 0; }
+    .toast-enter-active { transform: translateY(0); opacity: 1; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .toast-leave { transform: translateY(-20px); opacity: 0; transition: all 0.3s ease-in; }
+
+    /* MathJax Overrides */
+    mjx-container { display: inline-block !important; margin: 0 !important; }
+
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-accentBlue/40 selection:text-white no-select">
+  
+  <div class="bg-grid-pattern"></div>
+  
+  <div id="particle-container" class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+    <div class="particle bg-accentBlue/20 w-96 h-96 top-[-10%] left-[-10%] blur-[130px]"></div>
+    <div class="particle bg-accentCyan/20 w-80 h-80 bottom-[20%] right-[-5%] animation-delay-2000 blur-[150px]"></div>
+    <div class="particle bg-accentViolet/20 w-72 h-72 bottom-[-10%] left-[20%] animation-delay-4000 blur-[120px]"></div>
+  </div>
+
+  <canvas id="confettiCanvas" class="fixed inset-0 z-[100] pointer-events-none hidden"></canvas>
+
+  <div id="toastContainer" class="fixed top-5 right-5 z-[110] flex flex-col gap-3 pointer-events-none"></div>
+
+  <div id="authModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-2xl transition-all duration-500">
+    <div class="premium-glass p-8 rounded-[2rem] max-w-md w-full relative overflow-hidden mx-4 border border-white/10">
+      <div class="absolute inset-0 bg-gradient-to-br from-accentBlue/10 via-transparent to-accentCyan/10 pointer-events-none"></div>
+      <div class="relative z-10 text-center mb-8">
+        <div class="inline-flex p-4 rounded-2xl mb-4 text-accentBlue bg-blue-500/10 shadow-neonBlur border border-accentBlue/20">
+          <i class="fa-solid fa-fingerprint text-3xl animate-pulse"></i>
+        </div>
+        <h3 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">A'lo Ta'lim</h3>
+        <p class="text-sm mt-2 text-gray-500 dark:text-gray-400">Tizimga kirish uchun ma'lumotlarni tasdiqlang</p>
+      </div>
+
+      <div class="space-y-5 relative z-10">
+        <div>
+          <label class="block text-xs font-bold uppercase mb-2 text-gray-500 dark:text-gray-400">Ism va Familiya</label>
+          <input type="text" id="authFullname" placeholder="Masalan: Asadbek Olimov"
+                 class="w-full bg-white/50 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 outline-none focus:border-accentBlue focus:ring-1 focus:ring-accentBlue transition-all text-gray-900 dark:text-white">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase mb-2 text-gray-500 dark:text-gray-400">Tizim ID / Telefon raqam</label>
+          <input type="text" id="authStudentID" oninput="checkAdminField(this.value)" placeholder="ID kiritish..."
+                 class="w-full bg-white/50 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 outline-none font-mono focus:border-accentCyan focus:ring-1 focus:ring-accentCyan transition-all text-gray-900 dark:text-white">
+        </div>
+
+        <div id="adminPasswordWrapper" class="hidden transition-all duration-300">
+          <label class="block text-xs font-bold uppercase mb-2 text-accentAmber drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]">Admin Maxfiy Kod</label>
+          <input type="password" id="authAdminPassword" placeholder="Kod..."
+                 class="w-full bg-black/50 border border-accentAmber/40 rounded-2xl px-4 py-3 outline-none text-white font-mono focus:border-accentAmber focus:ring-1 focus:ring-accentAmber transition-all">
+        </div>
+
+        <button onclick="loginSystem()" class="w-full bg-accentBlue text-white font-bold py-4 rounded-2xl shadow-glowBlue hover:bg-blue-600 hover:-translate-y-1 transition-all duration-300">
+          Tizimga kirish <i class="fa-solid fa-arrow-right-to-bracket ml-2"></i>
+        </button>
+
+        <a href="https://t.me/math_999_bot" target="_blank" class="w-full flex items-center justify-center gap-2 bg-[#2AABEE]/10 text-[#2AABEE] border border-[#2AABEE]/30 font-bold py-4 rounded-2xl hover:bg-[#2AABEE] hover:text-white transition-all duration-300">
+          <i class="fa-brands fa-telegram text-xl"></i>
+          Bot orqali ro'yxatdan o'tish
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="aiReviewModal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur-xl transition-all p-4">
+    <div class="premium-glass p-8 rounded-[2rem] max-w-lg w-full border border-accentViolet/30 relative">
+      <button onclick="closeAIReview()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+      <div id="aiReviewContent" class="text-center">
+        <div id="aiReviewLoader" class="py-10">
+          <i class="fa-solid fa-brain text-5xl text-accentViolet animate-pulse mb-4 drop-shadow-[0_0_15px_rgba(139,92,246,0.8)]"></i>
+          <h3 class="text-xl font-bold text-white mb-2">AI Tahlil Qilmoqda...</h3>
+          <p class="text-xs text-gray-400">Sizning javoblaringiz neyrotarmoq orqali tekshirilmoqda</p>
+        </div>
+        <div id="aiReviewResult" class="hidden text-left space-y-6"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="mainAppView" class="hidden min-h-screen flex flex-col relative z-10 pb-20 md:pb-0">
+    
+    <header class="sticky top-0 z-40 premium-glass border-b border-gray-200 dark:border-white/10 hidden md:block">
+      <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div class="h-12 w-12 bg-gradient-to-tr from-accentBlue to-accentCyan rounded-2xl flex items-center justify-center shadow-glowBlue border border-white/20">
+            <i class="fa-solid fa-graduation-cap text-white text-2xl"></i>
+          </div>
+          <div>
+            <div class="text-2xl font-black uppercase tracking-tight text-gray-900 dark:text-white">A'lo <span class="text-accentBlue">Ta'lim</span></div>
+            <div class="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">Premium Onlayn Test</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-6">
+          <div class="flex items-center gap-4 bg-white/50 dark:bg-black/30 px-4 py-2 rounded-2xl border border-gray-200 dark:border-white/10 shadow-inner">
+            <div class="flex flex-col items-end">
+              <span id="displayUserName" class="text-sm font-bold text-gray-900 dark:text-white">User</span>
+              <div class="flex items-center gap-2 mt-1">
+                <span id="displayUserStreak" class="text-[11px] font-bold text-orange-500 bg-orange-500/10 px-2 py-0.5 rounded-md">🔥 0 Kun</span>
+                <span id="displayUserRole" class="text-[11px] font-mono text-accentBlue bg-accentBlue/10 px-2 py-0.5 rounded-md border border-accentBlue/20">O'quvchi</span>
+              </div>
+            </div>
+            <div class="w-px h-10 bg-gray-300 dark:bg-white/10"></div>
+            <div class="flex flex-col items-center w-24 relative group">
+              <div class="text-[10px] font-bold text-accentViolet uppercase mb-1 drop-shadow-[0_0_5px_rgba(139,92,246,0.5)]">Level <span id="displayUserLevel">1</span></div>
+              <div class="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-1.5 overflow-hidden border border-gray-300 dark:border-gray-700">
+                <div id="userLevelBar" class="bg-gradient-to-r from-accentBlue to-accentViolet h-1.5 rounded-full" style="width: 0%"></div>
+              </div>
+              <div class="absolute top-full mt-1 left-1/2 -translate-x-1/2 text-[9px] text-gray-500 font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity"><span id="displayUserXP">0</span> XP</div>
+            </div>
+          </div>
+
+          <button onclick="toggleTheme()" class="p-3 rounded-2xl border border-gray-200 dark:border-white/10 bg-white/50 dark:bg-black/30 text-gray-600 dark:text-gray-300 hover:text-accentBlue hover:-translate-y-1 transition-all">
+            <i id="themeIcon" class="fa-solid fa-moon"></i>
+          </button>
+          <button onclick="logoutSystem()" class="p-3 rounded-2xl bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500 hover:text-white hover:-translate-y-1 transition-all">
+            <i class="fa-solid fa-power-off"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-200 dark:border-white/10 bg-white/30 dark:bg-black/20">
+        <div class="max-w-7xl mx-auto px-4 flex gap-2">
+          <button onclick="switchTab('homeTab')" id="btn-homeTab" class="px-6 py-4 text-sm font-bold text-gray-500 dark:text-gray-400 transition-all whitespace-nowrap tab-active border-b-2">
+            <i class="fa-solid fa-layer-group mr-2"></i> Fanlar va Testlar
+          </button>
+          <button onclick="switchTab('resultsTab')" id="btn-resultsTab" class="px-6 py-4 text-sm font-bold text-gray-500 dark:text-gray-400 transition-all whitespace-nowrap border-b-2 border-transparent">
+            <i class="fa-solid fa-chart-line mr-2"></i> Natijalarim
+          </button>
+          <button onclick="switchTab('adminTab')" id="btn-adminTab" class="hidden px-6 py-4 text-sm font-bold text-rose-500 transition-all whitespace-nowrap border-b-2 border-transparent hover:border-rose-500">
+            <i class="fa-solid fa-shield-halved mr-2"></i> Boshqaruv (Admin)
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <header class="md:hidden sticky top-0 z-40 premium-glass border-b border-gray-200 dark:border-white/10 h-16 flex items-center justify-between px-4">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-graduation-cap text-accentBlue text-xl drop-shadow-[0_0_8px_rgba(37,99,235,0.6)]"></i>
+        <span class="font-extrabold text-lg text-gray-900 dark:text-white">A'lo <span class="text-accentBlue">Ta'lim</span></span>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="text-[10px] font-bold text-accentViolet bg-accentViolet/10 px-2 py-1 rounded-lg border border-accentViolet/20">LVL <span id="mobDisplayUserLevel">1</span></div>
+        <button onclick="toggleTheme()" class="text-gray-500 dark:text-gray-400"><i id="mobThemeIcon" class="fa-solid fa-moon text-lg"></i></button>
+      </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full relative">
+      
+      <div id="homeTab" class="tab-content space-y-8">
+        
+        <div class="premium-glass rounded-[1.75rem] p-6 hover-lift">
+          <div class="flex flex-col xl:flex-row gap-6 items-start xl:items-center justify-between">
+            <div>
+              <div class="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] mb-2 text-gray-500 dark:text-gray-400">
+                <span class="inline-flex h-2 w-2 rounded-full bg-accentEmerald animate-pulse shadow-glowEmerald"></span>
+                Tizim faol: Elite rejim
+              </div>
+              <h2 class="text-2xl md:text-3xl font-black leading-tight text-gray-900 dark:text-white">Intellektual test muhiti</h2>
+            </div>
+            <div class="grid grid-cols-3 gap-3 w-full xl:w-auto">
+              <div class="bg-white/40 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-5 py-4 min-w-[120px] text-center shadow-sm">
+                <i class="fa-solid fa-file-contract text-accentBlue text-xl mb-1"></i>
+                <div class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mt-1">Testlar</div>
+                <div id="statTotalTests" class="text-2xl font-black text-gray-900 dark:text-white">0</div>
+              </div>
+              <div class="bg-white/40 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-5 py-4 min-w-[120px] text-center shadow-sm">
+                <i class="fa-solid fa-tags text-accentEmerald text-xl mb-1"></i>
+                <div class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mt-1">Fanlar</div>
+                <div id="statTotalCats" class="text-2xl font-black text-gray-900 dark:text-white">0</div>
+              </div>
+              <div class="bg-white/40 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-5 py-4 min-w-[120px] text-center shadow-sm">
+                <i class="fa-solid fa-chart-pie text-accentViolet text-xl mb-1"></i>
+                <div class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mt-1">Natijalar</div>
+                <div id="statTotalResults" class="text-2xl font-black text-gray-900 dark:text-white">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-4 items-center justify-between premium-glass p-4 rounded-[1.5rem]">
+          <div id="categoriesList" class="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 hide-scrollbar"></div>
+          <div class="relative w-full md:w-80">
+            <i class="fa-solid fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            <input type="text" id="searchTestInput" oninput="renderHome()" placeholder="Test kodi yoki nomi..."
+                   class="w-full pl-11 pr-4 py-3 bg-white/50 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl text-sm outline-none focus:border-accentBlue focus:ring-1 focus:ring-accentBlue transition-colors text-gray-900 dark:text-white">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <div class="lg:col-span-3 space-y-4">
+            <div class="flex items-center justify-between border-b border-gray-200 dark:border-white/10 pb-3">
+              <h2 class="text-xl font-extrabold flex items-center gap-2 text-gray-900 dark:text-white">
+                <div class="h-2 w-2 rounded-full bg-accentBlue animate-pulse shadow-glowBlue"></div>
+                <span id="currentCategoryTitle">Barcha Testlar</span>
+              </h2>
+              <span class="text-xs font-bold bg-white/50 dark:bg-black/40 border border-gray-200 dark:border-white/10 px-3 py-1 rounded-lg text-gray-600 dark:text-gray-300" id="testCountBadge">0 ta test</span>
+            </div>
+            <div id="testsGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5"></div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="flex items-center justify-between border-b border-gray-200 dark:border-white/10 pb-3">
+              <h2 class="text-lg font-bold flex items-center gap-2 text-gray-900 dark:text-white">
+                <i class="fa-solid fa-crown text-amber-500 drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]"></i> Top Reyting
+              </h2>
+              <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">Global</span>
+            </div>
+            <div class="premium-glass rounded-[1.5rem] p-2" id="leaderboardList"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="resultsTab" class="tab-content hidden space-y-6">
+        <div class="premium-glass rounded-[1.5rem] p-6 hover-lift">
+          <div class="flex items-center justify-between gap-3 flex-wrap">
+            <div>
+              <h2 class="text-2xl font-black text-gray-900 dark:text-white">Mening Tarixim</h2>
+              <p class="text-sm mt-1 text-gray-500 dark:text-gray-400">Barcha topshirgan testlaringiz va AI tahlili</p>
+            </div>
+            <div class="text-xs font-bold uppercase px-4 py-2 rounded-xl bg-emerald-500/10 text-accentEmerald border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+              Auto-Sync faol
+            </div>
+          </div>
+        </div>
+
+        <div class="premium-glass rounded-[1.5rem] overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm whitespace-nowrap">
+              <thead class="bg-gray-100/50 dark:bg-black/40 border-b border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 uppercase text-[10px] font-bold">
+                <tr>
+                  <th class="p-5">Sana</th>
+                  <th class="p-5">Test Nomi & Kodi</th>
+                  <th class="p-5">Natija</th>
+                  <th class="p-5">Status</th>
+                  <th class="p-5 text-right">Diagnostika</th>
+                </tr>
+              </thead>
+              <tbody id="myResultsTable" class="divide-y divide-gray-200 dark:divide-white/5 text-gray-800 dark:text-gray-300"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="adminTab" class="tab-content hidden space-y-6">
+        <div class="premium-glass rounded-[1.5rem] p-4 flex flex-wrap gap-2">
+          <button onclick="switchAdminSub('admin-tests')" id="btn-admin-tests" class="px-5 py-2.5 text-sm font-bold rounded-xl transition-all admin-tab-active"><i class="fa-solid fa-file-signature mr-1"></i> Testlar Boshqaruvi</button>
+          <button onclick="switchAdminSub('admin-cats')" id="btn-admin-cats" class="px-5 py-2.5 text-sm font-bold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-xl transition-all"><i class="fa-solid fa-tags mr-1"></i> Kategoriyalar</button>
+          <button onclick="switchAdminSub('admin-stats')" id="btn-admin-stats" class="px-5 py-2.5 text-sm font-bold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-xl transition-all"><i class="fa-solid fa-chart-pie mr-1"></i> Global Statistika</button>
+        </div>
+
+        <div id="admin-tests" class="admin-sub-content space-y-6">
+          <div class="premium-glass rounded-[1.5rem] p-6 space-y-5 shadow-softCard">
+            <div class="flex items-center justify-between gap-3 flex-wrap">
+              <h3 class="text-sm font-bold text-accentBlue uppercase tracking-widest"><i class="fa-solid fa-plus-circle"></i> Yangi Test Yaratish</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <input type="text" id="addTestTitle" placeholder="Test Nomi (Masalan: Matematika Blok)" class="col-span-2 w-full bg-white/50 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm outline-none focus:border-accentBlue text-gray-900 dark:text-white">
+              <select id="addTestCategory" class="w-full bg-white/50 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm outline-none focus:border-accentBlue text-gray-900 dark:text-white"></select>
+              <input type="number" id="addTestTime" placeholder="Vaqt (daqiqa)" class="w-full bg-white/50 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm outline-none focus:border-accentBlue text-gray-900 dark:text-white">
+              <input type="text" id="addTestCode" placeholder="Maxsus Kod (M-1)" class="w-full bg-white/50 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm font-mono outline-none focus:border-accentBlue text-gray-900 dark:text-white uppercase">
+            </div>
+
+            <div class="border border-gray-200 dark:border-white/10 p-5 rounded-2xl space-y-4 bg-gray-50/50 dark:bg-black/20">
+              <div class="flex justify-between items-center border-b border-gray-200 dark:border-white/10 pb-3">
+                <span class="text-xs font-bold text-gray-500 uppercase">Savollar Konstruktori (<span id="qBuilderCount">0</span>)</span>
+                <button onclick="addQuestionRow()" class="text-xs font-bold bg-accentBlue/10 text-accentBlue px-4 py-1.5 rounded-lg border border-accentBlue/20 hover:bg-accentBlue hover:text-white transition-all shadow-[0_0_10px_rgba(37,99,235,0.2)]">+ Savol qo'shish</button>
+              </div>
+              <div id="adminQuestionsContainer" class="space-y-5 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar"></div>
+            </div>
+
+            <button onclick="adminAddTest()" class="w-full bg-gradient-to-r from-accentBlue to-blue-700 text-white font-bold py-4 rounded-2xl shadow-glowBlue hover:-translate-y-1 transition-all duration-300">
+              <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Testni Bazaga Saqlash
+            </button>
+          </div>
+
+          <div class="premium-glass rounded-[1.5rem] overflow-hidden">
+            <div class="p-5 border-b border-gray-200 dark:border-white/10 bg-gray-100/50 dark:bg-black/40 flex justify-between items-center">
+              <h3 class="font-bold text-gray-900 dark:text-white">Mavjud Testlar Boshqaruvi</h3>
+              <span class="text-xs text-gray-500 font-bold bg-white/50 dark:bg-black/40 px-3 py-1 rounded-lg border border-gray-200 dark:border-white/10" id="adminTestsCount">0 ta</span>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-sm whitespace-nowrap">
+                <thead class="border-b border-gray-200 dark:border-white/10 text-gray-500 uppercase text-[10px] font-bold bg-transparent">
+                  <tr>
+                    <th class="p-4">Kodi</th>
+                    <th class="p-4">Nomi</th>
+                    <th class="p-4">Kategoriya</th>
+                    <th class="p-4">Savol/Vaqt</th>
+                    <th class="p-4 text-right">Harakat</th>
+                  </tr>
+                </thead>
+                <tbody id="adminTestsTable" class="divide-y divide-gray-200 dark:divide-white/5 text-gray-800 dark:text-gray-300"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="admin-cats" class="admin-sub-content hidden space-y-6">
+          <div class="grid lg:grid-cols-2 gap-6">
+            <div class="premium-glass rounded-[1.5rem] p-6 space-y-5 shadow-softCard h-fit">
+              <h3 class="text-sm font-bold text-accentEmerald uppercase tracking-widest"><i class="fa-solid fa-tags"></i> Yangi Kategoriya</h3>
+              <input type="text" id="addCatName" placeholder="Nomi (Masalan: IT va Dasturlash)" class="w-full bg-white/50 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm outline-none focus:border-accentEmerald text-gray-900 dark:text-white">
+              <select id="addCatIcon" class="w-full bg-white/50 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm outline-none focus:border-accentEmerald text-gray-900 dark:text-white font-mono">
+                <option value="fa-calculator"> Hisoblash (fa-calculator)</option>
+                <option value="fa-book"> Kitob (fa-book)</option>
+                <option value="fa-globe"> Globus (fa-globe)</option>
+                <option value="fa-flask"> Kolba (fa-flask)</option>
+                <option value="fa-laptop-code">💻 IT (fa-laptop-code)</option>
+                <option value="fa-language"> Til (fa-language)</option>
+                <option value="fa-scale-balanced">⚖ Huquq (fa-scale-balanced)</option>
+              </select>
+              <button onclick="adminAddCategory()" class="w-full bg-accentEmerald text-white font-bold py-4 rounded-2xl shadow-glowEmerald hover:-translate-y-1 transition-all duration-300">Yaratish</button>
+            </div>
+
+            <div class="premium-glass rounded-[1.5rem] overflow-hidden shadow-softCard">
+              <div class="p-5 border-b border-gray-200 dark:border-white/10 bg-gray-100/50 dark:bg-black/40">
+                <h3 class="font-bold text-gray-900 dark:text-white">Mavjud Kategoriyalar</h3>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                  <thead class="border-b border-gray-200 dark:border-white/10 text-gray-500 uppercase text-[10px] font-bold">
+                    <tr>
+                      <th class="p-4">Ikonka & Nomi</th>
+                      <th class="p-4 text-right">Harakat</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminCatsTable" class="divide-y divide-gray-200 dark:divide-white/5 text-gray-800 dark:text-gray-300"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="admin-stats" class="admin-sub-content hidden space-y-6">
+          <div class="premium-glass rounded-[1.5rem] p-6 shadow-softCard">
+            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Auditoriya va Natijalarni tahlil qilish uchun testni tanlang:</label>
+            <select id="statTestSelect" onchange="renderAdminStatsData()" class="w-full bg-white/50 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-4 text-sm outline-none focus:border-accentViolet font-bold text-gray-900 dark:text-white"></select>
+          </div>
+
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4" id="statSummaryCards"></div>
+
+          <div class="premium-glass rounded-[1.5rem] overflow-hidden shadow-softCard">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-sm whitespace-nowrap">
+                <thead class="bg-gray-100/50 dark:bg-black/40 border-b border-gray-200 dark:border-white/10 text-gray-500 uppercase text-[10px] font-bold">
+                  <tr>
+                    <th class="p-5">Sana / Vaqt</th>
+                    <th class="p-5">O'quvchi (ID)</th>
+                    <th class="p-5">To'g'ri / Umumiy</th>
+                    <th class="p-5">Foiz & Status</th>
+                  </tr>
+                </thead>
+                <tbody id="adminStatsTable" class="divide-y divide-gray-200 dark:divide-white/5 text-gray-800 dark:text-gray-300"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 z-50 premium-glass border-t border-gray-200 dark:border-white/10 pb-safe">
+      <div class="flex justify-around items-center h-16">
+        <button onclick="switchTab('homeTab')" id="mob-btn-homeTab" class="flex flex-col items-center justify-center w-full h-full text-accentBlue transition-colors">
+          <i class="fa-solid fa-layer-group text-lg mb-1 drop-shadow-[0_0_5px_rgba(37,99,235,0.5)]"></i>
+          <span class="text-[10px] font-bold">Testlar</span>
+        </button>
+        <button onclick="switchTab('resultsTab')" id="mob-btn-resultsTab" class="flex flex-col items-center justify-center w-full h-full text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+          <i class="fa-solid fa-chart-line text-lg mb-1"></i>
+          <span class="text-[10px] font-bold">Tarix</span>
+        </button>
+        <button onclick="logoutSystem()" class="flex flex-col items-center justify-center w-full h-full text-red-500 transition-colors">
+          <i class="fa-solid fa-power-off text-lg mb-1"></i>
+          <span class="text-[10px] font-bold">Chiqish</span>
+        </button>
+        <button onclick="switchTab('adminTab')" id="mob-btn-adminTab" class="hidden flex-col items-center justify-center w-full h-full text-amber-500 transition-colors">
+          <i class="fa-solid fa-shield-halved text-lg mb-1"></i>
+          <span class="text-[10px] font-bold">Admin</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div id="quizWorkspace" class="hidden fixed inset-0 flex flex-col bg-[#050611] text-white z-[100] overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-1.5 bg-gray-800 z-50">
+      <div id="timerBar" class="h-full bg-gradient-to-r from-accentBlue to-accentCyan w-full transition-all duration-1000 linear shadow-[0_0_10px_rgba(37,99,235,0.8)]"></div>
+    </div>
+
+    <header class="bg-[#0D1223] h-16 flex items-center justify-between px-4 sm:px-6 sticky top-0 z-40 border-b border-white/10 mt-1.5 shadow-lg">
+      <div class="flex items-center gap-4">
+        <span id="quizBadge" class="bg-black border border-white/20 text-xs font-mono font-bold px-3 py-1 rounded-xl text-accentCyan drop-shadow-[0_0_5px_rgba(6,182,212,0.5)]">KOD</span>
+        <span id="qProgress" class="text-xs font-bold text-gray-400 uppercase tracking-widest bg-white/5 px-3 py-1 rounded-xl border border-white/5">1 / 10</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <div id="quizTimer" class="font-mono text-xl sm:text-2xl font-black text-white bg-red-500/10 px-4 py-1.5 rounded-xl border border-red-500/30 text-shadow-[0_0_10px_rgba(244,63,94,0.8)]">00:00</div>
+        <button onclick="endQuiz(false)" class="hidden sm:flex items-center gap-2 text-xs bg-red-500/10 text-red-500 border border-red-500/30 px-4 py-2 rounded-xl font-bold hover:bg-red-500 hover:text-white transition-all shadow-[0_0_10px_rgba(239,68,68,0.2)]">
+          Yakunlash <i class="fa-solid fa-flag-checkered"></i>
+        </button>
+      </div>
+    </header>
+
+    <main id="quizTouchArea" class="flex-grow w-full px-4 py-6 flex flex-col justify-start sm:justify-center items-center overflow-y-auto custom-scrollbar relative">
+      <div class="w-full max-w-3xl bg-[#0D1223] border border-white/10 rounded-[2rem] p-6 md:p-10 flex flex-col shadow-softCard relative z-10 transition-transform duration-300" id="questionCardAnim">
+        <div id="qTextContainer" class="mb-8 border-b border-white/10 pb-8">
+          <div id="qImageWrapper" class="hidden mb-6 flex justify-center">
+            <img id="qImage" src="" alt="Question Image" class="max-h-72 object-contain rounded-2xl border border-white/10 shadow-lg">
+          </div>
+          <h3 id="qText" class="text-lg sm:text-2xl font-medium text-white leading-relaxed font-serif break-words select-none">...</h3>
+        </div>
+
+        <div id="qOptions" class="flex flex-col gap-4 w-full select-none"></div>
+
+        <div class="flex justify-between items-center mt-10 pt-6 border-t border-white/10 gap-3 flex-wrap">
+          <button id="btnPrev" onclick="quizPrev()" class="px-5 py-3 rounded-2xl border border-white/10 text-gray-400 text-sm font-bold hover:bg-white/5 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+            <i class="fa-solid fa-arrow-left mr-2"></i> Ortga (←)
+          </button>
+          <button onclick="openCanvasDrawer()" class="px-5 py-3 bg-accentViolet/10 text-accentViolet border border-accentViolet/30 rounded-2xl text-sm font-bold hover:bg-accentViolet hover:text-white transition-all shadow-[0_0_15px_rgba(139,92,246,0.2)] hidden sm:block">
+            <i class="fa-solid fa-pen-nib mr-2"></i> Qoralama (Canvas)
+          </button>
+          <button onclick="openCanvasDrawer()" class="sm:hidden px-4 py-3 bg-accentViolet/10 text-accentViolet border border-accentViolet/30 rounded-2xl text-sm font-bold">
+            <i class="fa-solid fa-pen-nib"></i>
+          </button>
+          <button id="btnNext" onclick="quizNext()" class="px-6 py-3 rounded-2xl bg-accentBlue text-white text-sm font-bold shadow-glowBlue hover:bg-blue-500 hover:-translate-y-1 transition-all">
+            Keyingi (→) <i class="fa-solid fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-8 bg-[#0D1223] border border-white/10 rounded-[1.5rem] p-5 flex flex-wrap gap-2.5 justify-center max-w-4xl w-full shadow-lg" id="qPalette"></div>
+      
+      <button onclick="endQuiz(false)" class="sm:hidden mt-8 w-full max-w-3xl text-sm bg-red-600 border border-red-500 text-white px-4 py-4 rounded-2xl font-bold shadow-[0_0_15px_rgba(220,38,38,0.5)]">Testni Yakunlash</button>
+      <div class="h-20 sm:h-0"></div> </main>
+
+    <div id="canvasDrawer" class="fixed top-0 right-0 h-full w-full sm:w-[500px] bg-[#050611]/95 backdrop-blur-xl border-l border-white/10 z-[110] transform translate-x-full transition-transform duration-500 flex flex-col shadow-[-20px_0_50px_rgba(0,0,0,0.8)]">
+      <div class="h-16 border-b border-white/10 flex items-center justify-between px-6 bg-[#0D1223]">
+        <div class="font-bold text-white flex items-center"><i class="fa-solid fa-pen-ruler text-accentViolet mr-3 text-lg"></i> Elektron Qoralama</div>
+        <button onclick="closeCanvasDrawer()" class="text-gray-400 hover:text-white p-2 bg-white/5 rounded-xl"><i class="fa-solid fa-xmark text-xl"></i></button>
+      </div>
+      <div class="p-4 bg-[#0D1223] border-b border-white/10 flex items-center gap-3 overflow-x-auto hide-scrollbar">
+        <button onclick="setCanvasTool('draw', '#06B6D4', 3)" class="w-10 h-10 rounded-full bg-[#06B6D4] shadow-[0_0_10px_rgba(6,182,212,0.6)] border-2 border-white ring-2 ring-offset-2 ring-offset-[#0D1223] ring-transparent focus:ring-[#06B6D4] canvas-color-btn"></button>
+        <button onclick="setCanvasTool('draw', '#10B981', 3)" class="w-10 h-10 rounded-full bg-[#10B981] border-2 border-transparent hover:border-white canvas-color-btn"></button>
+        <button onclick="setCanvasTool('draw', '#F43F5E', 3)" class="w-10 h-10 rounded-full bg-[#F43F5E] border-2 border-transparent hover:border-white canvas-color-btn"></button>
+        <button onclick="setCanvasTool('draw', '#F59E0B', 3)" class="w-10 h-10 rounded-full bg-[#F59E0B] border-2 border-transparent hover:border-white canvas-color-btn"></button>
+        <div class="w-px h-8 bg-white/10 mx-2"></div>
+        <button onclick="setCanvasTool('erase', '#050611', 30)" class="flex items-center gap-2 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold text-gray-300 hover:bg-white/10"><i class="fa-solid fa-eraser"></i> O'chirish</button>
+        <button onclick="clearDraw()" class="flex items-center gap-2 px-3 py-2 bg-red-500/10 border border-red-500/20 rounded-xl text-xs font-bold text-red-500 hover:bg-red-500 hover:text-white ml-auto"><i class="fa-solid fa-trash"></i></button>
+      </div>
+      <canvas id="scratchCanvas" class="flex-grow bg-[#050611] cursor-crosshair touch-none"></canvas>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================
+       1. GLOBAL STATE & CONSTANTS
+       ========================================= */
+    /* =========================================
+       1. GLOBAL STATE & CONSTANTS
+       ========================================= */
+    const THEME_KEY = 'alotalim_elite_theme';
+    const SECURE_ADMIN_PASS = '0000'; // Trapdoor exactly as requested
+    
+    // 🔴 DIQQAT: Bot ishlayotgan serverning IP manzili yoki domenini yozing. 
+    // Masalan: 'https://mening-botim.onrender.com' yoki 'http://127.0.0.1:8080'
+    const BOT_API_BASE = 'https://s-jw5a.onrender.com'; 
+    const BOT_API_ENDPOINT = `${BOT_API_BASE}/api/login`;
+    const BOT_TELEGRAM_URL = 'https://t.me/math_999_bot';
+
+    // Bu qatorni umuman olib tashlang (endi eskilik qiladi va bunga ehtiyoj yo'q)
+    // const registeredBotUsers = ['12345', ...];
+    // MOCK TELEGRAM BOT ARRAY (Only these or "admin" can enter)
+    let appState = JSON.parse(localStorage.getItem('alotalim_elite_state')) || {
+      currentUser: null,
+      userXP: 0,
+      userLevel: 1,
+      userStreak: 0,
+      lastTestDate: null
+    };
+
+    let dbCategories = JSON.parse(localStorage.getItem('alotalim_elite_cats')) || [
+      { id: 'cat_math', name: 'Matematika', icon: 'fa-calculator' },
+      { id: 'cat_lang', name: 'Ona Tili', icon: 'fa-book' },
+      { id: 'cat_it', name: 'IT & Dasturlash', icon: 'fa-laptop-code' }
+    ];
+
+    let dbTests = JSON.parse(localStorage.getItem('alotalim_elite_tests')) || [
+      {
+        id: 'M-101',
+        title: 'Oliy Matematika: Integrallar',
+        categoryId: 'cat_math',
+        qCount: 2,
+        time: 5,
+        questions: [
+          { q: 'Aniq integralni hisoblang: $\\int_0^2 3x^2 dx$', options: ['6', '8', '12', '4'], correct: 1, image: null },
+          { q: 'Agar $2^x = 32$ bo\'lsa, $x$ ni toping.', options: ['3', '4', '5', '6'], correct: 2, image: null }
+        ]
+      },
+      {
+        id: 'IT-200',
+        title: 'Frontend Dasturlash Asoslari',
+        categoryId: 'cat_it',
+        qCount: 3,
+        time: 10,
+        questions: [
+          { q: 'JavaScript-da qaysi metod massiv oxiriga element qo\'shadi?', options: ['shift()', 'pop()', 'push()', 'unshift()'], correct: 2, image: null },
+          { q: 'HTML nimaning qisqartmasi?', options: ['Hyper Text Markup Language', 'High Text Machine Language', 'Hyper Tool Multi Language', 'Hyperlink Text Module Language'], correct: 0, image: null },
+          { q: 'CSS-da flexbox yordamida elementlarni vertikal markazga keltirish uchun qaysi xossa ishlatiladi?', options: ['justify-content: center;', 'align-items: center;', 'text-align: center;', 'margin: auto;'], correct: 1, image: null }
+        ]
+      }
+    ];
+
+    let dbResults = JSON.parse(localStorage.getItem('alotalim_elite_results')) || [];
+    
+    // UI Filters
+    let currentCatFilter = 'all';
+    let searchQuery = '';
+    let questionCounter = 0;
+
+    // Quiz Execution State
+    let quizData = null;
+    let activeQIndex = 0;
+    let userAnswers = [];
+    let timerInterval = null;
+    let totalTimeSeconds = 0;
+    let timeLeft = 0;
+    let tabViolationCount = 0;
+    let isExitingQuizInput = false;
+
+    // Anti-Cheat: Mobil qurilma ekanligini aniqlash bayrog'i
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    /* =========================================
+       2. CORE UTILITIES
+       ========================================= */
+    function saveToStorage() {
+      localStorage.setItem('alotalim_elite_state', JSON.stringify(appState));
+      localStorage.setItem('alotalim_elite_cats', JSON.stringify(dbCategories));
+      localStorage.setItem('alotalim_elite_tests', JSON.stringify(dbTests));
+      localStorage.setItem('alotalim_elite_results', JSON.stringify(dbResults));
+    }
+
+    function triggerMathRender() {
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        setTimeout(() => window.MathJax.typesetPromise(), 100);
+      }
+    }
+
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      
+      let colorCls, iconCls;
+      if (type === 'success') { colorCls = 'bg-accentEmerald border-emerald-400 shadow-glowEmerald'; iconCls = 'fa-circle-check'; }
+      else if (type === 'error') { colorCls = 'bg-accentRose border-red-400 shadow-[0_0_20px_rgba(244,63,94,0.6)]'; iconCls = 'fa-circle-exclamation'; }
+      else { colorCls = 'bg-accentBlue border-blue-400 shadow-glowBlue'; iconCls = 'fa-circle-info'; }
+
+      toast.className = `flex items-center gap-4 px-5 py-4 rounded-2xl border text-white font-bold text-sm toast-enter pointer-events-auto backdrop-blur-xl ${colorCls}`;
+      toast.innerHTML = `<i class="fa-solid ${iconCls} text-xl drop-shadow-md"></i> <span>${message}</span>`;
+      container.appendChild(toast);
+      
+      requestAnimationFrame(() => toast.classList.add('toast-enter-active'));
+      setTimeout(() => {
+        toast.classList.remove('toast-enter-active');
+        toast.classList.add('toast-leave');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    /* =========================================
+       3. THEME & GLASSMORPHISM ENGINE
+       ========================================= */
+    function applyTheme(theme) {
+      const isDark = theme === 'dark';
+      document.documentElement.classList.toggle('dark', isDark);
+      document.documentElement.dataset.theme = theme;
+      localStorage.setItem(THEME_KEY, theme);
+      
+      document.querySelectorAll('#themeIcon, #mobThemeIcon').forEach(icon => {
+        icon.className = isDark ? 'fa-solid fa-moon text-accentBlue drop-shadow-[0_0_8px_rgba(37,99,235,0.6)]' : 'fa-solid fa-sun text-amber-500 drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]';
+      });
+    }
+
+    function initTheme() {
+      const stored = localStorage.getItem(THEME_KEY);
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(stored || (prefersDark ? 'dark' : 'light'));
+    }
+
+    function toggleTheme() {
+      const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+      applyTheme(next);
+    }
+
+    /* =========================================
+       4. AUTHENTICATION & SECURITY GATEWAYS
+       ========================================= */
+    function checkAdminField(value) {
+      const wrap = document.getElementById('adminPasswordWrapper');
+      if (value.trim().toLowerCase() === 'admin') wrap.classList.remove('hidden');
+      else wrap.classList.add('hidden');
+    }
+
+   async function loginSystem() {
+  const name = document.getElementById('authFullname').value.trim();
+  const id = document.getElementById('authStudentID').value.trim();
+
+  if (!name || name.split(' ').length < 2) return showToast("Iltimos, Ism va Familiyangizni to'liq kiriting!", 'error');
+  if (!id) return showToast('Tizim ID ni kiriting!', 'error');
+
+  // Admin trapdoor o'z joyida qoladi
+  if (id.toLowerCase() === 'admin') {
+    const pass = document.getElementById('authAdminPassword').value;
+    if (pass !== SECURE_ADMIN_PASS) return showToast('Admin maxfiy kodi xato!', 'error');
+
+    appState.currentUser = { name, id, role: 'admin' };
+    saveToStorage();
+    initAppView();
+    showToast('Administrator tizimga kirdi!', 'success');
+    return;
+  }
+
+  // BOT API BILAN BOG'LANISH (QAT'IY TEKSHIRUV)
+  let apiResult = null;
+  try {
+    const response = await fetch(BOT_API_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ student_id: id })
+    });
+
+    apiResult = await response.json();
+  } catch (error) {
+    return showToast("Bot serveri bilan ulanib bo'lmadi! Tarmoqni tekshiring.", 'error');
+  }
+
+  // Agar bot javob bermasa yoki ruxsat bermasa, saytga kiritmaymiz
+  if (!apiResult || !apiResult.success) {
+    const errorMsg = apiResult?.error || "Ushbu Tizim ID ro'yxatdan o'tmagan! Botimizdan o'ting.";
+    return showToast(errorMsg, 'error');
+  }
+
+  // Baza orqali tasdiqlandi, tizimga ruxsat beramiz
+  appState.currentUser = {
+    name: apiResult.name || name, // Ismni ham bazadan tortib olamiz
+    id,
+    role: apiResult.role || 'user'
+  };
+
+  if(appState.userXP === undefined) appState.userXP = 0;
+  if(appState.userStreak === undefined) appState.userStreak = 0;
+  
+  saveToStorage();
+  initAppView();
+  showToast("Saytga muvaffaqiyatli kirdingiz!", 'success');
+}
+
+    function logoutSystem() {
+      if (confirm('Tizimdan chiqishni xohlaysizmi?')) {
+        appState.currentUser = null;
+        saveToStorage();
+        window.location.reload();
+      }
+    }
+
+    function initAppView() {
+      document.getElementById('authModal').classList.add('hidden');
+      document.getElementById('mainAppView').classList.remove('hidden');
+      
+      document.getElementById('displayUserName').innerText = appState.currentUser.name;
+      document.getElementById('displayUserRole').innerText = appState.currentUser.role === 'admin' ? 'Administrator' : 'O\'quvchi';
+      
+      if(appState.currentUser.role === 'admin') {
+        document.getElementById('displayUserRole').className = "text-[11px] font-mono text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded-md border border-amber-500/20";
+        document.getElementById('btn-adminTab').classList.remove('hidden');
+        document.getElementById('mob-btn-adminTab').classList.remove('hidden');
+        document.getElementById('mob-btn-adminTab').classList.add('flex');
+      }
+
+      updateGamificationUI();
+      switchTab('homeTab');
+    }
+
+    /* =========================================
+       5. GAMIFICATION ENGINE (XP & STREAKS)
+       ========================================= */
+    function calcLevel(xp) {
+      return Math.floor(Math.sqrt(xp / 100)) + 1;
+    }
+
+    function updateGamificationUI() {
+      const xp = appState.userXP || 0;
+      const level = calcLevel(xp);
+      const currentLevelBaseXP = Math.pow(level - 1, 2) * 100;
+      const nextLevelBaseXP = Math.pow(level, 2) * 100;
+      const progressPercent = ((xp - currentLevelBaseXP) / (nextLevelBaseXP - currentLevelBaseXP)) * 100;
+
+      document.getElementById('displayUserLevel').innerText = level;
+      document.getElementById('mobDisplayUserLevel').innerText = level;
+      document.getElementById('displayUserXP').innerText = xp;
+      document.getElementById('userLevelBar').style.width = `${progressPercent}%`;
+      
+      const streak = appState.userStreak || 0;
+      document.getElementById('displayUserStreak').innerText = `🔥 ${streak} Kun`;
+    }
+
+    function processGamificationOnFinish(score, total, timeLeftSecs) {
+      // XP Formula
+      let gainedXP = (score * 50) + (timeLeftSecs * 2);
+      let isPerfect = score === total && total > 0;
+      if (isPerfect) gainedXP += 200; // Hyper-bonus
+      
+      appState.userXP += gainedXP;
+
+      // Streak tracking
+      const now = Date.now();
+      if (appState.lastTestDate) {
+        const diffHours = (now - appState.lastTestDate) / (1000 * 60 * 60);
+        if (diffHours <= 48) {
+          appState.userStreak += 1;
+        } else {
+          appState.userStreak = 1; // broken streak
+        }
+      } else {
+        appState.userStreak = 1;
+      }
+      appState.lastTestDate = now;
+      saveToStorage();
+      updateGamificationUI();
+
+      if (isPerfect) triggerConfetti();
+      
+      return gainedXP;
+    }
+
+    /* CONFETTI BURST SIMULATION */
+    function triggerConfetti() {
+      const cvs = document.getElementById('confettiCanvas');
+      const ctx = cvs.getContext('2d');
+      cvs.width = window.innerWidth;
+      cvs.height = window.innerHeight;
+      cvs.classList.remove('hidden');
+
+      const particles = [];
+      const colors = ['#06B6D4', '#2563EB', '#10B981', '#F59E0B', '#8B5CF6', '#F43F5E'];
+      
+      for(let i=0; i<150; i++) {
+        particles.push({
+          x: cvs.width / 2,
+          y: cvs.height / 2,
+          vx: (Math.random() - 0.5) * 20,
+          vy: (Math.random() - 0.5) * 20 - 5,
+          size: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          life: 1.0,
+          decay: Math.random() * 0.02 + 0.01
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, cvs.width, cvs.height);
+        let alive = false;
+        particles.forEach(p => {
+          if (p.life > 0) {
+            alive = true;
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += 0.4; // gravity
+            p.life -= p.decay;
+            ctx.globalAlpha = p.life;
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            if(Math.random() > 0.5) {
+              ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+            } else {
+              ctx.fillRect(p.x, p.y, p.size, p.size);
+            }
+            ctx.fill();
+          }
+        });
+        
+        if (alive) requestAnimationFrame(animate);
+        else {
+          ctx.clearRect(0, 0, cvs.width, cvs.height);
+          cvs.classList.add('hidden');
+        }
+      }
+      animate();
+    }
+
+    /* =========================================
+       6. NAVIGATION & TABS
+       ========================================= */
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+      
+      // Desktop Nav
+      ['homeTab', 'resultsTab', 'adminTab'].forEach(id => {
+        const btn = document.getElementById(`btn-${id}`);
+        if(btn) {
+          btn.classList.remove('tab-active', 'border-b-2');
+          btn.classList.add('border-transparent');
+          if(id === 'adminTab') btn.classList.remove('border-rose-500', 'text-rose-600');
+        }
+      });
+      
+      const activeBtn = document.getElementById(`btn-${tabId}`);
+      if(activeBtn) {
+        if(tabId !== 'adminTab') {
+          activeBtn.classList.add('tab-active', 'border-b-2');
+          activeBtn.classList.remove('border-transparent');
+        } else {
+          activeBtn.classList.add('border-rose-500', 'text-rose-600', 'border-b-2');
+          activeBtn.classList.remove('border-transparent');
+        }
+      }
+
+      // Mobile Nav
+      ['homeTab', 'resultsTab', 'adminTab'].forEach(id => {
+        const mBtn = document.getElementById(`mob-btn-${id}`);
+        if(mBtn) {
+          mBtn.classList.remove('text-accentBlue', 'text-amber-500');
+          mBtn.classList.add('text-gray-500', 'dark:text-gray-400');
+          mBtn.querySelector('i').classList.remove('drop-shadow-[0_0_5px_rgba(37,99,235,0.5)]', 'drop-shadow-[0_0_5px_rgba(245,158,11,0.5)]');
+        }
+      });
+
+      const mActive = document.getElementById(`mob-btn-${tabId}`);
+      if(mActive) {
+        mActive.classList.remove('text-gray-500', 'dark:text-gray-400');
+        if(tabId === 'adminTab') {
+          mActive.classList.add('text-amber-500');
+          mActive.querySelector('i').classList.add('drop-shadow-[0_0_5px_rgba(245,158,11,0.5)]');
+        } else {
+          mActive.classList.add('text-accentBlue');
+          mActive.querySelector('i').classList.add('drop-shadow-[0_0_5px_rgba(37,99,235,0.5)]');
+        }
+      }
+
+      if (tabId === 'homeTab') renderHome();
+      if (tabId === 'resultsTab') renderMyResults();
+      if (tabId === 'adminTab') {
+        switchAdminSub('admin-tests');
+        renderAdminView();
+      }
+      window.scrollTo(0,0);
+    }
+
+    function switchAdminSub(subId) {
+      document.querySelectorAll('.admin-sub-content').forEach(el => el.classList.add('hidden'));
+      document.getElementById(subId).classList.remove('hidden');
+      
+      document.querySelectorAll('[id^="btn-admin-"]').forEach(btn => {
+        btn.classList.remove('admin-tab-active');
+        btn.classList.add('text-gray-500', 'dark:text-gray-400');
+      });
+      const activeBtn = document.getElementById(`btn-${subId}`);
+      if (activeBtn) {
+        activeBtn.classList.add('admin-tab-active');
+        activeBtn.classList.remove('text-gray-500', 'dark:text-gray-400');
+      }
+      if (subId === 'admin-stats') renderAdminStatsDropdown();
+    }
+
+    /* =========================================
+       7. HOME TAB (TEST CATALOG)
+       ========================================= */
+    function setCategoryFilter(catId) {
+      currentCatFilter = catId;
+      renderHome();
+    }
+
+    function renderHome() {
+      const searchEl = document.getElementById('searchTestInput');
+      searchQuery = searchEl ? searchEl.value.toLowerCase() : '';
+
+      document.getElementById('statTotalTests').innerText = dbTests.length;
+      document.getElementById('statTotalCats').innerText = dbCategories.length;
+      document.getElementById('statTotalResults').innerText = dbResults.length;
+
+      const catList = document.getElementById('categoriesList');
+      let catHTML = `<button onclick="setCategoryFilter('all')" class="px-5 py-2.5 rounded-2xl text-sm font-bold border transition-all whitespace-nowrap ${currentCatFilter === 'all' ? 'bg-gradient-to-r from-accentBlue to-accentCyan text-white border-transparent shadow-glowBlue' : 'bg-white/50 dark:bg-black/40 border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5'}">Barchasi</button>`;
+
+      dbCategories.forEach(c => {
+        const isActive = currentCatFilter === c.id;
+        catHTML += `<button onclick="setCategoryFilter('${c.id}')" class="px-5 py-2.5 rounded-2xl text-sm font-bold border transition-all flex items-center gap-2 whitespace-nowrap ${isActive ? 'bg-gradient-to-r from-accentBlue to-accentCyan text-white border-transparent shadow-glowBlue' : 'bg-white/50 dark:bg-black/40 border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5'}"><i class="fa-solid ${c.icon}"></i> ${c.name}</button>`;
+      });
+      catList.innerHTML = catHTML;
+
+      let filteredTests = dbTests;
+      if (currentCatFilter !== 'all') filteredTests = filteredTests.filter(t => t.categoryId === currentCatFilter);
+      if (searchQuery) filteredTests = filteredTests.filter(t => t.title.toLowerCase().includes(searchQuery) || t.id.toLowerCase().includes(searchQuery));
+
+      document.getElementById('testCountBadge').innerText = `${filteredTests.length} ta test`;
+      if (currentCatFilter !== 'all') {
+        const cname = dbCategories.find(c => c.id === currentCatFilter)?.name;
+        document.getElementById('currentCategoryTitle').innerText = `${cname} tahlili`;
+      } else {
+        document.getElementById('currentCategoryTitle').innerText = searchQuery ? 'Qidiruv Natijalari' : 'Global Baza';
+      }
+
+      const testGrid = document.getElementById('testsGrid');
+      if (filteredTests.length === 0) {
+        testGrid.innerHTML = `<div class="col-span-full p-10 text-center text-gray-500 dark:text-gray-400 bg-white/20 dark:bg-black/20 rounded-[2rem] border border-gray-200 dark:border-white/5">Natija topilmadi.</div>`;
+      } else {
+        testGrid.innerHTML = filteredTests.map(t => {
+          const cat = dbCategories.find(c => c.id === t.categoryId);
+          return `
+            <div class="premium-glass p-6 rounded-[2rem] hover-lift relative overflow-hidden group flex flex-col justify-between h-full border border-gray-200 dark:border-white/10">
+              <div class="absolute -right-6 -top-6 w-24 h-24 bg-gradient-to-br from-accentBlue/20 to-accentCyan/20 rounded-full group-hover:scale-[3] transition-transform duration-700 pointer-events-none blur-xl"></div>
+              <div class="relative z-10">
+                <div class="flex justify-between items-start mb-4">
+                  <span class="text-[10px] font-bold bg-gray-100 dark:bg-black/50 border border-gray-200 dark:border-white/10 px-3 py-1.5 rounded-xl text-gray-600 dark:text-gray-300 flex items-center gap-1.5"><i class="fa-solid ${cat?.icon || 'fa-tag'} text-accentBlue"></i> ${cat?.name || 'Fan'}</span>
+                  <span class="text-[10px] font-mono font-bold text-accentViolet bg-accentViolet/10 border border-accentViolet/20 px-2 py-1.5 rounded-xl shadow-[0_0_10px_rgba(139,92,246,0.2)]">${t.id}</span>
+                </div>
+                <h3 class="font-black text-lg text-gray-900 dark:text-white mb-3 leading-snug">${t.title}</h3>
+                <div class="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-6 font-semibold">
+                  <span class="flex items-center gap-1.5 bg-white/50 dark:bg-white/5 px-2 py-1 rounded-lg"><i class="fa-solid fa-list-ol text-accentEmerald"></i> ${t.qCount} ta savol</span> 
+                  <span class="flex items-center gap-1.5 bg-white/50 dark:bg-white/5 px-2 py-1 rounded-lg"><i class="fa-solid fa-clock text-accentAmber"></i> ${t.time} daq</span>
+                </div>
+              </div>
+              <button onclick="initQuiz('${t.id}')" class="w-full bg-accentBlue/10 hover:bg-accentBlue text-accentBlue hover:text-white border border-accentBlue/30 font-bold py-3.5 rounded-2xl text-sm transition-all duration-300 relative z-10 hover:shadow-glowBlue flex justify-center items-center gap-2">
+                Boshlash <i class="fa-solid fa-play text-xs"></i>
+              </button>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Leaderboard
+      const userStats = {};
+      dbResults.forEach(r => {
+        if (!userStats[r.userId]) userStats[r.userId] = { name: r.userName, totalPerc: 0, count: 0 };
+        userStats[r.userId].totalPerc += (r.score / r.total) * 100;
+        userStats[r.userId].count++;
+      });
+      const leaders = Object.values(userStats).map(u => ({ name: u.name, avg: Math.round(u.totalPerc / u.count) })).sort((a, b) => b.avg - a.avg).slice(0, 5); // top 5
+      const lbList = document.getElementById('leaderboardList');
+      if (leaders.length === 0) {
+        lbList.innerHTML = `<p class="text-xs text-gray-500 text-center py-6">Hali natijalar yo'q.</p>`;
+      } else {
+        lbList.innerHTML = leaders.map((l, i) => {
+          let badgeClass = 'bg-gray-100 dark:bg-black/50 text-gray-500 border-gray-200 dark:border-white/10';
+          if(i===0) badgeClass = 'bg-gradient-to-br from-yellow-300 to-amber-500 text-white shadow-[0_0_15px_rgba(245,158,11,0.5)] border-amber-400';
+          if(i===1) badgeClass = 'bg-gradient-to-br from-gray-300 to-gray-500 text-white shadow-[0_0_10px_rgba(156,163,175,0.4)] border-gray-400';
+          if(i===2) badgeClass = 'bg-gradient-to-br from-orange-400 to-orange-700 text-white shadow-[0_0_10px_rgba(234,88,12,0.4)] border-orange-500';
+          
+          return `
+          <div class="flex justify-between items-center p-3.5 border-b border-gray-200/50 dark:border-white/5 last:border-0 hover:bg-white/50 dark:hover:bg-white/5 transition-colors rounded-2xl">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 flex items-center justify-center rounded-xl text-xs font-black border ${badgeClass}">${i+1}</span>
+              <span class="text-sm font-bold text-gray-800 dark:text-gray-200 truncate w-32">${l.name}</span>
+            </div>
+            <span class="text-xs font-mono font-bold text-accentEmerald bg-emerald-500/10 px-2.5 py-1.5 rounded-xl border border-emerald-500/20 shadow-[0_0_8px_rgba(16,185,129,0.2)]">${l.avg}%</span>
+          </div>
+        `}).join('');
+      }
+      triggerMathRender();
+    }
+
+    /* =========================================
+       8. RESULTS & MOCK AI DIAGNOSTICS
+       ========================================= */
+    function renderMyResults() {
+      const myRes = dbResults.filter(r => r.userId === appState.currentUser.id).reverse();
+      const tbody = document.getElementById('myResultsTable');
+      if (myRes.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="p-10 text-center text-gray-500 font-bold bg-white/20 dark:bg-black/20">Siz hali test topshirmagansiz. Boshlash vaqti keldi!</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = myRes.map(r => {
+        const perc = Math.round((r.score / r.total) * 100);
+        const isFail = perc < 60;
+        
+        let aiBtnHtml = `<span class="text-[10px] text-gray-400 italic">Muvaffaqiyatli</span>`;
+        if (isFail) {
+          aiBtnHtml = `<button onclick="startAIReview('${r.testId}', ${r.score}, ${r.total})" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-accentViolet/10 text-accentViolet font-bold text-[10px] border border-accentViolet/30 hover:bg-accentViolet hover:text-white transition-all shadow-[0_0_10px_rgba(139,92,246,0.3)]"><i class="fa-solid fa-brain"></i> AI Tahlil</button>`;
+        }
+
+        return `
+          <tr class="hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
+            <td class="p-5 text-xs text-gray-500 font-mono">${r.date}</td>
+            <td class="p-5 font-bold text-gray-900 dark:text-white">${r.testName} <span class="block text-[10px] font-mono text-accentBlue mt-1 bg-accentBlue/10 w-fit px-1.5 rounded">${r.testId}</span></td>
+            <td class="p-5 font-mono text-gray-600 dark:text-gray-300 font-bold">${r.score} / ${r.total}</td>
+            <td class="p-5">
+              <div class="flex items-center gap-2">
+                <span class="font-mono font-black ${isFail ? 'text-accentRose drop-shadow-[0_0_5px_rgba(244,63,94,0.5)]' : 'text-accentEmerald drop-shadow-[0_0_5px_rgba(16,185,129,0.5)]'}">${perc}%</span>
+                <span class="px-2 py-1 rounded-md text-[9px] font-bold uppercase tracking-wider ${isFail ? 'bg-red-500/10 text-red-500 border border-red-500/20' : 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'}">${isFail ? (r.status || 'YIQILDI') : 'O\'TDI'}</span>
+              </div>
+            </td>
+            <td class="p-5 text-right align-middle">${aiBtnHtml}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function startAIReview(testId, score, total) {
+      const modal = document.getElementById('aiReviewModal');
+      const loader = document.getElementById('aiReviewLoader');
+      const resultArea = document.getElementById('aiReviewResult');
+      
+      modal.classList.remove('hidden');
+      loader.classList.remove('hidden');
+      resultArea.classList.add('hidden');
+
+      const tData = dbTests.find(t => t.id === testId);
+      const catName = tData ? (dbCategories.find(c => c.id === tData.categoryId)?.name || 'Fan') : 'Fan';
+
+      setTimeout(() => {
+        loader.classList.add('hidden');
+        resultArea.classList.remove('hidden');
+        resultArea.innerHTML = `
+          <div class="flex items-center gap-3 mb-4 pb-4 border-b border-white/10">
+            <div class="h-10 w-10 rounded-xl bg-accentViolet/20 border border-accentViolet/50 flex justify-center items-center shadow-[0_0_15px_rgba(139,92,246,0.5)]">
+              <i class="fa-solid fa-robot text-accentViolet text-xl"></i>
+            </div>
+            <div>
+              <h4 class="font-black text-white text-lg">Diagnostika Xulosasi</h4>
+              <p class="text-[10px] text-accentViolet font-mono">${catName} | ${score}/${total} To'g'ri</p>
+            </div>
+          </div>
+          
+          <div class="bg-red-500/10 border border-red-500/20 rounded-xl p-4 mb-4">
+            <div class="text-[10px] font-bold text-red-400 uppercase tracking-widest mb-2"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Asosiy Muammo</div>
+            <p class="text-sm text-gray-300 font-medium">Neyrotarmoq tahlili shuni ko'rsatmoqdaki, siz <strong class="text-white">"${tData ? tData.title : 'ushbu mavzu'}"</strong>dagi bazaviy tushunchalarda xatoliklarga yo'l qo'ygansiz. Diqqatni jamlash va nazariy qoidalarni qayta ko'rib chiqish tavsiya etiladi.</p>
+          </div>
+
+          <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-4">
+            <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-2"><i class="fa-solid fa-list-check mr-1"></i> Shaxsiy O'quv Rejasi</div>
+            <ul class="text-sm text-gray-300 space-y-2 list-disc pl-5 marker:text-emerald-500">
+              <li>${catName} fanining so'nggi 2 ta darsligi qoidalarini yodlash.</li>
+              <li>Noto'g'ri belgilangan savollarning har biriga o'xshash 3 tadan misol ishlash.</li>
+              <li>Platformadagi navbatdagi testni diqqat bilan, shoshilmasdan topshirish.</li>
+            </ul>
+          </div>
+        `;
+      }, 1500);
+    }
+
+    function closeAIReview() {
+      document.getElementById('aiReviewModal').classList.add('hidden');
+    }
+
+    /* =========================================
+       9. ADMIN ENGINE
+       ========================================= */
+    function renderAdminView() {
+      document.getElementById('addTestCategory').innerHTML = dbCategories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+      document.getElementById('adminQuestionsContainer').innerHTML = '';
+      questionCounter = 0;
+      addQuestionRow();
+      renderAdminCatsTable();
+      renderAdminTestsTable();
+      document.getElementById('adminTestsCount').innerText = `${dbTests.length} ta`;
+    }
+
+    function renderAdminCatsTable() {
+      const tbody = document.getElementById('adminCatsTable');
+      tbody.innerHTML = dbCategories.map(c => `
+        <tr class="hover:bg-white/50 dark:hover:bg-white/5 transition-colors">
+          <td class="p-4 font-bold text-gray-900 dark:text-white"><i class="fa-solid ${c.icon} text-accentEmerald w-6 text-center mr-2"></i> ${c.name}</td>
+          <td class="p-4 text-right">
+            <button onclick="deleteCategory('${c.id}')" class="text-xs bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white border border-red-500/20 px-3 py-1.5 rounded-xl transition-all font-bold">
+              <i class="fa-solid fa-trash"></i> O'chirish
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderAdminTestsTable() {
+      const tbody = document.getElementById('adminTestsTable');
+      tbody.innerHTML = dbTests.map(t => {
+        const cat = dbCategories.find(c => c.id === t.categoryId);
+        return `
+          <tr class="hover:bg-white/50 dark:hover:bg-white/5 transition-colors">
+            <td class="p-4 font-mono text-xs text-accentBlue font-bold bg-accentBlue/10 rounded-l-xl">${t.id}</td>
+            <td class="p-4 font-bold text-gray-900 dark:text-white truncate max-w-[200px]">${t.title}</td>
+            <td class="p-4 text-xs text-gray-500 dark:text-gray-400 font-medium">${cat ? cat.name : 'Noma\'lum'}</td>
+            <td class="p-4 text-xs font-mono text-gray-500"><span class="text-accentEmerald">${t.qCount} ta</span> / <span class="text-accentAmber">${t.time} min</span></td>
+            <td class="p-4 text-right rounded-r-xl">
+              <button onclick="deleteTest('${t.id}')" class="text-xs bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white border border-red-500/20 px-3 py-1.5 rounded-xl transition-all font-bold">
+                <i class="fa-solid fa-trash"></i> O'chirish
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+      document.getElementById('adminTestsCount').innerText = `${dbTests.length} ta`;
+    }
+
+    function deleteCategory(id) {
+      if (confirm('Kategoriyani o\'chirsangiz, barcha tegishli testlar ham o\'chib ketadi. Davom etasizmi?')) {
+        dbCategories = dbCategories.filter(c => c.id !== id);
+        dbTests = dbTests.filter(t => t.categoryId !== id);
+        saveToStorage();
+        showToast('Kategoriya va testlar o\'chirildi', 'success');
+        renderAdminView();
+        renderHome();
+      }
+    }
+
+    function deleteTest(id) {
+      if (confirm(`"${id}" kodli testni butunlay o'chirib tashlaysizmi?`)) {
+        dbTests = dbTests.filter(t => t.id !== id);
+        saveToStorage();
+        showToast('Test muvaffaqiyatli o‘chirildi', 'success');
+        renderAdminTestsTable();
+        renderHome();
+      }
+    }
+
+    function renderAdminStatsDropdown() {
+      const select = document.getElementById('statTestSelect');
+      if (dbTests.length === 0) {
+        select.innerHTML = `<option value="">Testlar mavjud emas</option>`;
+        return;
+      }
+      select.innerHTML = `<option value="">-- Diagnostika qilish uchun test tanlang --</option>` + dbTests.map(t => `<option value="${t.id}">${t.title} (${t.id})</option>`).join('');
+      document.getElementById('adminStatsTable').innerHTML = `<tr><td colspan="4" class="p-10 text-center text-gray-500 bg-white/20 dark:bg-black/20">Yuqoridan test tanlang</td></tr>`;
+      document.getElementById('statSummaryCards').innerHTML = '';
+    }
+
+    function renderAdminStatsData() {
+      const testId = document.getElementById('statTestSelect').value;
+      if (!testId) return;
+      const tData = dbTests.find(t => t.id === testId);
+      const results = dbResults.filter(r => r.testId === testId);
+      const tbody = document.getElementById('adminStatsTable');
+      const summaryDiv = document.getElementById('statSummaryCards');
+
+      if (!tData) {
+        tbody.innerHTML = `<tr><td colspan="4" class="p-10 text-center text-gray-500">Test topilmadi.</td></tr>`;
+        summaryDiv.innerHTML = '';
+        return;
+      }
+
+      if (results.length === 0) {
+        summaryDiv.innerHTML = '';
+        tbody.innerHTML = `<tr><td colspan="4" class="p-10 text-center text-gray-500">Ushbu testni hali hech kim ishlamagan.</td></tr>`;
+        return;
+      }
+
+      let totalScore = 0;
+      let passedCount = 0;
+      tbody.innerHTML = results.map(r => {
+        const perc = Math.round((r.score / r.total) * 100);
+        totalScore += perc;
+        if (perc >= 60) passedCount++;
+        return `
+          <tr class="hover:bg-white/50 dark:hover:bg-white/5 transition-colors">
+            <td class="p-4 text-xs text-gray-500 font-mono">${r.date}</td>
+            <td class="p-4 font-bold text-gray-900 dark:text-white">${r.userName} <span class="text-[10px] bg-white/50 dark:bg-white/10 px-1.5 py-0.5 rounded text-gray-400 font-mono block mt-0.5 w-fit">${r.userId}</span></td>
+            <td class="p-4 font-mono text-gray-600 dark:text-gray-300 font-bold">${r.score} / ${r.total}</td>
+            <td class="p-4">
+              <span class="font-mono font-bold ${perc >= 60 ? 'text-accentEmerald' : 'text-accentRose'}">${perc}%</span>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      const avgScore = Math.round(totalScore / results.length);
+      const passRate = Math.round((passedCount / results.length) * 100);
+      
+      summaryDiv.innerHTML = `
+        <div class="bg-blue-500/10 border border-blue-500/20 p-5 rounded-[1.5rem] shadow-[0_0_15px_rgba(37,99,235,0.1)]">
+          <div class="text-[10px] font-bold text-accentBlue uppercase mb-1 tracking-widest">Qatnashuvchilar</div>
+          <div class="text-3xl font-black text-gray-900 dark:text-white">${results.length}</div>
+        </div>
+        <div class="bg-emerald-500/10 border border-emerald-500/20 p-5 rounded-[1.5rem] shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+          <div class="text-[10px] font-bold text-accentEmerald uppercase mb-1 tracking-widest">O'rtacha Ball</div>
+          <div class="text-3xl font-black text-gray-900 dark:text-white">${avgScore}%</div>
+        </div>
+        <div class="bg-amber-500/10 border border-amber-500/20 p-5 rounded-[1.5rem] shadow-[0_0_15px_rgba(245,158,11,0.1)]">
+          <div class="text-[10px] font-bold text-amber-500 uppercase mb-1 tracking-widest">Savollar</div>
+          <div class="text-3xl font-black text-gray-900 dark:text-white">${tData.qCount}</div>
+        </div>
+        <div class="bg-violet-500/10 border border-violet-500/20 p-5 rounded-[1.5rem] shadow-[0_0_15px_rgba(139,92,246,0.1)]">
+          <div class="text-[10px] font-bold text-accentViolet uppercase mb-1 tracking-widest">Pass Ratio</div>
+          <div class="text-3xl font-black text-gray-900 dark:text-white">${passRate}%</div>
+          <div class="w-full bg-black/40 h-1 mt-2 rounded"><div class="bg-accentViolet h-full rounded" style="width:${passRate}%"></div></div>
+        </div>
+      `;
+    }
+
+    function adminAddCategory() {
+      const name = document.getElementById('addCatName').value.trim();
+      const icon = document.getElementById('addCatIcon').value;
+      if (!name) return showToast('Kategoriya nomini kiriting!', 'error');
+      const id = 'cat_' + Date.now();
+      dbCategories.push({ id, name, icon });
+      saveToStorage();
+      showToast('Yangi kategoriya qo‘shildi!');
+      document.getElementById('addCatName').value = '';
+      renderAdminView();
+      renderHome();
+    }
+
+    function handleImageUpload(inputEl) {
+      const file = inputEl.files[0];
+      const statusSpan = document.getElementById(`img-status-${inputEl.dataset.qid}`);
+      if (!file) {
+        statusSpan.innerText = 'Rasm biriktirilmadi';
+        statusSpan.className = 'text-[10px] text-gray-400 block mt-1';
+        inputEl.dataset.b64 = '';
+        return;
+      }
+      statusSpan.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-accentAmber"></i> Yuklanmoqda...';
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const MAX_WIDTH = 600;
+          let width = img.width;
+          let height = img.height;
+          if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          inputEl.dataset.b64 = canvas.toDataURL('image/jpeg', 0.6);
+          statusSpan.innerHTML = '<i class="fa-solid fa-check text-accentEmerald"></i> Bajarildi';
+          statusSpan.className = 'text-[10px] text-accentEmerald block mt-1 font-bold';
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function addQuestionRow() {
+      questionCounter++;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'p-5 border border-gray-200 dark:border-white/10 rounded-2xl bg-white/50 dark:bg-black/30 space-y-4 relative shadow-sm transition-all hover:border-accentBlue/50 text-xs';
+      wrapper.id = `qRow-${questionCounter}`;
+      wrapper.innerHTML = `
+        <div class="flex justify-between items-center mb-2 pb-3 border-b border-gray-200 dark:border-white/10">
+          <span class="font-black text-accentBlue text-sm tracking-wide">Savol #${questionCounter}</span>
+          ${questionCounter > 1 ? `<button onclick="this.parentElement.parentElement.remove(); document.getElementById('qBuilderCount').innerText=document.querySelectorAll('[id^=\\'qRow-\\']').length;" class="text-red-500 font-bold bg-red-500/10 px-3 py-1.5 rounded-lg border border-red-500/20 hover:bg-red-500 hover:text-white transition-all"><i class="fa-solid fa-trash"></i></button>` : ''}
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="md:col-span-2">
+            <textarea rows="3" placeholder="Savol matnini kiriting (LaTeX $...$ qo'llab quvvatlanadi)" class="q-text-input w-full bg-white/70 dark:bg-[#050611] border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 outline-none text-gray-900 dark:text-white focus:border-accentBlue focus:ring-1 focus:ring-accentBlue resize-none"></textarea>
+          </div>
+          <div class="bg-white/70 dark:bg-[#050611] border border-gray-200 dark:border-white/10 rounded-xl p-3 flex flex-col justify-center items-center border-dashed">
+            <label class="block text-[10px] font-bold text-gray-400 mb-2 uppercase text-center w-full cursor-pointer hover:text-accentBlue">
+              <i class="fa-solid fa-cloud-arrow-up text-xl mb-1 block"></i> Rasm biriktirish
+              <input type="file" accept="image/*" data-qid="${questionCounter}" onchange="handleImageUpload(this)" class="q-img-input hidden w-full">
+            </label>
+            <span id="img-status-${questionCounter}" class="text-[10px] text-gray-500 block text-center">Ixtiyoriy</span>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
+          <div class="flex items-center bg-white/70 dark:bg-[#050611] rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden focus-within:border-accentBlue focus-within:ring-1 focus-within:ring-accentBlue">
+            <span class="px-3 font-black text-gray-400 border-r border-gray-200 dark:border-white/10">A</span>
+            <input type="text" placeholder="Variant A" class="q-opt-A w-full px-3 py-2.5 outline-none bg-transparent text-gray-900 dark:text-white">
+          </div>
+          <div class="flex items-center bg-white/70 dark:bg-[#050611] rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden focus-within:border-accentBlue focus-within:ring-1 focus-within:ring-accentBlue">
+            <span class="px-3 font-black text-gray-400 border-r border-gray-200 dark:border-white/10">B</span>
+            <input type="text" placeholder="Variant B" class="q-opt-B w-full px-3 py-2.5 outline-none bg-transparent text-gray-900 dark:text-white">
+          </div>
+          <div class="flex items-center bg-white/70 dark:bg-[#050611] rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden focus-within:border-accentBlue focus-within:ring-1 focus-within:ring-accentBlue">
+            <span class="px-3 font-black text-gray-400 border-r border-gray-200 dark:border-white/10">C</span>
+            <input type="text" placeholder="Variant C" class="q-opt-C w-full px-3 py-2.5 outline-none bg-transparent text-gray-900 dark:text-white">
+          </div>
+          <div class="flex items-center bg-white/70 dark:bg-[#050611] rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden focus-within:border-accentBlue focus-within:ring-1 focus-within:ring-accentBlue">
+            <span class="px-3 font-black text-gray-400 border-r border-gray-200 dark:border-white/10">D</span>
+            <input type="text" placeholder="Variant D" class="q-opt-D w-full px-3 py-2.5 outline-none bg-transparent text-gray-900 dark:text-white">
+          </div>
+        </div>
+        <div class="flex items-center justify-end gap-3 pt-3 border-t border-gray-200 dark:border-white/10 mt-3">
+          <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-500">To'g'ri Javob:</span>
+          <select class="q-correct bg-emerald-500/10 text-emerald-500 border border-emerald-500/30 rounded-xl px-4 py-2 font-black outline-none cursor-pointer focus:ring-1 focus:ring-emerald-500 text-xs">
+            <option value="0">A varianti</option><option value="1">B varianti</option><option value="2">C varianti</option><option value="3">D varianti</option>
+          </select>
+        </div>
+      `;
+      document.getElementById('adminQuestionsContainer').appendChild(wrapper);
+      document.getElementById('qBuilderCount').innerText = document.querySelectorAll('[id^="qRow-"]').length;
+    }
+
+    function adminAddTest() {
+      const title = document.getElementById('addTestTitle').value.trim();
+      const categoryId = document.getElementById('addTestCategory').value;
+      const code = document.getElementById('addTestCode').value.trim().toUpperCase();
+      const time = parseInt(document.getElementById('addTestTime').value);
+      
+      if (!title || !code || !categoryId || isNaN(time) || time <= 0) return showToast("Barcha maydonlarni to'g'ri to'ldiring!", 'error');
+      if (dbTests.find(t => t.id === code)) return showToast('Bu kodli test bazada mavjud!', 'error');
+
+      const questionRows = document.querySelectorAll('[id^="qRow-"]');
+      const constructedQuestions = [];
+      let validationFailed = false;
+
+      questionRows.forEach(row => {
+        const text = row.querySelector('.q-text-input').value.trim();
+        const optA = row.querySelector('.q-opt-A').value.trim();
+        const optB = row.querySelector('.q-opt-B').value.trim();
+        const optC = row.querySelector('.q-opt-C').value.trim();
+        const optD = row.querySelector('.q-opt-D').value.trim();
+        const correctIdx = parseInt(row.querySelector('.q-correct').value);
+        const imgB64 = row.querySelector('.q-img-input').dataset.b64 || null;
+        
+        if (!text || !optA || !optB || !optC || !optD) validationFailed = true;
+        constructedQuestions.push({ q: text, options: [optA, optB, optC, optD], correct: correctIdx, image: imgB64 });
+      });
+
+      if (validationFailed) return showToast("Savollar yoki variantlar bo'sh qolgan!", 'error');
+      if (constructedQuestions.length === 0) return showToast("Kamida 1 ta savol qo'shing!", 'error');
+
+      dbTests.unshift({ id: code, title, categoryId, qCount: constructedQuestions.length, time, questions: constructedQuestions });
+      saveToStorage();
+      showToast('Test muvaffaqiyatli yaratildi!', 'success');
+      
+      document.getElementById('addTestTitle').value = '';
+      document.getElementById('addTestCode').value = '';
+      document.getElementById('addTestTime').value = '';
+      renderAdminView();
+      renderHome();
+    }
+
+    /* =========================================
+       10. QUIZ WORKSPACE & LOGIC
+       ========================================= */
+    async function initQuiz(testId) {
+      quizData = dbTests.find(t => t.id === testId);
+      if (!quizData || !quizData.questions) return showToast('Test topilmadi!', 'error');
+      
+      tabViolationCount = 0;
+      isExitingQuizInput = false;
+      
+      document.getElementById('mainAppView').classList.add('hidden');
+      document.getElementById('quizWorkspace').classList.remove('hidden');
+      document.getElementById('quizBadge').innerText = quizData.id;
+      
+      activeQIndex = 0;
+      userAnswers = new Array(quizData.qCount).fill(null);
+      totalTimeSeconds = quizData.time * 60;
+      timeLeft = totalTimeSeconds;
+      
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(handleTimer, 1000);
+      handleTimer();
+      
+      loadQuizQuestion();
+
+      try { if(!isMobileDevice) { await enterFullscreen(); } } catch (e) { console.warn('Fullscreen request blocked', e); }
+      if (!document.fullscreenElement && !document.webkitFullscreenElement && !isMobileDevice) {
+        showToast('Iltimos, maksimal darajada diqqat qilish uchun F11 tugmasini bosing', 'info');
+      }
+    }
+
+    function handleTimer() {
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        endQuiz(true); // Auto-timeout finish
+        return;
+      }
+      timeLeft--;
+      const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+      const s = (timeLeft % 60).toString().padStart(2, '0');
+      document.getElementById('quizTimer').innerText = `${m}:${s}`;
+      
+      const perc = (timeLeft / totalTimeSeconds) * 100;
+      const bar = document.getElementById('timerBar');
+      bar.style.width = `${perc}%`;
+      
+      if (perc < 20) {
+        bar.classList.replace('from-accentBlue', 'from-red-600');
+        bar.classList.replace('to-accentCyan', 'to-red-500');
+        bar.classList.add('shadow-[0_0_15px_rgba(220,38,38,0.8)]');
+        bar.classList.remove('shadow-[0_0_10px_rgba(37,99,235,0.8)]');
+        document.getElementById('quizTimer').classList.add('animate-pulse');
+      } else {
+        bar.classList.replace('from-red-600', 'from-accentBlue');
+        bar.classList.replace('to-red-500', 'to-accentCyan');
+        bar.classList.remove('shadow-[0_0_15px_rgba(220,38,38,0.8)]');
+        bar.classList.add('shadow-[0_0_10px_rgba(37,99,235,0.8)]');
+        document.getElementById('quizTimer').classList.remove('animate-pulse');
+      }
+    }
+
+    function loadQuizQuestion() {
+      document.getElementById('qProgress').innerText = `${activeQIndex + 1} / ${quizData.qCount}`;
+      const qObj = quizData.questions[activeQIndex];
+      
+      const imgWrap = document.getElementById('qImageWrapper');
+      const imgEl = document.getElementById('qImage');
+      if (qObj.image && qObj.image.length > 10) {
+        imgEl.src = qObj.image;
+        imgWrap.classList.remove('hidden');
+      } else {
+        imgWrap.classList.add('hidden');
+      }
+      
+      document.getElementById('qText').innerHTML = qObj.q;
+      const optsLetters = ['A', 'B', 'C', 'D'];
+      
+      document.getElementById('qOptions').innerHTML = qObj.options.map((optText, idx) => {
+        const isSelected = userAnswers[activeQIndex] === idx;
+        return `
+          <button onclick="selectOption(${idx})" class="w-full flex items-center p-4 rounded-2xl border text-left transition-all duration-300 select-none ${isSelected ? 'border-accentBlue bg-accentBlue/10 text-white font-bold ring-2 ring-accentBlue/30 shadow-[0_0_15px_rgba(37,99,235,0.2)] scale-[1.02]' : 'border-white/10 bg-white/5 text-gray-300 hover:bg-white/10 hover:border-white/30'}">
+            <div class="h-10 w-10 rounded-xl border flex-shrink-0 ${isSelected ? 'border-transparent bg-accentBlue text-white shadow-glowBlue' : 'border-white/20 bg-black/40 text-gray-400'} flex justify-center items-center text-sm mr-4 font-black transition-all">${optsLetters[idx]}</div>
+            <div class="leading-relaxed break-words font-medium w-full">${optText}</div>
+          </button>
+        `;
+      }).join('');
+      
+      document.getElementById('btnPrev').disabled = activeQIndex === 0;
+      const btnNext = document.getElementById('btnNext');
+      if (activeQIndex === quizData.qCount - 1) {
+        btnNext.innerHTML = 'Yakunlash (Enter) <i class="fa-solid fa-flag-checkered ml-2"></i>';
+        btnNext.classList.replace('bg-accentBlue', 'bg-accentEmerald');
+        btnNext.classList.replace('shadow-glowBlue', 'shadow-glowEmerald');
+      } else {
+        btnNext.innerHTML = 'Keyingi (→) <i class="fa-solid fa-arrow-right ml-2"></i>';
+        btnNext.classList.replace('bg-accentEmerald', 'bg-accentBlue');
+        btnNext.classList.replace('shadow-glowEmerald', 'shadow-glowBlue');
+      }
+      
+      // Animate transition
+      const card = document.getElementById('questionCardAnim');
+      card.style.transform = 'scale(0.98)';
+      card.style.opacity = '0';
+      setTimeout(() => {
+        card.style.transform = 'scale(1)';
+        card.style.opacity = '1';
+      }, 50);
+
+      renderPalette();
+      triggerMathRender();
+    }
+
+    function selectOption(idx) { 
+      userAnswers[activeQIndex] = idx; 
+      loadQuizQuestion(); 
+    }
+    
+    function jumpToQuestion(idx) { 
+      activeQIndex = idx; 
+      loadQuizQuestion(); 
+    }
+
+    function renderPalette() {
+      const pal = document.getElementById('qPalette');
+      pal.innerHTML = userAnswers.map((ans, idx) => {
+        const isCurrent = idx === activeQIndex;
+        const isAnswered = ans !== null;
+        let classes = 'w-11 h-11 rounded-2xl flex items-center justify-center text-sm font-black cursor-pointer transition-all border shadow-sm select-none ';
+        if (isCurrent) {
+          classes += 'border-transparent ring-2 ring-white bg-white text-black scale-110 shadow-[0_0_15px_rgba(255,255,255,0.6)]';
+        } else if (isAnswered) {
+          classes += 'border-transparent bg-accentBlue text-white shadow-glowBlue';
+        } else {
+          classes += 'border-white/10 bg-white/5 text-gray-500 hover:bg-white/20';
+        }
+        return `<div onclick="jumpToQuestion(${idx})" class="${classes}">${idx + 1}</div>`;
+      }).join('');
+    }
+
+    function quizPrev() { if (activeQIndex > 0) { activeQIndex--; loadQuizQuestion(); } }
+    function quizNext() { 
+      if (activeQIndex < quizData.qCount - 1) {
+        activeQIndex++; 
+        loadQuizQuestion();
+      } else {
+        endQuiz(false); 
+      }
+    }
+
+    function endQuiz(isAutoTimeOut = false) {
+      if (!isAutoTimeOut && tabViolationCount < 3) {
+        const unselectedCount = userAnswers.filter(a => a === null).length;
+        if (unselectedCount > 0) {
+          if (!confirm(`Diqqat! ${unselectedCount} ta savolga javob belgilanmadi. Baribir testni yakunlaysizmi?`)) return;
+        } else {
+          if (!confirm('Barcha savollarga javob berdingiz. Testni yakunlashni tasdiqlaysizmi?')) return;
+        }
+      } else if (isAutoTimeOut && tabViolationCount < 3) {
+        showToast('Vaqt tugadi! Test avtomatik yakunlandi.', 'error');
+      }
+
+      clearInterval(timerInterval);
+      
+      let correctScore = 0;
+      let resultStatus = 'O\'TDI';
+      
+      // Calculate
+      if (tabViolationCount >= 3) {
+        correctScore = 0; // Forced Fail
+        resultStatus = 'YIQILDI (Cheat)';
+      } else {
+        quizData.questions.forEach((qObj, idx) => { 
+          if (userAnswers[idx] === qObj.correct) correctScore++; 
+        });
+        const perc = Math.round((correctScore / quizData.qCount) * 100);
+        resultStatus = perc >= 60 ? 'O\'TDI' : 'YIQILDI';
+      }
+
+      // Save History
+      const todayStr = new Date().toLocaleString('uz-UZ', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+      dbResults.push({ 
+        userId: appState.currentUser.id, 
+        userName: appState.currentUser.name, 
+        testId: quizData.id, 
+        testName: quizData.title, 
+        score: correctScore, 
+        total: quizData.qCount, 
+        date: todayStr,
+        status: resultStatus
+      });
+
+      // Execute Gamification
+      if (tabViolationCount < 3) {
+        processGamificationOnFinish(correctScore, quizData.qCount, timeLeft);
+      } else {
+        saveToStorage(); // Save only penalty
+      }
+      
+      showToast(`Natijangiz: ${correctScore} / ${quizData.qCount}`, tabViolationCount >= 3 ? 'error' : 'success');
+      
+      // Cleanup
+      exitFullscreen();
+      document.getElementById('quizWorkspace').classList.add('hidden');
+      document.getElementById('mainAppView').classList.remove('hidden');
+      quizData = null; // Important flag to disable anti-cheat listeners
+      switchTab('resultsTab');
+    }
+
+    /* =========================================
+       11. KEYBOARD & MOBILE SWIPE NAVIGATION
+       ========================================= */
+    // Keyboard Event Listener (Active only when Quiz runs)
+    window.addEventListener('keydown', (e) => {
+      if (!quizData || document.getElementById('quizWorkspace').classList.contains('hidden')) return;
+
+      const key = e.key.toLowerCase();
+      // Options selection
+      if (['a', '1'].includes(key)) selectOption(0);
+      else if (['b', '2'].includes(key)) selectOption(1);
+      else if (['c', '3'].includes(key)) selectOption(2);
+      else if (['d', '4'].includes(key)) selectOption(3);
+      
+      // Nav
+      else if (e.key === 'ArrowLeft') quizPrev();
+      else if (e.key === 'ArrowRight' || e.key === 'Enter') quizNext();
+      else if (e.key === 'Escape') {
+        // Prevent default fullscreen exit logic if possible, or trigger end warning
+        isExitingQuizInput = true;
+      }
+    });
+
+    // Touch Swipe Logic
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const touchArea = document.getElementById('quizTouchArea');
+
+    touchArea.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+
+    touchArea.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, {passive: true});
+
+    function handleSwipe() {
+      if (!quizData) return;
+      const SWIPE_THRESHOLD = 50;
+      if (touchEndX < touchStartX - SWIPE_THRESHOLD) {
+        // Swiped left
+        quizNext();
+      }
+      if (touchEndX > touchStartX + SWIPE_THRESHOLD) {
+        // Swiped right
+        quizPrev();
+      }
+    }
+
+    /* =========================================
+       12. SCRATCH CANVAS DRAWER
+       ========================================= */
+    const cvs = document.getElementById('scratchCanvas');
+    const ctx = cvs.getContext('2d', { willReadFrequently: true });
+    let isDrawing = false;
+    let currentCtxColor = '#06B6D4';
+    let currentCtxWidth = 3;
+
+    function openCanvasDrawer() {
+      const drawer = document.getElementById('canvasDrawer');
+      drawer.classList.remove('translate-x-full');
+      // Set dimensions
+      setTimeout(() => {
+        const rect = cvs.parentElement.getBoundingClientRect();
+        cvs.width = rect.width;
+        cvs.height = rect.height - 130; // Offset for headers
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        setCanvasTool('draw', '#06B6D4', 3);
+      }, 300);
+    }
+
+    function closeCanvasDrawer() { 
+      document.getElementById('canvasDrawer').classList.add('translate-x-full'); 
+    }
+
+    function setCanvasTool(mode, color, width) {
+      if(mode === 'erase') {
+        currentCtxColor = '#050611'; // matches bg
+        currentCtxWidth = 30;
+      } else {
+        currentCtxColor = color;
+        currentCtxWidth = width;
+      }
+      ctx.strokeStyle = currentCtxColor;
+      ctx.lineWidth = currentCtxWidth;
+
+      // Update UI visual active state
+      if(mode === 'draw') {
+        document.querySelectorAll('.canvas-color-btn').forEach(b => {
+          b.classList.remove('border-white', 'ring-2', 'ring-offset-2', 'shadow-[0_0_10px_rgba(6,182,212,0.6)]');
+          b.classList.add('border-transparent');
+          // Match bg color to specific shadow manually if desired, simplify here:
+          if(b.style.backgroundColor === color || b.classList.contains(`bg-[${color}]`)) {
+            b.classList.remove('border-transparent');
+            b.classList.add('border-white', 'ring-2', 'ring-offset-2');
+          }
+        });
+      }
+    }
+
+    function clearDraw() { ctx.clearRect(0, 0, cvs.width, cvs.height); }
+
+    function getPos(e) {
+      const rect = cvs.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return { x: clientX - rect.left, y: clientY - rect.top };
+    }
+
+    cvs.addEventListener('mousedown', e => { isDrawing = true; ctx.strokeStyle=currentCtxColor; ctx.lineWidth=currentCtxWidth; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
+    cvs.addEventListener('mousemove', e => { if (!isDrawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); });
+    cvs.addEventListener('mouseup', () => isDrawing = false);
+    cvs.addEventListener('mouseleave', () => isDrawing = false);
+    cvs.addEventListener('touchstart', e => { isDrawing = true; ctx.strokeStyle=currentCtxColor; ctx.lineWidth=currentCtxWidth; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); e.preventDefault(); }, { passive: false });
+    cvs.addEventListener('touchmove', e => { if (!isDrawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); e.preventDefault(); }, { passive: false });
+    cvs.addEventListener('touchend', () => isDrawing = false);
+
+
+    /* =========================================
+       13. ANTI-CHEAT PROTOCOLS
+       ========================================= */
+    function enterFullscreen() {
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) return elem.requestFullscreen();
+      else if (elem.webkitRequestFullscreen) return elem.webkitRequestFullscreen();
+    }
+
+    function exitFullscreen() {
+      if (document.fullscreenElement || document.webkitFullscreenElement) {
+        isExitingQuizInput = true;
+        if (document.exitFullscreen) document.exitFullscreen().finally(() => isExitingQuizInput = false);
+        else if (document.webkitExitFullscreen) { document.webkitExitFullscreen(); isExitingQuizInput = false; }
+      }
+    }
+
+    function handleCheatViolation() {
+      const isQuizActive = quizData !== null && !document.getElementById('quizWorkspace').classList.contains('hidden');
+      if (isQuizActive && !isExitingQuizInput) {
+        if (document.hidden) {
+          triggerViolation("Test jarayonida boshqa sahifalarga o'tish qat'iyan taqiqlanadi!");
+        } 
+        else if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+          if (!isMobileDevice) {
+            triggerViolation("To'liq ekran rejimidan chiqish taqiqlangan!");
+          } else {
+            showToast("Ogohlantirish: Iltimos to'liq ekran rejimidan chiqmang!", "warning");
+          }
+        }
+      }
+    }
+
+    function triggerViolation(reason) {
+      tabViolationCount++;
+      if (tabViolationCount >= 3) {
+        alert("Tizim jiddiy qoidabuzarlik aniqladi! 3 marta qoida buzilganligi sababli, testingiz 0% natija bilan avtomatik ravishda yakunlandi.");
+        endQuiz(true); // Forces penalty inside endQuiz logic
+      } else {
+        alert(`DIQQAT! Xavfsizlik qoidasi buzildi! ${reason}\n\nOgohlantirish: ${tabViolationCount}/3. Agarda 3 taga yetsa test avtomatik ravishda yakunlanadi!`);
+        try { if (!document.fullscreenElement && !isMobileDevice) enterFullscreen(); } catch(e){}
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleCheatViolation);
+    document.addEventListener('fullscreenchange', handleCheatViolation);
+    document.addEventListener('webkitfullscreenchange', handleCheatViolation);
+
+    window.addEventListener('contextmenu', (e) => {
+      if (quizData && !document.getElementById('quizWorkspace').classList.contains('hidden')) { 
+        e.preventDefault(); 
+        showToast("Xavfsizlik: Test paytida o'ng tugmani bosish taqiqlangan!", 'error'); 
+      }
+    });
+
+    // Mobil qurilmalarda elementni bosib turganda nusxalash menyusi chiqishini taqiqlash
+    window.addEventListener('touchstart', function(e) {
+      const isQuizActive = quizData !== null && !document.getElementById('quizWorkspace').classList.contains('hidden');
+      if(isQuizActive && e.target.tagName !== 'INPUT' && e.target.tagName !== 'BUTTON' && !e.target.closest('button')) {
+        // Matnlarni uzoq bosganda tizim menyusi ochilishining oldini oladi (iOS va Android)
+      }
+    }, {passive: true});
+
+    window.addEventListener('keydown', (e) => {
+      if (quizData && !document.getElementById('quizWorkspace').classList.contains('hidden')) {
+        const isMod = e.ctrlKey || e.metaKey;
+        const key = e.key.toLowerCase();
+        // Prevent copy, paste, save, select all, source view, devtools shortcuts
+        if (isMod && (key === 'c' || key === 'v' || key === 'u' || key === 'x' || key === 's' || key === 'a')) {
+          e.preventDefault();
+          showToast("Xavfsizlik: Matnni nusxalash yoki saqlash taqiqlangan!", 'error');
+        }
+        if (e.key === 'F12' || (isMod && e.shiftKey && (key === 'i' || key === 'j' || key === 'c'))) {
+          e.preventDefault();
+          showToast('Xavfsizlik: Dasturchilar asboblar panelini ochish taqiqlangan!', 'error');
+        }
+      }
+    });
+
+    /* =========================================
+       14. BOOTSTRAP INITIALIZATION
+       ========================================= */
+    window.onload = function () {
+      initTheme();
+      if (appState.currentUser) initAppView();
+      else renderHome();
+    };
+
+  </script>
+</body>
+</html>
