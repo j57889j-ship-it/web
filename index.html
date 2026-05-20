@@ -792,6 +792,7 @@
   appState.currentUser = {
     name: apiResult.name || name, // Ismni ham bazadan tortib olamiz
     id,
+    uid: apiResult.uid, // SHU QATOR QO'SHILDI
     role: apiResult.role || 'user'
   };
 
@@ -1645,7 +1646,40 @@
         const perc = Math.round((correctScore / quizData.qCount) * 100);
         resultStatus = perc >= 60 ? 'O\'TDI' : 'YIQILDI';
       }
+// ... sizdagi kod:
+      if (tabViolationCount >= 3) {
+        correctScore = 0; // Forced Fail
+        resultStatus = 'YIQILDI (Cheat)';
+      } else {
+        quizData.questions.forEach((qObj, idx) => { 
+          if (userAnswers[idx] === qObj.correct) correctScore++; 
+        });
+        const perc = Math.round((correctScore / quizData.qCount) * 100);
+        resultStatus = perc >= 60 ? 'O\'TDI' : 'YIQILDI';
+      }
 
+      // 🔴 SHU YERDAN BOSHLAB YANGI KODNI QO'SHING 🔴
+      // Serverga yuborish
+      if (appState.currentUser.uid && tabViolationCount < 3) {
+        fetch(`${BOT_API_BASE}/api/save_result`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            uid: appState.currentUser.uid,
+            test_kod: quizData.id,
+            ball: correctScore,
+            total: quizData.qCount
+          })
+        }).then(res => res.json())
+          .then(data => {
+            if(!data.success) console.error("Bazaga yozishda xato:", data.error);
+          }).catch(err => console.error("Tarmoq xatosi:", err));
+      }
+      // 🔴 YANGI KOD TUGADI 🔴
+
+      // Save History (Sizdagi avvalgi kod davom etadi)
+      const todayStr = new Date().toLocaleString('uz-UZ', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+      dbResults.push({
       // Save History
       const todayStr = new Date().toLocaleString('uz-UZ', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
       dbResults.push({ 
