@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>A'lo Ta'lim — Premium Elite Platform</title>
 
+  <!-- Tailwind CSS & Google Fonts & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
+  <!-- MathJax Configuration for scientific expressions -->
   <script>
     window.MathJax = {
       tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
@@ -28,7 +30,7 @@
           },
           colors: {
             premiumDark: '#03040b',
-            premiumCard: 'rgba(9, 11, 23, 0.45)',
+            premiumCard: 'rgba(10, 14, 28, 0.7)',
             premiumBorder: 'rgba(255, 255, 255, 0.08)',
             accentBlue: '#3B82F6',
             accentCyan: '#06B6D4',
@@ -41,7 +43,7 @@
             glowBlue: '0 0 25px rgba(59, 130, 246, 0.45)',
             glowEmerald: '0 0 25px rgba(16, 185, 129, 0.45)',
             neonBlur: '0 0 35px rgba(6, 182, 212, 0.35)',
-            softCard: '0 25px 70px rgba(0, 0, 0, 0.55)'
+            softCard: '0 25px 70px rgba(0, 0, 0, 0.5)'
           }
         }
       }
@@ -49,24 +51,29 @@
   </script>
 
   <style>
+    /* Light Mode va Dark Mode o'zgaruvchilari */
     :root {
-      --bg-color: #f1f5f9;
-      --glass-bg: rgba(255, 255, 255, 0.45);
+      --bg-color: #f3f4f6;
+      --glass-bg: rgba(255, 255, 255, 0.7);
       --glass-border: rgba(0, 0, 0, 0.08);
-      --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
-      --text-main: #0f172a;
-      --text-muted: #64748b;
+      --glass-shadow: 0 10px 40px 0 rgba(31, 38, 135, 0.06);
+      --text-main: #1f2937;
+      --text-muted: #4b5563;
       --grid-color: rgba(0, 0, 0, 0.03);
+      --watermark-opacity: 0.035;
+      --sub-card: rgba(255, 255, 255, 0.9);
     }
 
     html.dark {
       --bg-color: #03040b;
-      --glass-bg: rgba(6, 8, 20, 0.45);
-      --glass-border: rgba(255, 255, 255, 0.06);
-      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
+      --glass-bg: rgba(11, 15, 30, 0.65);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
       --grid-color: rgba(255, 255, 255, 0.02);
+      --watermark-opacity: 0.015;
+      --sub-card: rgba(17, 24, 39, 0.8);
     }
 
     body {
@@ -74,61 +81,26 @@
       background-color: var(--bg-color);
       color: var(--text-main);
       overflow-x: hidden;
-      transition: background-color 0.4s ease, color 0.4s ease;
-      position: relative;
+      transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* 4K Shaffoflik va Premium Glassmorphism */
+    /* 4K Shaffof Glassmorphism */
     .premium-glass {
       background: var(--glass-bg);
-      backdrop-filter: blur(32px) saturate(220%);
-      -webkit-backdrop-filter: blur(32px) saturate(220%);
+      backdrop-filter: blur(24px) saturate(210%);
+      -webkit-backdrop-filter: blur(24px) saturate(210%);
       border: 1px solid var(--glass-border);
       box-shadow: var(--glass-shadow);
-      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     .premium-glass:hover.hover-lift {
-      transform: translateY(-6px);
-      border-color: rgba(59, 130, 246, 0.5);
-      box-shadow: 0 16px 45px 0 rgba(59, 130, 246, 0.2);
+      transform: translateY(-5px);
+      border-color: rgba(59, 130, 246, 0.45);
+      box-shadow: 0 20px 45px 0 rgba(59, 130, 246, 0.18), var(--glass-shadow);
     }
 
-    /* 45 Gradus Qiya Premium Suv Belgisi (Watermark) */
-    .watermark-bg {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -1;
-      opacity: 0.035;
-      user-select: none;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(5, 1fr);
-      gap: 30px;
-      overflow: hidden;
-      transform: rotate(-35deg) scale(1.3);
-      transform-origin: center;
-    }
-
-    .watermark-text {
-      font-size: 2.8rem;
-      font-weight: 900;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-main);
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    html.dark .watermark-bg {
-      opacity: 0.025;
-    }
-
-    /* Matn nusxalashni cheklash */
+    /* Nusxalashni cheklash (Xavfsizlik) */
     .no-select {
       -webkit-touch-callout: none;
       -webkit-user-select: none;
@@ -137,7 +109,25 @@
       user-select: none;
     }
 
-    /* Background Grid */
+    /* Bilinar-bilinmas premium "A'LO TA'LIM" foni */
+    .watermark-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: -1;
+      opacity: var(--watermark-opacity);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='90' viewBox='0 0 180 90'%3E%3Ctext x='10' y='50' fill='%23ffffff' font-family='Plus Jakarta Sans, sans-serif' font-weight='800' font-size='15' transform='rotate(-22 90 45)'%3EA'LO TA'LIM%3C/text%3E%3C/svg%3E");
+      background-repeat: repeat;
+      transition: opacity 0.5s ease;
+    }
+
+    html:not(.dark) .watermark-overlay {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='90' viewBox='0 0 180 90'%3E%3Ctext x='10' y='50' fill='%23000000' font-family='Plus Jakarta Sans, sans-serif' font-weight='800' font-size='15' transform='rotate(-22 90 45)'%3EA'LO TA'LIM%3C/text%3E%3C/svg%3E");
+    }
+
+    /* Background Neon To'r */
     .bg-grid-pattern {
       position: fixed;
       inset: 0;
@@ -145,35 +135,37 @@
         linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
         linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
       background-size: 50px 50px;
-      mask-image: radial-gradient(circle at center, black, transparent 90%);
+      mask-image: radial-gradient(circle at 50% 50%, black, transparent 90%);
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, black, transparent 90%);
       pointer-events: none;
-      z-index: -3;
+      z-index: -2;
     }
 
+    /* Suzuvchi premium rangli shar pufakchalar */
     .particle {
       position: absolute;
       border-radius: 50%;
-      filter: blur(60px);
-      animation: float 22s infinite linear;
-      opacity: 0.4;
-      z-index: -2;
+      filter: blur(140px);
+      animation: float 25s infinite linear;
+      opacity: 0.45;
+      z-index: -1;
       pointer-events: none;
     }
 
     @keyframes float {
-      0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-      33% { transform: translateY(-70px) translateX(40px) rotate(120deg); }
-      66% { transform: translateY(30px) translateX(-50px) rotate(240deg); }
-      100% { transform: translateY(0px) translateX(0px) rotate(360deg); }
+      0% { transform: translateY(0px) translateX(0px) rotate(0deg) scale(1); }
+      33% { transform: translateY(-70px) translateX(50px) rotate(120deg) scale(1.15); }
+      66% { transform: translateY(30px) translateX(-60px) rotate(240deg) scale(0.9); }
+      100% { transform: translateY(0px) translateX(0px) rotate(360deg) scale(1); }
     }
 
-    /* Maxsus Scrollbar */
+    /* Scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.25); border-radius: 999px; }
+    ::-webkit-scrollbar-thumb { background: rgba(156, 163, 175, 0.25); border-radius: 999px; }
     ::-webkit-scrollbar-thumb:hover { background: #3B82F6; }
 
-    /* Aktiv rejimlar */
+    /* Aktiv Navigatsiya holatlari */
     .tab-active { 
       color: #3B82F6; 
       border-bottom: 2px solid #3B82F6; 
@@ -183,278 +175,273 @@
       background: #3B82F6; 
       color: white; 
       border-color: #3B82F6; 
-      box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); 
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.45); 
     }
 
-    /* Toast animatsiyasi */
-    .toast-enter { transform: translateY(20px) scale(0.95); opacity: 0; }
-    .toast-enter-active { transform: translateY(0) scale(1); opacity: 1; transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
-    .toast-leave { transform: translateY(-20px); opacity: 0; transition: all 0.3s ease-in; }
+    /* Silliq Toaster animatsiyasi */
+    .toast-enter { transform: translateY(30px) scale(0.9); opacity: 0; }
+    .toast-enter-active { transform: translateY(0) scale(1); opacity: 1; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .toast-leave { transform: translateY(-20px) scale(0.9); opacity: 0; transition: all 0.3s cubic-bezier(0.7, 0, 0.84, 0); }
 
-    mjx-container { display: inline-block !important; margin: 0 !important; }
+    /* MathJax tahrirlari */
+    mjx-container { display: inline-block !important; margin: 0 4px !important; vertical-align: middle; }
+
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
+
+    .pb-safe { padding-bottom: env(safe-area-inset-bottom, 24px); }
   </style>
 </head>
 <body class="min-h-screen selection:bg-accentBlue/30 selection:text-white no-select">
   
-  <!-- To'liq Grid Fon va Zamin -->
+  <!-- Premium fonlar -->
   <div class="bg-grid-pattern"></div>
+  <div class="watermark-overlay"></div>
   
-  <!-- Qiya Suv Belgisi (Watermark) Shaffof Fon -->
-  <div class="watermark-bg">
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-    <div class="watermark-text">A'lo Ta'lim</div>
-  </div>
-  
-  <!-- Shaffof 3D Neon Nurlar -->
-  <div id="particle-container" class="fixed inset-0 overflow-hidden pointer-events-none z-[-2]">
-    <div class="particle bg-accentBlue/15 w-[30rem] h-[30rem] top-[-10%] left-[-15%] blur-[140px]"></div>
-    <div class="particle bg-accentCyan/15 w-[25rem] h-[25rem] bottom-[15%] right-[-10%] animation-delay-2000 blur-[160px]"></div>
-    <div class="particle bg-accentViolet/15 w-[22rem] h-[22rem] bottom-[-10%] left-[20%] animation-delay-4000 blur-[130px]"></div>
+  <!-- Blur shariklari -->
+  <div id="particle-container" class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+    <div class="particle bg-accentBlue/15 w-[450px] h-[450px] top-[-15%] left-[-10%] blur-[140px]"></div>
+    <div class="particle bg-accentCyan/15 w-[400px] h-[400px] bottom-[15%] right-[-5%] blur-[160px]" style="animation-delay: 3s;"></div>
+    <div class="particle bg-accentViolet/15 w-[350px] h-[350px] bottom-[-10%] left-[25%] blur-[130px]" style="animation-delay: 6s;"></div>
   </div>
 
   <canvas id="confettiCanvas" class="fixed inset-0 z-[100] pointer-events-none hidden"></canvas>
+  <div id="toastContainer" class="fixed top-6 right-6 z-[110] flex flex-col gap-3 pointer-events-none w-full max-w-sm"></div>
 
-  <div id="toastContainer" class="fixed top-5 right-5 z-[110] flex flex-col gap-3 pointer-events-none"></div>
-
-  <!-- Kirish Oynasi (Auth Modal) -->
-  <div id="authModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/65 backdrop-blur-3xl transition-all duration-500">
+  <!-- AUTH MODAL (KIRISH) -->
+  <div id="authModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-3xl transition-all duration-700">
     <div class="premium-glass p-8 rounded-[2.5rem] max-w-md w-full relative overflow-hidden mx-4 border border-white/10 shadow-softCard">
       <div class="absolute inset-0 bg-gradient-to-br from-accentBlue/10 via-transparent to-accentCyan/10 pointer-events-none"></div>
       
       <div class="relative z-10 text-center mb-8">
-        <div class="inline-flex p-4 rounded-2xl mb-4 text-accentBlue bg-blue-500/10 shadow-neonBlur border border-accentBlue/20">
-          <i class="fa-solid fa-fingerprint text-3xl animate-pulse"></i>
+        <div class="inline-flex p-4.5 rounded-2xl mb-4 text-accentBlue bg-blue-500/10 shadow-neonBlur border border-accentBlue/25">
+          <i class="fa-solid fa-user-shield text-3xl animate-pulse"></i>
         </div>
         <h3 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">A'lo Ta'lim</h3>
-        <p class="text-sm mt-2 text-gray-500 dark:text-gray-400">Tizimga kirish uchun ma'lumotlarni tasdiqlang</p>
+        <p class="text-xs mt-2 text-gray-500 dark:text-gray-400 font-medium">Platformaga kirish uchun shaxsingizni tasdiqlang</p>
       </div>
 
       <div class="space-y-5 relative z-10">
         <div>
-          <label class="block text-xs font-bold uppercase mb-2 text-gray-500 dark:text-gray-400">Ism va Familiya</label>
-          <input type="text" id="authFullname" placeholder="Masalan: Asadbek Olimov"
-                 class="w-full bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 outline-none focus:border-accentBlue focus:ring-1 focus:ring-accentBlue transition-all text-gray-900 dark:text-white">
+          <label class="block text-[11px] font-extrabold uppercase tracking-wider mb-2 text-gray-400 dark:text-gray-500">To'liq Ism va Familiya</label>
+          <input type="text" id="authFullname" placeholder="Masalan: Abdurahmon Alimov"
+                 class="w-full bg-white/40 dark:bg-black/50 border border-gray-300 dark:border-white/10 rounded-2xl px-5 py-3.5 outline-none focus:border-accentBlue focus:ring-1 focus:ring-accentBlue transition-all text-gray-900 dark:text-white font-semibold placeholder:text-gray-400">
         </div>
 
         <div>
-          <label class="block text-xs font-bold uppercase mb-2 text-gray-500 dark:text-gray-400">Tizim ID (Botdan olingan kod)</label>
-          <input type="text" id="authStudentID" oninput="checkAdminField(this.value)" placeholder="4 xonali kod..."
-                 class="w-full bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 outline-none font-mono focus:border-accentCyan focus:ring-1 focus:ring-accentCyan transition-all text-gray-900 dark:text-white">
+          <label class="block text-[11px] font-extrabold uppercase tracking-wider mb-2 text-gray-400 dark:text-gray-500">Tizim ID / Maxsus Kod</label>
+          <input type="text" id="authStudentID" oninput="checkAdminField(this.value)" placeholder="Botdan olingan 4 xonali kod..."
+                 class="w-full bg-white/40 dark:bg-black/50 border border-gray-300 dark:border-white/10 rounded-2xl px-5 py-3.5 outline-none font-mono text-center tracking-widest text-lg focus:border-accentCyan focus:ring-1 focus:ring-accentCyan transition-all text-gray-900 dark:text-white font-bold placeholder:text-gray-400 placeholder:tracking-normal placeholder:text-xs">
         </div>
 
         <div id="adminPasswordWrapper" class="hidden transition-all duration-300">
-          <label class="block text-xs font-bold uppercase mb-2 text-accentAmber drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]">Admin Maxfiy Kod</label>
-          <input type="password" id="authAdminPassword" placeholder="Kod..."
-                 class="w-full bg-black/50 border border-accentAmber/40 rounded-2xl px-4 py-3 outline-none text-white font-mono focus:border-accentAmber focus:ring-1 focus:ring-accentAmber transition-all">
+          <label class="block text-[11px] font-extrabold uppercase tracking-wider mb-2 text-accentAmber drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]">Admin Maxfiy Kaliti</label>
+          <input type="password" id="authAdminPassword" placeholder="Admin parolini kiriting..."
+                 class="w-full bg-black/60 border border-accentAmber/40 rounded-2xl px-5 py-3.5 outline-none text-white text-center font-mono tracking-widest focus:border-accentAmber focus:ring-1 focus:ring-accentAmber transition-all">
         </div>
 
-        <button onclick="loginSystem()" id="loginBtn" class="w-full bg-accentBlue text-white font-bold py-4 rounded-2xl shadow-glowBlue hover:bg-blue-600 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
-          <span>Tizimga kirish</span> <i class="fa-solid fa-arrow-right-to-bracket"></i>
+        <button onclick="loginSystem()" class="w-full bg-accentBlue text-white font-bold py-4 rounded-2xl shadow-glowBlue hover:bg-blue-600 hover:-translate-y-1 transition-all duration-300 flex justify-center items-center gap-2">
+          <span>Tizimga kirish</span> <i class="fa-solid fa-arrow-right-to-bracket text-sm"></i>
         </button>
 
-        <a href="https://t.me/Alo_math_bot" target="_blank" class="w-full flex items-center justify-center gap-2 bg-[#2AABEE]/10 text-[#2AABEE] border border-[#2AABEE]/30 font-bold py-4 rounded-2xl hover:bg-[#2AABEE] hover:text-white transition-all duration-300">
+        <div class="relative flex py-2 items-center">
+          <div class="flex-grow border-t border-gray-300 dark:border-white/5"></div>
+          <span class="flex-shrink mx-4 text-[10px] text-gray-400 uppercase font-black tracking-widest">Yoki</span>
+          <div class="flex-grow border-t border-gray-300 dark:border-white/5"></div>
+        </div>
+
+        <a href="https://t.me/Alo_math_bot" target="_blank" class="w-full flex items-center justify-center gap-2 bg-[#2AABEE]/15 text-[#2AABEE] border border-[#2AABEE]/25 font-bold py-4 rounded-2xl hover:bg-[#2AABEE] hover:text-white transition-all duration-300">
           <i class="fa-brands fa-telegram text-xl"></i>
-          Bot orqali ro'yxatdan o'tish
+          <span>Bot orqali kod olish</span>
         </a>
       </div>
     </div>
   </div>
 
-  <!-- AI tahlili oynasi -->
-  <div id="aiReviewModal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur-2xl transition-all p-4">
+  <!-- AI TAHLIL MODAL -->
+  <div id="aiReviewModal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/85 backdrop-blur-2xl transition-all p-4">
     <div class="premium-glass p-8 rounded-[2.5rem] max-w-lg w-full border border-accentViolet/30 relative shadow-softCard">
-      <button onclick="closeAIReview()" class="absolute top-5 right-5 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+      <button onclick="closeAIReview()" class="absolute top-5 right-5 text-gray-400 hover:text-white bg-white/5 w-8 h-8 rounded-full flex items-center justify-center transition-colors"><i class="fa-solid fa-xmark text-lg"></i></button>
       <div id="aiReviewContent" class="text-center">
-        <div id="aiReviewLoader" class="py-10">
+        <div id="aiReviewLoader" class="py-12">
           <i class="fa-solid fa-brain text-5xl text-accentViolet animate-pulse mb-4 drop-shadow-[0_0_15px_rgba(139,92,246,0.8)]"></i>
-          <h3 class="text-xl font-bold text-white mb-2">AI Tahlil Qilmoqda...</h3>
-          <p class="text-xs text-gray-400">Sizning javoblaringiz neyrotarmoq orqali tekshirilmoqda</p>
+          <h3 class="text-xl font-bold text-white mb-2">AI Diagnostika...</h3>
+          <p class="text-xs text-gray-400">Javoblaringiz va tushunchalaringiz AI tomonidan tahlil qilinmoqda</p>
         </div>
         <div id="aiReviewResult" class="hidden text-left space-y-6"></div>
       </div>
     </div>
   </div>
 
-  <!-- Asosiy Dastur Interfeysi (App Workspace) -->
-  <div id="mainAppView" class="hidden min-h-screen flex flex-col relative z-10 pb-20 md:pb-0">
+  <!-- MAIN APP VIEW -->
+  <div id="mainAppView" class="hidden min-h-screen flex flex-col relative z-10 pb-24 md:pb-0">
     
+    <!-- DESKTOP HEADER -->
     <header class="sticky top-0 z-40 premium-glass border-b border-gray-200 dark:border-white/10 hidden md:block">
-      <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between gap-4">
+      <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-4">
         <div class="flex items-center gap-4">
           <div class="h-12 w-12 bg-gradient-to-tr from-accentBlue to-accentCyan rounded-2xl flex items-center justify-center shadow-glowBlue border border-white/20">
             <i class="fa-solid fa-graduation-cap text-white text-2xl"></i>
           </div>
           <div>
             <div class="text-2xl font-black uppercase tracking-tight text-gray-900 dark:text-white">A'lo <span class="text-accentBlue">Ta'lim</span></div>
-            <div class="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">Premium Onlayn Test</div>
+            <div class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">Premium Onlayn Test va Diagnostika</div>
           </div>
         </div>
 
         <div class="flex items-center gap-6">
-          <div class="flex items-center gap-4 bg-white/40 dark:bg-black/30 px-4 py-2 rounded-2xl border border-gray-200 dark:border-white/10 shadow-inner">
+          <div class="flex items-center gap-4 bg-white/40 dark:bg-black/30 px-4 py-2 rounded-2xl border border-gray-200 dark:border-white/10">
             <div class="flex flex-col items-end">
-              <span id="displayUserName" class="text-sm font-bold text-gray-900 dark:text-white">User</span>
+              <span id="displayUserName" class="text-sm font-bold text-gray-900 dark:text-white">Foydalanuvchi</span>
               <div class="flex items-center gap-2 mt-1">
-                <span id="displayUserStreak" class="text-[11px] font-bold text-orange-500 bg-orange-500/10 px-2 py-0.5 rounded-md">🔥 0 Kun</span>
-                <span id="displayUserRole" class="text-[11px] font-mono text-accentBlue bg-accentBlue/10 px-2 py-0.5 rounded-md border border-accentBlue/20">O'quvchi</span>
+                <span id="displayUserStreak" class="text-[10px] font-bold text-orange-500 bg-orange-500/10 px-2 py-0.5 rounded-md">🔥 0 Kun</span>
+                <span id="displayUserRole" class="text-[10px] font-mono text-accentBlue bg-accentBlue/10 px-2 py-0.5 rounded-md border border-accentBlue/25">O'quvchi</span>
               </div>
             </div>
             <div class="w-px h-10 bg-gray-300 dark:bg-white/10"></div>
             <div class="flex flex-col items-center w-24 relative group">
-              <div class="text-[10px] font-bold text-accentViolet uppercase mb-1 drop-shadow-[0_0_5px_rgba(139,92,246,0.5)]">Level <span id="displayUserLevel">1</span></div>
+              <div class="text-[9px] font-bold text-accentViolet uppercase mb-1 drop-shadow-[0_0_5px_rgba(139,92,246,0.5)]">Level <span id="displayUserLevel">1</span></div>
               <div class="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-1.5 overflow-hidden border border-gray-300 dark:border-gray-700">
                 <div id="userLevelBar" class="bg-gradient-to-r from-accentBlue to-accentViolet h-1.5 rounded-full" style="width: 0%"></div>
               </div>
-              <div class="absolute top-full mt-1 left-1/2 -translate-x-1/2 text-[9px] text-gray-500 font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity"><span id="displayUserXP">0</span> XP</div>
+              <div class="absolute top-full mt-1.5 left-1/2 -translate-x-1/2 text-[9px] text-gray-400 font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity"><span id="displayUserXP">0</span> XP</div>
             </div>
           </div>
 
-          <button onclick="toggleTheme()" class="p-3 rounded-2xl border border-gray-200 dark:border-white/10 bg-white/40 dark:bg-black/30 text-gray-600 dark:text-gray-300 hover:text-accentBlue hover:-translate-y-1 transition-all">
+          <button onclick="toggleTheme()" class="p-3 rounded-2xl border border-gray-200 dark:border-white/10 bg-white/40 dark:bg-black/30 text-gray-600 dark:text-gray-300 hover:text-accentBlue hover:-translate-y-0.5 transition-all">
             <i id="themeIcon" class="fa-solid fa-moon"></i>
           </button>
-          <button onclick="logoutSystem()" class="p-3 rounded-2xl bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500 hover:text-white hover:-translate-y-1 transition-all">
+          
+          <button onclick="logoutSystem()" class="p-3 rounded-2xl bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500 hover:text-white hover:-translate-y-0.5 transition-all">
             <i class="fa-solid fa-power-off"></i>
           </button>
         </div>
       </div>
       
+      <!-- SUB-NAVIGATION -->
       <div class="border-t border-gray-200 dark:border-white/10 bg-white/20 dark:bg-black/20">
-        <div class="max-w-7xl mx-auto px-4 flex gap-2">
-          <button onclick="switchTab('homeTab')" id="btn-homeTab" class="px-6 py-4 text-sm font-bold text-gray-500 dark:text-gray-400 transition-all whitespace-nowrap tab-active border-b-2">
+        <div class="max-w-7xl mx-auto px-6 flex gap-2">
+          <button onclick="switchTab('homeTab')" id="btn-homeTab" class="px-6 py-4 text-xs font-black uppercase tracking-wider text-gray-500 dark:text-gray-400 transition-all whitespace-nowrap tab-active border-b-2">
             <i class="fa-solid fa-layer-group mr-2"></i> Fanlar va Testlar
           </button>
-          <button onclick="switchTab('resultsTab')" id="btn-resultsTab" class="px-6 py-4 text-sm font-bold text-gray-500 dark:text-gray-400 transition-all whitespace-nowrap border-b-2 border-transparent">
+          <button onclick="switchTab('resultsTab')" id="btn-resultsTab" class="px-6 py-4 text-xs font-black uppercase tracking-wider text-gray-500 dark:text-gray-400 transition-all whitespace-nowrap border-b-2 border-transparent">
             <i class="fa-solid fa-chart-line mr-2"></i> Natijalarim
           </button>
-          <button onclick="switchTab('adminTab')" id="btn-adminTab" class="hidden px-6 py-4 text-sm font-bold text-rose-500 transition-all whitespace-nowrap border-b-2 border-transparent hover:border-rose-500">
-            <i class="fa-solid fa-shield-halved mr-2"></i> Boshqaruv (Admin)
+          <button onclick="switchTab('adminTab')" id="btn-adminTab" class="hidden px-6 py-4 text-xs font-black uppercase tracking-wider text-rose-500 transition-all whitespace-nowrap border-b-2 border-transparent hover:border-rose-500">
+            <i class="fa-solid fa-shield-halved mr-2"></i> Admin Panel
           </button>
         </div>
       </div>
     </header>
 
-    <!-- Mobil menyu va sarlavha -->
+    <!-- MOBILE HEADER -->
     <header class="md:hidden sticky top-0 z-40 premium-glass border-b border-gray-200 dark:border-white/10 h-16 flex items-center justify-between px-4">
       <div class="flex items-center gap-2">
-        <i class="fa-solid fa-graduation-cap text-accentBlue text-xl drop-shadow-[0_0_8px_rgba(37,99,235,0.6)]"></i>
+        <i class="fa-solid fa-graduation-cap text-accentBlue text-2xl drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]"></i>
         <span class="font-extrabold text-lg text-gray-900 dark:text-white">A'lo <span class="text-accentBlue">Ta'lim</span></span>
       </div>
       <div class="flex items-center gap-3">
-        <div class="text-[10px] font-bold text-accentViolet bg-accentViolet/10 px-2 py-1 rounded-lg border border-accentViolet/20">LVL <span id="mobDisplayUserLevel">1</span></div>
-        <button onclick="toggleTheme()" class="text-gray-500 dark:text-gray-400"><i id="mobThemeIcon" class="fa-solid fa-moon text-lg"></i></button>
+        <div class="text-[10px] font-bold text-accentViolet bg-accentViolet/10 px-2.5 py-1 rounded-lg border border-accentViolet/20">LVL <span id="mobDisplayUserLevel">1</span></div>
+        <button onclick="toggleTheme()" class="text-gray-500 dark:text-gray-400 p-2"><i id="mobThemeIcon" class="fa-solid fa-moon text-lg"></i></button>
       </div>
     </header>
 
-    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full relative">
+    <!-- CONTENT WRAPPER -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 md:px-6 py-8 w-full relative">
       
-      <!-- Asosiy Panel (Fanlar va Testlar ro'yxati) -->
+      <!-- HOME TAB -->
       <div id="homeTab" class="tab-content space-y-8">
-        
-        <div class="premium-glass rounded-[2rem] p-6 hover-lift border border-gray-200 dark:border-white/10">
+        <!-- Banner -->
+        <div class="premium-glass rounded-[2rem] p-6 md:p-8 hover-lift">
           <div class="flex flex-col xl:flex-row gap-6 items-start xl:items-center justify-between">
             <div>
-              <div class="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] mb-2 text-gray-500 dark:text-gray-400">
-                <span class="inline-flex h-2 w-2 rounded-full bg-accentEmerald animate-pulse shadow-glowEmerald"></span>
-                Tizim faol: Elite rejim
+              <div class="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.25em] mb-2 text-accentEmerald">
+                <span class="inline-flex h-2.5 w-2.5 rounded-full bg-accentEmerald animate-pulse shadow-glowEmerald"></span>
+                Tizim faol: Elite VIP rejim
               </div>
-              <h2 class="text-2xl md:text-3xl font-black leading-tight text-gray-900 dark:text-white">Intellektual test muhiti</h2>
+              <h2 class="text-2xl md:text-3.5xl font-extrabold leading-tight text-gray-900 dark:text-white">Intellektual test va diagnostika muhiti</h2>
+              <p class="text-xs text-gray-400 mt-1 font-medium">Ushbu platforma yordamida test topshiring va bilimingizni AI tahlilidan o'tkazing.</p>
             </div>
-            <div class="grid grid-cols-3 gap-3 w-full xl:w-auto">
-              <div class="bg-white/30 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-5 py-4 min-w-[120px] text-center shadow-sm">
-                <i class="fa-solid fa-file-contract text-accentBlue text-xl mb-1"></i>
-                <div class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mt-1">Testlar</div>
-                <div id="statTotalTests" class="text-2xl font-black text-gray-900 dark:text-white">0</div>
+            
+            <div class="grid grid-cols-3 gap-4 w-full xl:w-auto">
+              <div class="bg-white/40 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-5 py-4 min-w-[110px] text-center shadow-sm">
+                <i class="fa-solid fa-file-contract text-accentBlue text-2xl mb-1"></i>
+                <div class="text-[9px] font-bold uppercase tracking-wider text-gray-500 mt-1">Testlar</div>
+                <div id="statTotalTests" class="text-xl md:text-2xl font-black text-gray-900 dark:text-white">0</div>
               </div>
-              <div class="bg-white/30 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-5 py-4 min-w-[120px] text-center shadow-sm">
-                <i class="fa-solid fa-tags text-accentEmerald text-xl mb-1"></i>
-                <div class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mt-1">Fanlar</div>
-                <div id="statTotalCats" class="text-2xl font-black text-gray-900 dark:text-white">0</div>
+              <div class="bg-white/40 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-5 py-4 min-w-[110px] text-center shadow-sm">
+                <i class="fa-solid fa-tags text-accentEmerald text-2xl mb-1"></i>
+                <div class="text-[9px] font-bold uppercase tracking-wider text-gray-500 mt-1">Fanlar</div>
+                <div id="statTotalCats" class="text-xl md:text-2xl font-black text-gray-900 dark:text-white">0</div>
               </div>
-              <div class="bg-white/30 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-5 py-4 min-w-[120px] text-center shadow-sm">
-                <i class="fa-solid fa-chart-pie text-accentViolet text-xl mb-1"></i>
-                <div class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mt-1">Natijalar</div>
-                <div id="statTotalResults" class="text-2xl font-black text-gray-900 dark:text-white">0</div>
+              <div class="bg-white/40 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl px-5 py-4 min-w-[110px] text-center shadow-sm">
+                <i class="fa-solid fa-chart-pie text-accentViolet text-2xl mb-1"></i>
+                <div class="text-[9px] font-bold uppercase tracking-wider text-gray-500 mt-1">Urinishlar</div>
+                <div id="statTotalResults" class="text-xl md:text-2xl font-black text-gray-900 dark:text-white">0</div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="flex flex-col md:flex-row gap-4 items-center justify-between premium-glass p-4 rounded-[2rem] border border-gray-200 dark:border-white/10">
-          <div id="categoriesList" class="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 hide-scrollbar"></div>
-          <div class="relative w-full md:w-80">
-            <i class="fa-solid fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-            <input type="text" id="searchTestInput" oninput="renderHome()" placeholder="Test kodi yoki nomi..."
-                   class="w-full pl-11 pr-4 py-3 bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl text-sm outline-none focus:border-accentBlue focus:ring-1 focus:ring-accentBlue transition-colors text-gray-900 dark:text-white">
+        <!-- Filter and Search -->
+        <div class="flex flex-col lg:flex-row gap-4 items-center justify-between premium-glass p-4 rounded-[2rem]">
+          <div id="categoriesList" class="flex gap-2 overflow-x-auto w-full lg:w-auto pb-2 lg:pb-0 hide-scrollbar"></div>
+          <div class="relative w-full lg:w-80">
+            <i class="fa-solid fa-search absolute left-4.5 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            <input type="text" id="searchTestInput" oninput="renderHome()" placeholder="Test kodi yoki fan nomi..."
+                   class="w-full pl-12 pr-4 py-3 bg-white/50 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl text-xs outline-none focus:border-accentBlue focus:ring-1 focus:ring-accentBlue transition-colors text-gray-900 dark:text-white font-medium">
           </div>
         </div>
 
+        <!-- Tests & Leaderboard grid -->
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <div class="lg:col-span-3 space-y-4">
             <div class="flex items-center justify-between border-b border-gray-200 dark:border-white/10 pb-3">
-              <h2 class="text-xl font-extrabold flex items-center gap-2 text-gray-900 dark:text-white">
+              <h2 class="text-lg font-black flex items-center gap-2 text-gray-900 dark:text-white">
                 <div class="h-2 w-2 rounded-full bg-accentBlue animate-pulse shadow-glowBlue"></div>
                 <span id="currentCategoryTitle">Barcha Testlar</span>
               </h2>
-              <span class="text-xs font-bold bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 px-3 py-1 rounded-lg text-gray-600 dark:text-gray-300" id="testCountBadge">0 ta test</span>
+              <span class="text-[10px] font-bold bg-white/40 dark:bg-black/40 border border-gray-200 dark:border-white/10 px-3 py-1.5 rounded-xl text-gray-600 dark:text-gray-300" id="testCountBadge">0 ta test</span>
             </div>
+            
             <div id="testsGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5"></div>
           </div>
 
+          <!-- Leaderboard Side Card -->
           <div class="space-y-6">
             <div class="flex items-center justify-between border-b border-gray-200 dark:border-white/10 pb-3">
-              <h2 class="text-lg font-bold flex items-center gap-2 text-gray-900 dark:text-white">
+              <h2 class="text-base font-black flex items-center gap-2 text-gray-900 dark:text-white">
                 <i class="fa-solid fa-crown text-amber-500 drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]"></i> Top Reyting
               </h2>
-              <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">Global</span>
+              <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-500">Global</span>
             </div>
-            <div class="premium-glass rounded-[2rem] p-3 border border-gray-200 dark:border-white/10" id="leaderboardList"></div>
+            <div class="premium-glass rounded-[2rem] p-2" id="leaderboardList"></div>
           </div>
         </div>
       </div>
 
-      <!-- Natijalar Tarixi (Results History) -->
+      <!-- RESULTS TAB -->
       <div id="resultsTab" class="tab-content hidden space-y-6">
-        <div class="premium-glass rounded-[2rem] p-6 hover-lift border border-gray-200 dark:border-white/10">
+        <div class="premium-glass rounded-[2rem] p-6 hover-lift">
           <div class="flex items-center justify-between gap-3 flex-wrap">
             <div>
-              <h2 class="text-2xl font-black text-gray-900 dark:text-white">Mening Tarixim</h2>
-              <p class="text-sm mt-1 text-gray-500 dark:text-gray-400">Barcha topshirgan testlaringiz va AI tahlili</p>
+              <h2 class="text-2xl font-black text-gray-900 dark:text-white">Mening Natijalarim</h2>
+              <p class="text-xs mt-1 text-gray-500 dark:text-gray-400">Yechilgan testlar va sun'iy intellekt tahlili</p>
             </div>
-            <div class="text-xs font-bold uppercase px-4 py-2 rounded-xl bg-emerald-500/10 text-accentEmerald border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-              Auto-Sync faol
+            <div class="text-[10px] font-extrabold uppercase tracking-wider px-4 py-2 rounded-xl bg-emerald-500/10 text-accentEmerald border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
+              Bot Synced
             </div>
           </div>
         </div>
 
-        <div class="premium-glass rounded-[2rem] overflow-hidden border border-gray-200 dark:border-white/10">
+        <div class="premium-glass rounded-[2rem] overflow-hidden">
           <div class="overflow-x-auto">
             <table class="w-full text-left text-sm whitespace-nowrap">
-              <thead class="bg-gray-100/40 dark:bg-black/50 border-b border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 uppercase text-[10px] font-bold">
+              <thead class="bg-gray-100/50 dark:bg-black/50 border-b border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 uppercase text-[9px] font-black tracking-wider">
                 <tr>
                   <th class="p-5">Sana</th>
-                  <th class="p-5">Test Nomi & Kodi</th>
-                  <th class="p-5">Natija</th>
+                  <th class="p-5">Test Nomi va Kodi</th>
+                  <th class="p-5">Natija (To'g'ri)</th>
                   <th class="p-5">Status</th>
                   <th class="p-5 text-right">Diagnostika</th>
                 </tr>
@@ -465,54 +452,53 @@
         </div>
       </div>
 
-      <!-- Admin Panel (Administrator Dashboard) -->
+      <!-- ADMIN TAB -->
       <div id="adminTab" class="tab-content hidden space-y-6">
-        <div class="premium-glass rounded-[2rem] p-4 flex flex-wrap gap-2 border border-gray-200 dark:border-white/10">
-          <button onclick="switchAdminSub('admin-tests')" id="btn-admin-tests" class="px-5 py-2.5 text-sm font-bold rounded-xl transition-all admin-tab-active"><i class="fa-solid fa-file-signature mr-1"></i> Testlar Boshqaruvi</button>
-          <button onclick="switchAdminSub('admin-cats')" id="btn-admin-cats" class="px-5 py-2.5 text-sm font-bold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-xl transition-all"><i class="fa-solid fa-tags mr-1"></i> Kategoriyalar</button>
-          <button onclick="switchAdminSub('admin-stats')" id="btn-admin-stats" class="px-5 py-2.5 text-sm font-bold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-xl transition-all"><i class="fa-solid fa-chart-pie mr-1"></i> Global Statistika</button>
+        <div class="premium-glass rounded-[2rem] p-3 flex flex-wrap gap-2">
+          <button onclick="switchAdminSub('admin-tests')" id="btn-admin-tests" class="px-5 py-2.5 text-xs font-black uppercase tracking-wider rounded-xl transition-all admin-tab-active"><i class="fa-solid fa-file-signature mr-1"></i> Testlar Boshqaruvi</button>
+          <button onclick="switchAdminSub('admin-cats')" id="btn-admin-cats" class="px-5 py-2.5 text-xs font-black uppercase tracking-wider text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-xl transition-all"><i class="fa-solid fa-tags mr-1"></i> Kategoriyalar</button>
+          <button onclick="switchAdminSub('admin-stats')" id="btn-admin-stats" class="px-5 py-2.5 text-xs font-black uppercase tracking-wider text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-xl transition-all"><i class="fa-solid fa-chart-pie mr-1"></i> Statistika</button>
         </div>
 
-        <!-- Admin: Testlar qo'shish qismi -->
+        <!-- Admin Tests Content -->
         <div id="admin-tests" class="admin-sub-content space-y-6">
-          <div class="premium-glass rounded-[2rem] p-6 space-y-5 shadow-softCard border border-gray-200 dark:border-white/10">
-            <div class="flex items-center justify-between gap-3 flex-wrap">
-              <h3 class="text-sm font-bold text-accentBlue uppercase tracking-widest"><i class="fa-solid fa-plus-circle"></i> Yangi Test Yaratish</h3>
-            </div>
+          <div class="premium-glass rounded-[2rem] p-6 space-y-5 shadow-softCard">
+            <h3 class="text-xs font-black text-accentBlue uppercase tracking-widest"><i class="fa-solid fa-plus-circle"></i> Yangi Test Yaratish</h3>
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <input type="text" id="addTestTitle" placeholder="Test Nomi (Masalan: Matematika Blok)" class="col-span-2 w-full bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm outline-none focus:border-accentBlue text-gray-900 dark:text-white">
-              <select id="addTestCategory" class="w-full bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm outline-none focus:border-accentBlue text-gray-900 dark:text-white"></select>
-              <input type="number" id="addTestTime" placeholder="Vaqt (daqiqa)" class="w-full bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm outline-none focus:border-accentBlue text-gray-900 dark:text-white">
-              <input type="text" id="addTestCode" placeholder="Maxsus Kod (M-1)" class="w-full bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm font-mono outline-none focus:border-accentBlue text-gray-900 dark:text-white uppercase">
+              <input type="text" id="addTestTitle" placeholder="Test sarlavhasi (Masalan: Matematika blok)" class="col-span-2 w-full bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3.5 text-xs outline-none focus:border-accentBlue text-gray-900 dark:text-white font-semibold">
+              <select id="addTestCategory" class="w-full bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3.5 text-xs outline-none focus:border-accentBlue text-gray-900 dark:text-white font-semibold"></select>
+              <input type="number" id="addTestTime" placeholder="Vaqt (daqiqa)" class="w-full bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3.5 text-xs outline-none focus:border-accentBlue text-gray-900 dark:text-white font-semibold">
+              <input type="text" id="addTestCode" placeholder="Maxsus Kod (Masalan: M-101)" class="w-full bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3.5 text-xs font-mono outline-none focus:border-accentBlue text-gray-900 dark:text-white uppercase font-bold tracking-wider">
             </div>
 
-            <div class="border border-gray-200 dark:border-white/10 p-5 rounded-2xl space-y-4 bg-gray-50/50 dark:bg-black/20">
+            <!-- Questions Constructor -->
+            <div class="border border-gray-200 dark:border-white/10 p-5 rounded-[2rem] space-y-4 bg-gray-50/50 dark:bg-black/20">
               <div class="flex justify-between items-center border-b border-gray-200 dark:border-white/10 pb-3">
-                <span class="text-xs font-bold text-gray-500 uppercase">Savollar Konstruktori (<span id="qBuilderCount">0</span>)</span>
-                <button onclick="addQuestionRow()" class="text-xs font-bold bg-accentBlue/10 text-accentBlue px-4 py-1.5 rounded-lg border border-accentBlue/20 hover:bg-accentBlue hover:text-white transition-all shadow-[0_0_10px_rgba(37,99,235,0.2)]">+ Savol qo'shish</button>
+                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Savollar Konstruktori (<span id="qBuilderCount">0</span>)</span>
+                <button onclick="addQuestionRow()" class="text-[10px] font-black uppercase tracking-wider bg-accentBlue/10 text-accentBlue px-4 py-2 rounded-xl border border-accentBlue/20 hover:bg-accentBlue hover:text-white transition-all shadow-[0_0_10px_rgba(59,130,246,0.2)]">+ Savol qo'shish</button>
               </div>
-              <div id="adminQuestionsContainer" class="space-y-5 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar"></div>
+              <div id="adminQuestionsContainer" class="space-y-5 max-h-[550px] overflow-y-auto pr-2 custom-scrollbar"></div>
             </div>
 
-            <button onclick="adminAddTest()" class="w-full bg-gradient-to-r from-accentBlue to-blue-700 text-white font-bold py-4 rounded-2xl shadow-glowBlue hover:-translate-y-1 transition-all duration-300">
+            <button onclick="adminAddTest()" class="w-full bg-gradient-to-r from-accentBlue to-blue-700 text-white font-bold py-4 rounded-2xl shadow-glowBlue hover:-translate-y-0.5 transition-all duration-300">
               <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Testni Bazaga Saqlash
             </button>
           </div>
 
-          <div class="premium-glass rounded-[2rem] overflow-hidden border border-gray-200 dark:border-white/10">
-            <div class="p-5 border-b border-gray-200 dark:border-white/10 bg-gray-100/40 dark:bg-black/50 flex justify-between items-center">
-              <h3 class="font-bold text-gray-900 dark:text-white">Mavjud Testlar Boshqaruvi</h3>
-              <span class="text-xs text-gray-500 font-bold bg-white/40 dark:bg-black/50 px-3 py-1 rounded-lg border border-gray-200 dark:border-white/10" id="adminTestsCount">0 ta</span>
+          <div class="premium-glass rounded-[2rem] overflow-hidden">
+            <div class="p-5 border-b border-gray-200 dark:border-white/10 bg-gray-100/50 dark:bg-black/50 flex justify-between items-center">
+              <h3 class="font-bold text-gray-900 dark:text-white text-sm">Mavjud Testlarni Boshqarish</h3>
+              <span class="text-xs text-gray-500 font-bold bg-white/40 dark:bg-black/40 px-3 py-1 rounded-lg border border-gray-200 dark:border-white/10" id="adminTestsCount">0 ta</span>
             </div>
             <div class="overflow-x-auto">
               <table class="w-full text-left text-sm whitespace-nowrap">
-                <thead class="border-b border-gray-200 dark:border-white/10 text-gray-500 uppercase text-[10px] font-bold bg-transparent">
+                <thead class="border-b border-gray-200 dark:border-white/10 text-gray-500 uppercase text-[9px] font-black tracking-wider">
                   <tr>
                     <th class="p-4">Kodi</th>
-                    <th class="p-4">Nomi</th>
+                    <th class="p-4">Sarlavha</th>
                     <th class="p-4">Kategoriya</th>
-                    <th class="p-4">Savol/Vaqt</th>
+                    <th class="p-4">Savollar/Vaqt</th>
                     <th class="p-4 text-right">Harakat</th>
                   </tr>
                 </thead>
@@ -522,33 +508,33 @@
           </div>
         </div>
 
-        <!-- Admin: Kategoriyalar -->
+        <!-- Admin Categories Content -->
         <div id="admin-cats" class="admin-sub-content hidden space-y-6">
           <div class="grid lg:grid-cols-2 gap-6">
-            <div class="premium-glass rounded-[2rem] p-6 space-y-5 shadow-softCard h-fit border border-gray-200 dark:border-white/10">
-              <h3 class="text-sm font-bold text-accentEmerald uppercase tracking-widest"><i class="fa-solid fa-tags"></i> Yangi Kategoriya</h3>
-              <input type="text" id="addCatName" placeholder="Nomi (Masalan: IT va Dasturlash)" class="w-full bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm outline-none focus:border-accentEmerald text-gray-900 dark:text-white">
-              <select id="addCatIcon" class="w-full bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm outline-none focus:border-accentEmerald text-gray-900 dark:text-white font-mono">
-                <option value="fa-calculator"> Hisoblash (fa-calculator)</option>
-                <option value="fa-book"> Kitob (fa-book)</option>
-                <option value="fa-globe"> Globus (fa-globe)</option>
-                <option value="fa-flask"> Kolba (fa-flask)</option>
-                <option value="fa-laptop-code">💻 IT (fa-laptop-code)</option>
-                <option value="fa-language"> Til (fa-language)</option>
-                <option value="fa-scale-balanced">⚖ Huquq (fa-scale-balanced)</option>
+            <div class="premium-glass rounded-[2rem] p-6 space-y-5 h-fit shadow-softCard">
+              <h3 class="text-xs font-black text-accentEmerald uppercase tracking-widest"><i class="fa-solid fa-tags"></i> Yangi Kategoriya</h3>
+              <input type="text" id="addCatName" placeholder="Kategoriya Nomi (Masalan: IT va Dasturlash)" class="w-full bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3.5 text-xs outline-none focus:border-accentEmerald text-gray-900 dark:text-white font-semibold">
+              <select id="addCatIcon" class="w-full bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3.5 text-xs outline-none focus:border-accentEmerald text-gray-900 dark:text-white font-mono">
+                <option value="fa-calculator">Calculator (fa-calculator)</option>
+                <option value="fa-book">Book (fa-book)</option>
+                <option value="fa-globe">Globe (fa-globe)</option>
+                <option value="fa-flask">Flask (fa-flask)</option>
+                <option value="fa-laptop-code">IT (fa-laptop-code)</option>
+                <option value="fa-language">Language (fa-language)</option>
+                <option value="fa-scale-balanced">Law (fa-scale-balanced)</option>
               </select>
-              <button onclick="adminAddCategory()" class="w-full bg-accentEmerald text-white font-bold py-4 rounded-2xl shadow-glowEmerald hover:-translate-y-1 transition-all duration-300">Yaratish</button>
+              <button onclick="adminAddCategory()" class="w-full bg-accentEmerald text-white font-bold py-4 rounded-2xl shadow-glowEmerald hover:-translate-y-0.5 transition-all duration-300">Kategoriyani Saqlash</button>
             </div>
 
-            <div class="premium-glass rounded-[2rem] overflow-hidden shadow-softCard border border-gray-200 dark:border-white/10">
-              <div class="p-5 border-b border-gray-200 dark:border-white/10 bg-gray-100/40 dark:bg-black/50">
-                <h3 class="font-bold text-gray-900 dark:text-white">Mavjud Kategoriyalar</h3>
+            <div class="premium-glass rounded-[2rem] overflow-hidden shadow-softCard">
+              <div class="p-5 border-b border-gray-200 dark:border-white/10 bg-gray-100/50 dark:bg-black/50">
+                <h3 class="font-bold text-gray-900 dark:text-white text-sm">Mavjud Kategoriyalar</h3>
               </div>
               <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm">
-                  <thead class="border-b border-gray-200 dark:border-white/10 text-gray-500 uppercase text-[10px] font-bold">
+                  <thead class="border-b border-gray-200 dark:border-white/10 text-gray-500 uppercase text-[9px] font-black tracking-wider">
                     <tr>
-                      <th class="p-4">Ikonka & Nomi</th>
+                      <th class="p-4">Ikonka va Kategoriya nomi</th>
                       <th class="p-4 text-right">Harakat</th>
                     </tr>
                   </thead>
@@ -559,24 +545,24 @@
           </div>
         </div>
 
-        <!-- Admin: Statistika -->
+        <!-- Admin Statistics Content -->
         <div id="admin-stats" class="admin-sub-content hidden space-y-6">
-          <div class="premium-glass rounded-[2rem] p-6 shadow-softCard border border-gray-200 dark:border-white/10">
-            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Auditoriya va Natijalarni tahlil qilish uchun testni tanlang:</label>
-            <select id="statTestSelect" onchange="renderAdminStatsData()" class="w-full bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-4 text-sm outline-none focus:border-accentViolet font-bold text-gray-900 dark:text-white"></select>
+          <div class="premium-glass rounded-[2rem] p-6 shadow-softCard">
+            <label class="block text-xs font-black text-gray-400 uppercase tracking-wider mb-3">Tahlil va Statistika uchun testni tanlang:</label>
+            <select id="statTestSelect" onchange="renderAdminStatsData()" class="w-full bg-white/40 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-4 text-xs outline-none focus:border-accentViolet font-bold text-gray-900 dark:text-white"></select>
           </div>
 
           <div class="grid grid-cols-2 lg:grid-cols-4 gap-4" id="statSummaryCards"></div>
 
-          <div class="premium-glass rounded-[2rem] overflow-hidden shadow-softCard border border-gray-200 dark:border-white/10">
+          <div class="premium-glass rounded-[2rem] overflow-hidden shadow-softCard">
             <div class="overflow-x-auto">
               <table class="w-full text-left text-sm whitespace-nowrap">
-                <thead class="bg-gray-100/40 dark:bg-black/50 border-b border-gray-200 dark:border-white/10 text-gray-500 uppercase text-[10px] font-bold">
+                <thead class="bg-gray-100/50 dark:bg-black/50 border-b border-gray-200 dark:border-white/10 text-gray-500 uppercase text-[9px] font-black tracking-wider">
                   <tr>
                     <th class="p-5">Sana / Vaqt</th>
                     <th class="p-5">O'quvchi (ID)</th>
                     <th class="p-5">To'g'ri / Umumiy</th>
-                    <th class="p-5">Foiz & Status</th>
+                    <th class="p-5">Foiz va Status</th>
                   </tr>
                 </thead>
                 <tbody id="adminStatsTable" class="divide-y divide-gray-200 dark:divide-white/5 text-gray-800 dark:text-gray-300"></tbody>
@@ -587,97 +573,99 @@
       </div>
     </main>
 
-    <!-- Mobil uchun pastki navigatsiya paneli -->
+    <!-- MOBILE NAVIGATION BAR -->
     <nav class="md:hidden fixed bottom-0 left-0 right-0 z-50 premium-glass border-t border-gray-200 dark:border-white/10 pb-safe">
       <div class="flex justify-around items-center h-16">
         <button onclick="switchTab('homeTab')" id="mob-btn-homeTab" class="flex flex-col items-center justify-center w-full h-full text-accentBlue transition-colors">
-          <i class="fa-solid fa-layer-group text-lg mb-1 drop-shadow-[0_0_5px_rgba(37,99,235,0.5)]"></i>
-          <span class="text-[10px] font-bold">Testlar</span>
+          <i class="fa-solid fa-layer-group text-lg mb-1 drop-shadow-[0_0_5px_rgba(59,130,246,0.5)]"></i>
+          <span class="text-[9px] font-extrabold uppercase">Testlar</span>
         </button>
-        <button onclick="switchTab('resultsTab')" id="mob-btn-resultsTab" class="flex flex-col items-center justify-center w-full h-full text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+        <button onclick="switchTab('resultsTab')" id="mob-btn-resultsTab" class="flex flex-col items-center justify-center w-full h-full text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">
           <i class="fa-solid fa-chart-line text-lg mb-1"></i>
-          <span class="text-[10px] font-bold">Tarix</span>
+          <span class="text-[9px] font-extrabold uppercase">Tarix</span>
         </button>
         <button onclick="logoutSystem()" class="flex flex-col items-center justify-center w-full h-full text-red-500 transition-colors">
           <i class="fa-solid fa-power-off text-lg mb-1"></i>
-          <span class="text-[10px] font-bold">Chiqish</span>
+          <span class="text-[9px] font-extrabold uppercase">Chiqish</span>
         </button>
         <button onclick="switchTab('adminTab')" id="mob-btn-adminTab" class="hidden flex-col items-center justify-center w-full h-full text-amber-500 transition-colors">
           <i class="fa-solid fa-shield-halved text-lg mb-1"></i>
-          <span class="text-[10px] font-bold">Admin</span>
+          <span class="text-[9px] font-extrabold uppercase">Admin</span>
         </button>
       </div>
     </nav>
   </div>
 
-  <!-- Test ishlash muhiti (Quiz Workspace) -->
-  <div id="quizWorkspace" class="hidden fixed inset-0 flex flex-col bg-[#03040b] text-white z-[100] overflow-hidden">
-    <div class="absolute top-0 left-0 w-full h-1.5 bg-gray-800 z-50">
-      <div id="timerBar" class="h-full bg-gradient-to-r from-accentBlue to-accentCyan w-full transition-all duration-1000 linear shadow-[0_0_10px_rgba(37,99,235,0.8)]"></div>
+  <!-- QUIZ WORKSPACE VIEW -->
+  <div id="quizWorkspace" class="hidden fixed inset-0 flex flex-col bg-[#020308] text-white z-[100] overflow-hidden no-select">
+    <!-- Timer Bar -->
+    <div class="absolute top-0 left-0 w-full h-1.5 bg-gray-950 z-50">
+      <div id="timerBar" class="h-full bg-gradient-to-r from-accentBlue to-accentCyan w-full transition-all duration-1000 linear shadow-[0_0_15px_rgba(59,130,246,0.8)]"></div>
     </div>
 
-    <header class="bg-[#090b17]/90 h-16 flex items-center justify-between px-4 sm:px-6 sticky top-0 z-40 border-b border-white/10 mt-1.5 shadow-lg">
+    <header class="bg-[#0a0d1d] h-16 flex items-center justify-between px-4 sm:px-6 sticky top-0 z-40 border-b border-white/10 mt-1.5 shadow-lg">
       <div class="flex items-center gap-4">
-        <span id="quizBadge" class="bg-black border border-white/20 text-xs font-mono font-bold px-3 py-1 rounded-xl text-accentCyan drop-shadow-[0_0_5px_rgba(6,182,212,0.5)]">KOD</span>
-        <span id="qProgress" class="text-xs font-bold text-gray-400 uppercase tracking-widest bg-white/5 px-3 py-1 rounded-xl border border-white/5">1 / 10</span>
+        <span id="quizBadge" class="bg-black border border-white/20 text-xs font-mono font-black px-3 py-1 rounded-xl text-accentCyan drop-shadow-[0_0_5px_rgba(6,182,212,0.5)]">KOD</span>
+        <span id="qProgress" class="text-xs font-black text-gray-400 uppercase tracking-widest bg-white/5 px-3 py-1 rounded-xl border border-white/5">1 / 10</span>
       </div>
       <div class="flex items-center gap-4">
-        <div id="quizTimer" class="font-mono text-xl sm:text-2xl font-black text-white bg-red-500/10 px-4 py-1.5 rounded-xl border border-red-500/30 text-shadow-[0_0_10px_rgba(244,63,94,0.8)]">00:00</div>
-        <button onclick="endQuiz(false)" class="hidden sm:flex items-center gap-2 text-xs bg-red-500/10 text-red-500 border border-red-500/30 px-4 py-2 rounded-xl font-bold hover:bg-red-500 hover:text-white transition-all shadow-[0_0_10px_rgba(239,68,68,0.2)]">
+        <div id="quizTimer" class="font-mono text-xl sm:text-2xl font-black text-white bg-red-500/10 px-4 py-1.5 rounded-xl border border-red-500/30">00:00</div>
+        <button onclick="endQuiz(false)" class="hidden sm:flex items-center gap-2 text-xs bg-red-500/10 text-red-500 border border-red-500/30 px-4 py-2 rounded-xl font-bold hover:bg-red-500 hover:text-white transition-all">
           Yakunlash <i class="fa-solid fa-flag-checkered"></i>
         </button>
       </div>
     </header>
 
     <main id="quizTouchArea" class="flex-grow w-full px-4 py-6 flex flex-col justify-start sm:justify-center items-center overflow-y-auto custom-scrollbar relative">
-      <div class="w-full max-w-3xl bg-[#090b17]/85 border border-white/10 rounded-[2.5rem] p-6 md:p-10 flex flex-col shadow-softCard relative z-10 transition-transform duration-300" id="questionCardAnim">
+      <div class="w-full max-w-3xl bg-[#0a0d1d] border border-white/10 rounded-[2.5rem] p-6 md:p-10 flex flex-col shadow-softCard relative z-10 transition-transform duration-300" id="questionCardAnim">
+        
         <div id="qTextContainer" class="mb-8 border-b border-white/10 pb-8">
           <div id="qImageWrapper" class="hidden mb-6 flex justify-center">
             <img id="qImage" src="" alt="Question Image" class="max-h-72 object-contain rounded-2xl border border-white/10 shadow-lg">
           </div>
-          <h3 id="qText" class="text-lg sm:text-2xl font-medium text-white leading-relaxed font-serif break-words select-none">...</h3>
+          <h3 id="qText" class="text-lg sm:text-2xl font-medium text-white leading-relaxed font-serif break-words">...</h3>
         </div>
 
-        <div id="qOptions" class="flex flex-col gap-4 w-full select-none"></div>
+        <div id="qOptions" class="flex flex-col gap-4 w-full"></div>
 
         <div class="flex justify-between items-center mt-10 pt-6 border-t border-white/10 gap-3 flex-wrap">
-          <button id="btnPrev" onclick="quizPrev()" class="px-5 py-3 rounded-2xl border border-white/10 text-gray-400 text-sm font-bold hover:bg-white/5 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+          <button id="btnPrev" onclick="quizPrev()" class="px-5 py-3 rounded-2xl border border-white/10 text-gray-400 text-xs font-bold hover:bg-white/5 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all">
             <i class="fa-solid fa-arrow-left mr-2"></i> Ortga (←)
           </button>
-          <button onclick="openCanvasDrawer()" class="px-5 py-3 bg-accentViolet/10 text-accentViolet border border-accentViolet/30 rounded-2xl text-sm font-bold hover:bg-accentViolet hover:text-white transition-all shadow-[0_0_15px_rgba(139,92,246,0.2)] hidden sm:block">
+          <button onclick="openCanvasDrawer()" class="px-5 py-3 bg-accentViolet/10 text-accentViolet border border-accentViolet/30 rounded-2xl text-xs font-bold hover:bg-accentViolet hover:text-white transition-all shadow-[0_0_15px_rgba(139,92,246,0.2)] hidden sm:block">
             <i class="fa-solid fa-pen-nib mr-2"></i> Qoralama (Canvas)
           </button>
-          <button onclick="openCanvasDrawer()" class="sm:hidden px-4 py-3 bg-accentViolet/10 text-accentViolet border border-accentViolet/30 rounded-2xl text-sm font-bold">
+          <button onclick="openCanvasDrawer()" class="sm:hidden px-4 py-3 bg-accentViolet/10 text-accentViolet border border-accentViolet/30 rounded-2xl text-xs font-bold">
             <i class="fa-solid fa-pen-nib"></i>
           </button>
-          <button id="btnNext" onclick="quizNext()" class="px-6 py-3 rounded-2xl bg-accentBlue text-white text-sm font-bold shadow-glowBlue hover:bg-blue-500 hover:-translate-y-1 transition-all">
+          <button id="btnNext" onclick="quizNext()" class="px-6 py-3 rounded-2xl bg-accentBlue text-white text-xs font-bold shadow-glowBlue hover:bg-blue-500 hover:-translate-y-0.5 transition-all">
             Keyingi (→) <i class="fa-solid fa-arrow-right ml-2"></i>
           </button>
         </div>
       </div>
 
-      <div class="mt-8 bg-[#090b17]/85 border border-white/10 rounded-[1.5rem] p-5 flex flex-wrap gap-2.5 justify-center max-w-4xl w-full shadow-lg" id="qPalette"></div>
+      <div class="mt-8 bg-[#0a0d1d] border border-white/10 rounded-2xl p-5 flex flex-wrap gap-2.5 justify-center max-w-4xl w-full shadow-lg" id="qPalette"></div>
       
-      <button onclick="endQuiz(false)" class="sm:hidden mt-8 w-full max-w-3xl text-sm bg-red-600 border border-red-500 text-white px-4 py-4 rounded-2xl font-bold shadow-[0_0_15px_rgba(220,38,38,0.5)]">Testni Yakunlash</button>
-      <div class="h-20 sm:h-0"></div> 
+      <button onclick="endQuiz(false)" class="sm:hidden mt-8 w-full max-w-3xl text-xs bg-red-600 border border-red-500 text-white px-4 py-4 rounded-2xl font-black uppercase tracking-wider shadow-[0_0_15px_rgba(220,38,38,0.5)]">Testni Yakunlash</button>
+      <div class="h-24 sm:h-0"></div>
     </main>
 
-    <!-- Elektron Qoralama paneli -->
-    <div id="canvasDrawer" class="fixed top-0 right-0 h-full w-full sm:w-[500px] bg-[#03040b]/95 backdrop-blur-2xl border-l border-white/10 z-[110] transform translate-x-full transition-transform duration-500 flex flex-col shadow-[-20px_0_50px_rgba(0,0,0,0.8)]">
-      <div class="h-16 border-b border-white/10 flex items-center justify-between px-6 bg-[#090b17]">
-        <div class="font-bold text-white flex items-center"><i class="fa-solid fa-pen-ruler text-accentViolet mr-3 text-lg"></i> Elektron Qoralama</div>
+    <!-- Canvas Drawer -->
+    <div id="canvasDrawer" class="fixed top-0 right-0 h-full w-full sm:w-[500px] bg-[#020308]/95 backdrop-blur-2xl border-l border-white/10 z-[110] transform translate-x-full transition-transform duration-500 flex flex-col shadow-[-20px_0_60px_rgba(0,0,0,0.8)]">
+      <div class="h-16 border-b border-white/10 flex items-center justify-between px-6 bg-[#0a0d1d]">
+        <div class="font-bold text-white flex items-center text-sm"><i class="fa-solid fa-pen-ruler text-accentViolet mr-3 text-lg"></i> Elektron Qoralama</div>
         <button onclick="closeCanvasDrawer()" class="text-gray-400 hover:text-white p-2 bg-white/5 rounded-xl"><i class="fa-solid fa-xmark text-xl"></i></button>
       </div>
-      <div class="p-4 bg-[#090b17] border-b border-white/10 flex items-center gap-3 overflow-x-auto hide-scrollbar">
-        <button onclick="setCanvasTool('draw', '#06B6D4', 3)" class="w-10 h-10 rounded-full bg-[#06B6D4] shadow-[0_0_10px_rgba(6,182,212,0.6)] border-2 border-white ring-2 ring-offset-2 ring-offset-[#090b17] ring-transparent focus:ring-[#06B6D4] canvas-color-btn"></button>
+      <div class="p-4 bg-[#0a0d1d] border-b border-white/10 flex items-center gap-3 overflow-x-auto hide-scrollbar">
+        <button onclick="setCanvasTool('draw', '#06B6D4', 3)" class="w-10 h-10 rounded-full bg-[#06B6D4] shadow-[0_0_10px_rgba(6,182,212,0.6)] border-2 border-white ring-2 ring-offset-2 ring-offset-[#0a0d1d] ring-transparent focus:ring-[#06B6D4] canvas-color-btn"></button>
         <button onclick="setCanvasTool('draw', '#10B981', 3)" class="w-10 h-10 rounded-full bg-[#10B981] border-2 border-transparent hover:border-white canvas-color-btn"></button>
         <button onclick="setCanvasTool('draw', '#F43F5E', 3)" class="w-10 h-10 rounded-full bg-[#F43F5E] border-2 border-transparent hover:border-white canvas-color-btn"></button>
         <button onclick="setCanvasTool('draw', '#F59E0B', 3)" class="w-10 h-10 rounded-full bg-[#F59E0B] border-2 border-transparent hover:border-white canvas-color-btn"></button>
         <div class="w-px h-8 bg-white/10 mx-2"></div>
-        <button onclick="setCanvasTool('erase', '#03040b', 30)" class="flex items-center gap-2 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold text-gray-300 hover:bg-white/10"><i class="fa-solid fa-eraser"></i> O'chirish</button>
-        <button onclick="clearDraw()" class="flex items-center gap-2 px-3 py-2 bg-red-500/10 border border-red-500/20 rounded-xl text-xs font-bold text-red-500 hover:bg-red-500 hover:text-white ml-auto"><i class="fa-solid fa-trash"></i></button>
+        <button onclick="setCanvasTool('erase', '#020308', 30)" class="flex items-center gap-2 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-[10px] font-bold text-gray-300 hover:bg-white/10"><i class="fa-solid fa-eraser"></i> O'chirish</button>
+        <button onclick="clearDraw()" class="flex items-center gap-2 px-3 py-2 bg-red-500/10 border border-red-500/20 rounded-xl text-[10px] font-bold text-red-500 hover:bg-red-500 hover:text-white ml-auto"><i class="fa-solid fa-trash"></i></button>
       </div>
-      <canvas id="scratchCanvas" class="flex-grow bg-[#03040b] cursor-crosshair touch-none"></canvas>
+      <canvas id="scratchCanvas" class="flex-grow bg-[#020308] cursor-crosshair touch-none"></canvas>
     </div>
   </div>
 
@@ -688,10 +676,9 @@
     const THEME_KEY = 'alotalim_elite_theme';
     const SECURE_ADMIN_PASS = '0000'; 
     
-    // 🔴 BOT SERVER ADRESI
+    // BOT API SOZLAMALARI (Bot serveringiz bilan integratsiya qilingan)
     const BOT_API_BASE = 'https://ssd-7ekv.onrender.com'; 
     const BOT_API_ENDPOINT = `${BOT_API_BASE}/api/login`;
-    const BOT_TELEGRAM_URL = 'https://t.me/Alo_math_bot';
 
     let appState = JSON.parse(localStorage.getItem('alotalim_elite_state')) || {
       currentUser: null,
@@ -735,12 +722,10 @@
 
     let dbResults = JSON.parse(localStorage.getItem('alotalim_elite_results')) || [];
     
-    // UI Filters
     let currentCatFilter = 'all';
     let searchQuery = '';
     let questionCounter = 0;
 
-    // Quiz holati
     let quizData = null;
     let activeQIndex = 0;
     let userAnswers = [];
@@ -750,7 +735,6 @@
     let tabViolationCount = 0;
     let isExitingQuizInput = false;
 
-    // Anti-Cheat: Mobil qurilmani aniqlash
     const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
     /* =========================================
@@ -778,7 +762,7 @@
       else if (type === 'error') { colorCls = 'bg-accentRose border-red-400 shadow-[0_0_20px_rgba(244,63,94,0.6)]'; iconCls = 'fa-circle-exclamation'; }
       else { colorCls = 'bg-accentBlue border-blue-400 shadow-glowBlue'; iconCls = 'fa-circle-info'; }
 
-      toast.className = `flex items-center gap-4 px-5 py-4 rounded-2xl border text-white font-bold text-sm toast-enter pointer-events-auto backdrop-blur-xl ${colorCls}`;
+      toast.className = `flex items-center gap-4 px-5 py-4 rounded-2xl border text-white font-bold text-xs toast-enter pointer-events-auto backdrop-blur-xl ${colorCls}`;
       toast.innerHTML = `<i class="fa-solid ${iconCls} text-xl drop-shadow-md"></i> <span>${message}</span>`;
       container.appendChild(toast);
       
@@ -786,7 +770,7 @@
       setTimeout(() => {
         toast.classList.remove('toast-enter-active');
         toast.classList.add('toast-leave');
-        setTimeout(() => toast.remove(), 300);
+        setTimeout(() => toast.remove(), 400);
       }, 3500);
     }
 
@@ -816,7 +800,7 @@
     }
 
     /* =========================================
-       4. AUTHENTICATION (XATOLIKLAR TO'LIQ TUZATILDI)
+       4. AUTHENTICATION & BOT API INTEGRATION
        ========================================= */
     function checkAdminField(value) {
       const wrap = document.getElementById('adminPasswordWrapper');
@@ -827,79 +811,55 @@
     async function loginSystem() {
       const name = document.getElementById('authFullname').value.trim();
       const id = document.getElementById('authStudentID').value.trim();
-      const loginBtn = document.getElementById('loginBtn');
 
-      if (!name || name.split(' ').length < 2) {
-        return showToast("Iltimos, Ism va Familiyangizni to'liq kiriting (masalan: Asadbek Olimov)!", 'error');
-      }
-      if (!id) {
-        return showToast('Tizim ID kiriting!', 'error');
-      }
+      if (!name || name.split(' ').length < 2) return showToast("Iltimos, Ism va Familiyangizni to'liq kiriting!", 'error');
+      if (!id) return showToast('Tizim ID ni kiriting!', 'error');
 
-      // Yuklash vizualizatsiyasi
-      loginBtn.disabled = true;
-      const originalBtnHTML = loginBtn.innerHTML;
-      loginBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Tekshirilmoqda...`;
-
-      // Admin Kirishi
+      // Admin trapdoor
       if (id.toLowerCase() === 'admin') {
         const pass = document.getElementById('authAdminPassword').value;
-        if (pass !== SECURE_ADMIN_PASS) {
-          loginBtn.disabled = false;
-          loginBtn.innerHTML = originalBtnHTML;
-          return showToast('Admin maxfiy kodi xato!', 'error');
-        }
+        if (pass !== SECURE_ADMIN_PASS) return showToast('Admin maxfiy kodi xato!', 'error');
 
         appState.currentUser = { name, id, role: 'admin' };
         saveToStorage();
         initAppView();
-        showToast('Administrator sifatida kirdingiz!', 'success');
-        loginBtn.disabled = false;
-        loginBtn.innerHTML = originalBtnHTML;
+        showToast('Administrator sifatida tizimga kirdingiz!', 'success');
         return;
       }
 
-      // BOT bazasi bilan bog'lanib ID tekshirish (CORS bilan asinxron so'rov)
+      // BOT API BILAN BOG'LANISH VA TEKSHIRUV
+      let apiResult = null;
       try {
         const response = await fetch(BOT_API_ENDPOINT, {
           method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ student_id: id })
         });
 
-        if (!response.ok) {
-          throw new Error('Server rad javobini berdi yoki kod topilmadi.');
-        }
-
-        const apiResult = await response.json();
-
-        if (apiResult && apiResult.success) {
-          appState.currentUser = {
-            name: apiResult.name || name, 
-            id: id,
-            uid: apiResult.uid, 
-            role: apiResult.role || 'user'
-          };
-
-          if(appState.userXP === undefined) appState.userXP = 0;
-          if(appState.userStreak === undefined) appState.userStreak = 0;
-          
-          saveToStorage();
-          initAppView();
-          showToast("Tizimga muvaffaqiyatli kirdingiz!", 'success');
-        } else {
-          showToast(apiResult.error || "Ushbu ID topilmadi! Botdan kodingizni oling.", 'error');
-        }
+        apiResult = await response.json();
       } catch (error) {
-        console.error("Login Error:", error);
-        showToast("Bot serveriga ulanishda xatolik! Tizim ID ni tekshiring.", 'error');
-      } finally {
-        loginBtn.disabled = false;
-        loginBtn.innerHTML = originalBtnHTML;
+        return showToast("Bot serveri bilan ulanishda xatolik! Tarmoq holatini tekshiring.", 'error');
       }
+
+      if (!apiResult || !apiResult.success) {
+        const errorMsg = apiResult?.error || "Ushbu Tizim ID ro'yxatdan o'tmagan! Telegram botimizdan o'ting.";
+        return showToast(errorMsg, 'error');
+      }
+
+      // Bazadan tasdiqlansa ruxsat beriladi
+      appState.currentUser = {
+        name: apiResult.name || name, 
+        id,
+        uid: apiResult.uid, 
+        role: apiResult.role || 'user'
+      };
+
+      if(appState.userXP === undefined) appState.userXP = 0;
+      if(appState.userStreak === undefined) appState.userStreak = 0;
+      
+      saveToStorage();
+      initAppView();
+      showToast("Tizimga muvaffaqiyatli kirdingiz!", 'success');
     }
 
     function logoutSystem() {
@@ -918,7 +878,7 @@
       document.getElementById('displayUserRole').innerText = appState.currentUser.role === 'admin' ? 'Administrator' : 'O\'quvchi';
       
       if(appState.currentUser.role === 'admin') {
-        document.getElementById('displayUserRole').className = "text-[11px] font-mono text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded-md border border-amber-500/20";
+        document.getElementById('displayUserRole').className = "text-[10px] font-mono text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded-md border border-amber-500/20";
         document.getElementById('btn-adminTab').classList.remove('hidden');
         document.getElementById('mob-btn-adminTab').classList.remove('hidden');
         document.getElementById('mob-btn-adminTab').classList.add('flex');
@@ -986,7 +946,7 @@
       cvs.classList.remove('hidden');
 
       const particles = [];
-      const colors = ['#06B6D4', '#2563EB', '#10B981', '#F59E0B', '#8B5CF6', '#F43F5E'];
+      const colors = ['#06B6D4', '#3B82F6', '#10B981', '#F59E0B', '#8B5CF6', '#F43F5E'];
       
       for(let i=0; i<150; i++) {
         particles.push({
@@ -1106,7 +1066,7 @@
     }
 
     /* =========================================
-       7. HOME CATALOG
+       7. HOME TAB (TEST CATALOG)
        ========================================= */
     function setCategoryFilter(catId) {
       currentCatFilter = catId;
@@ -1122,11 +1082,11 @@
       document.getElementById('statTotalResults').innerText = dbResults.length;
 
       const catList = document.getElementById('categoriesList');
-      let catHTML = `<button onclick="setCategoryFilter('all')" class="px-5 py-2.5 rounded-2xl text-sm font-bold border transition-all whitespace-nowrap ${currentCatFilter === 'all' ? 'bg-gradient-to-r from-accentBlue to-accentCyan text-white border-transparent shadow-glowBlue' : 'bg-white/40 dark:bg-black/40 border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5'}">Barchasi</button>`;
+      let catHTML = `<button onclick="setCategoryFilter('all')" class="px-5 py-2.5 rounded-2xl text-xs font-bold border transition-all whitespace-nowrap ${currentCatFilter === 'all' ? 'bg-gradient-to-r from-accentBlue to-accentCyan text-white border-transparent shadow-glowBlue' : 'bg-white/40 dark:bg-black/40 border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5'}">Barchasi</button>`;
 
       dbCategories.forEach(c => {
         const isActive = currentCatFilter === c.id;
-        catHTML += `<button onclick="setCategoryFilter('${c.id}')" class="px-5 py-2.5 rounded-2xl text-sm font-bold border transition-all flex items-center gap-2 whitespace-nowrap ${isActive ? 'bg-gradient-to-r from-accentBlue to-accentCyan text-white border-transparent shadow-glowBlue' : 'bg-white/40 dark:bg-black/40 border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5'}"><i class="fa-solid ${c.icon}"></i> ${c.name}</button>`;
+        catHTML += `<button onclick="setCategoryFilter('${c.id}')" class="px-5 py-2.5 rounded-2xl text-xs font-bold border transition-all flex items-center gap-2 whitespace-nowrap ${isActive ? 'bg-gradient-to-r from-accentBlue to-accentCyan text-white border-transparent shadow-glowBlue' : 'bg-white/40 dark:bg-black/40 border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5'}"><i class="fa-solid ${c.icon}"></i> ${c.name}</button>`;
       });
       catList.innerHTML = catHTML;
 
@@ -1144,7 +1104,7 @@
 
       const testGrid = document.getElementById('testsGrid');
       if (filteredTests.length === 0) {
-        testGrid.innerHTML = `<div class="col-span-full p-10 text-center text-gray-500 dark:text-gray-400 bg-white/20 dark:bg-black/20 rounded-[2rem] border border-gray-200 dark:border-white/5">Natija topilmadi.</div>`;
+        testGrid.innerHTML = `<div class="col-span-full p-10 text-center text-gray-400 bg-white/20 dark:bg-black/20 rounded-[2rem] border border-gray-200 dark:border-white/5">Natija topilmadi.</div>`;
       } else {
         testGrid.innerHTML = filteredTests.map(t => {
           const cat = dbCategories.find(c => c.id === t.categoryId);
@@ -1153,34 +1113,34 @@
               <div class="absolute -right-6 -top-6 w-24 h-24 bg-gradient-to-br from-accentBlue/20 to-accentCyan/20 rounded-full group-hover:scale-[3] transition-transform duration-700 pointer-events-none blur-xl"></div>
               <div class="relative z-10">
                 <div class="flex justify-between items-start mb-4">
-                  <span class="text-[10px] font-bold bg-gray-100 dark:bg-black/50 border border-gray-200 dark:border-white/10 px-3 py-1.5 rounded-xl text-gray-600 dark:text-gray-300 flex items-center gap-1.5"><i class="fa-solid ${cat?.icon || 'fa-tag'} text-accentBlue"></i> ${cat?.name || 'Fan'}</span>
-                  <span class="text-[10px] font-mono font-bold text-accentViolet bg-accentViolet/10 border border-accentViolet/20 px-2 py-1.5 rounded-xl shadow-[0_0_10px_rgba(139,92,246,0.2)]">${t.id}</span>
+                  <span class="text-[9px] font-bold bg-gray-100 dark:bg-black/50 border border-gray-200 dark:border-white/10 px-3 py-1.5 rounded-xl text-gray-600 dark:text-gray-300 flex items-center gap-1.5"><i class="fa-solid ${cat?.icon || 'fa-tag'} text-accentBlue"></i> ${cat?.name || 'Fan'}</span>
+                  <span class="text-[9px] font-mono font-bold text-accentViolet bg-accentViolet/10 border border-accentViolet/20 px-2.5 py-1.5 rounded-xl">${t.id}</span>
                 </div>
-                <h3 class="font-black text-lg text-gray-900 dark:text-white mb-3 leading-snug">${t.title}</h3>
-                <div class="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-6 font-semibold">
-                  <span class="flex items-center gap-1.5 bg-white/40 dark:bg-white/5 px-2 py-1 rounded-lg"><i class="fa-solid fa-list-ol text-accentEmerald"></i> ${t.qCount} ta savol</span> 
-                  <span class="flex items-center gap-1.5 bg-white/40 dark:bg-white/5 px-2 py-1 rounded-lg"><i class="fa-solid fa-clock text-accentAmber"></i> ${t.time} daq</span>
+                <h3 class="font-extrabold text-base text-gray-900 dark:text-white mb-3 leading-snug">${t.title}</h3>
+                <div class="flex items-center gap-4 text-[10px] text-gray-500 dark:text-gray-400 mb-6 font-semibold">
+                  <span class="flex items-center gap-1.5 bg-white/50 dark:bg-white/5 px-2 py-1 rounded-lg"><i class="fa-solid fa-list-ol text-accentEmerald"></i> ${t.qCount} ta savol</span> 
+                  <span class="flex items-center gap-1.5 bg-white/50 dark:bg-white/5 px-2 py-1 rounded-lg"><i class="fa-solid fa-clock text-accentAmber"></i> ${t.time} daq</span>
                 </div>
               </div>
-              <button onclick="initQuiz('${t.id}')" class="w-full bg-accentBlue/10 hover:bg-accentBlue text-accentBlue hover:text-white border border-accentBlue/30 font-bold py-3.5 rounded-2xl text-sm transition-all duration-300 relative z-10 hover:shadow-glowBlue flex justify-center items-center gap-2">
-                Boshlash <i class="fa-solid fa-play text-xs"></i>
+              <button onclick="initQuiz('${t.id}')" class="w-full bg-accentBlue/10 hover:bg-accentBlue text-accentBlue hover:text-white border border-accentBlue/30 font-bold py-3.5 rounded-2xl text-xs transition-all duration-300 relative z-10 hover:shadow-glowBlue flex justify-center items-center gap-2">
+                Boshlash <i class="fa-solid fa-play text-[10px]"></i>
               </button>
             </div>
           `;
         }).join('');
       }
 
-      // Reyting jadvali
+      // Leaderboard
       const userStats = {};
       dbResults.forEach(r => {
         if (!userStats[r.userId]) userStats[r.userId] = { name: r.userName, totalPerc: 0, count: 0 };
         userStats[r.userId].totalPerc += (r.score / r.total) * 100;
         userStats[r.userId].count++;
       });
-      const leaders = Object.values(userStats).map(u => ({ name: u.name, avg: Math.round(u.totalPerc / u.count) })).sort((a, b) => b.avg - a.avg).slice(0, 5);
+      const leaders = Object.values(userStats).map(u => ({ name: u.name, avg: Math.round(u.totalPerc / u.count) })).sort((a, b) => b.avg - a.avg).slice(0, 5); 
       const lbList = document.getElementById('leaderboardList');
       if (leaders.length === 0) {
-        lbList.innerHTML = `<p class="text-xs text-gray-500 text-center py-6">Hali natijalar yo'q.</p>`;
+        lbList.innerHTML = `<p class="text-xs text-gray-500 text-center py-6">Hali reyting shakllanmagan.</p>`;
       } else {
         lbList.innerHTML = leaders.map((l, i) => {
           let badgeClass = 'bg-gray-100 dark:bg-black/50 text-gray-500 border-gray-200 dark:border-white/10';
@@ -1189,12 +1149,12 @@
           if(i===2) badgeClass = 'bg-gradient-to-br from-orange-400 to-orange-700 text-white shadow-[0_0_10px_rgba(234,88,12,0.4)] border-orange-500';
           
           return `
-          <div class="flex justify-between items-center p-3.5 border-b border-gray-200/50 dark:border-white/5 last:border-0 hover:bg-white/30 dark:hover:bg-white/5 transition-colors rounded-2xl">
+          <div class="flex justify-between items-center p-3 border-b border-gray-200/50 dark:border-white/5 last:border-0 hover:bg-white/50 dark:hover:bg-white/5 transition-colors rounded-2xl">
             <div class="flex items-center gap-3">
               <span class="w-8 h-8 flex items-center justify-center rounded-xl text-xs font-black border ${badgeClass}">${i+1}</span>
-              <span class="text-sm font-bold text-gray-800 dark:text-gray-200 truncate w-32">${l.name}</span>
+              <span class="text-xs font-bold text-gray-800 dark:text-gray-200 truncate w-32">${l.name}</span>
             </div>
-            <span class="text-xs font-mono font-bold text-accentEmerald bg-emerald-500/10 px-2.5 py-1.5 rounded-xl border border-emerald-500/20 shadow-[0_0_8px_rgba(16,185,129,0.2)]">${l.avg}%</span>
+            <span class="text-[10px] font-mono font-bold text-accentEmerald bg-emerald-500/10 px-2.5 py-1.5 rounded-xl border border-emerald-500/20 shadow-[0_0_8px_rgba(16,185,129,0.15)]">${l.avg}%</span>
           </div>
         `}).join('');
       }
@@ -1208,27 +1168,27 @@
       const myRes = dbResults.filter(r => r.userId === appState.currentUser.id).reverse();
       const tbody = document.getElementById('myResultsTable');
       if (myRes.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5" class="p-10 text-center text-gray-500 font-bold bg-white/20 dark:bg-black/20">Siz hali test topshirmagansiz. Boshlash vaqti keldi!</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="5" class="p-10 text-center text-gray-400 font-bold bg-white/20 dark:bg-black/20 rounded-2xl">Siz hali test topshirmagansiz.</td></tr>`;
         return;
       }
       tbody.innerHTML = myRes.map(r => {
         const perc = Math.round((r.score / r.total) * 100);
         const isFail = perc < 60;
         
-        let aiBtnHtml = `<span class="text-[10px] text-gray-400 italic">Muvaffaqiyatli</span>`;
+        let aiBtnHtml = `<span class="text-[10px] text-gray-400 italic font-semibold">Muvaffaqiyatli</span>`;
         if (isFail) {
-          aiBtnHtml = `<button onclick="startAIReview('${r.testId}', ${r.score}, ${r.total})" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-accentViolet/10 text-accentViolet font-bold text-[10px] border border-accentViolet/30 hover:bg-accentViolet hover:text-white transition-all shadow-[0_0_10px_rgba(139,92,246,0.3)]"><i class="fa-solid fa-brain"></i> AI Tahlil</button>`;
+          aiBtnHtml = `<button onclick="startAIReview('${r.testId}', ${r.score}, ${r.total})" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-accentViolet/10 text-accentViolet font-extrabold text-[9px] uppercase tracking-wider border border-accentViolet/30 hover:bg-accentViolet hover:text-white transition-all shadow-[0_0_10px_rgba(139,92,246,0.3)]"><i class="fa-solid fa-brain animate-pulse"></i> AI Tahlil</button>`;
         }
 
         return `
-          <tr class="hover:bg-white/40 dark:hover:bg-white/5 transition-colors group">
-            <td class="p-5 text-xs text-gray-500 font-mono">${r.date}</td>
-            <td class="p-5 font-bold text-gray-900 dark:text-white">${r.testName} <span class="block text-[10px] font-mono text-accentBlue mt-1 bg-accentBlue/10 w-fit px-1.5 rounded">${r.testId}</span></td>
-            <td class="p-5 font-mono text-gray-600 dark:text-gray-300 font-bold">${r.score} / ${r.total}</td>
+          <tr class="hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
+            <td class="p-5 text-xs text-gray-400 font-mono">${r.date}</td>
+            <td class="p-5 font-bold text-gray-950 dark:text-white">${r.testName} <span class="block text-[9px] font-mono text-accentBlue mt-1 bg-accentBlue/10 w-fit px-1.5 rounded">${r.testId}</span></td>
+            <td class="p-5 font-mono text-gray-600 dark:text-gray-300 font-black">${r.score} / ${r.total}</td>
             <td class="p-5">
               <div class="flex items-center gap-2">
-                <span class="font-mono font-black ${isFail ? 'text-accentRose drop-shadow-[0_0_5px_rgba(244,63,94,0.5)]' : 'text-accentEmerald drop-shadow-[0_0_5px_rgba(16,185,129,0.5)]'}">${perc}%</span>
-                <span class="px-2 py-1 rounded-md text-[9px] font-bold uppercase tracking-wider ${isFail ? 'bg-red-500/10 text-red-500 border border-red-500/20' : 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'}">${isFail ? (r.status || 'YIQILDI') : 'O\'TDI'}</span>
+                <span class="font-mono font-black ${isFail ? 'text-accentRose' : 'text-accentEmerald'}">${perc}%</span>
+                <span class="px-2 py-0.5 rounded text-[8px] font-black tracking-wider ${isFail ? 'bg-red-500/10 text-red-500 border border-red-500/20' : 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'}">${isFail ? (r.status || 'YIQILDI') : 'O\'TDI'}</span>
               </div>
             </td>
             <td class="p-5 text-right align-middle">${aiBtnHtml}</td>
@@ -1258,26 +1218,26 @@
               <i class="fa-solid fa-robot text-accentViolet text-xl"></i>
             </div>
             <div>
-              <h4 class="font-black text-white text-lg">Diagnostika Xulosasi</h4>
-              <p class="text-[10px] text-accentViolet font-mono">${catName} | ${score}/${total} To'g'ri</p>
+              <h4 class="font-black text-white text-base">Neyrotarmoq Diagnostikasi</h4>
+              <p class="text-[9px] text-accentViolet font-mono tracking-wider uppercase">${catName} | ${score}/${total} To'g'ri javob</p>
             </div>
           </div>
           
-          <div class="bg-red-500/10 border border-red-500/20 rounded-xl p-4 mb-4">
-            <div class="text-[10px] font-bold text-red-400 uppercase tracking-widest mb-2"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Asosiy Muammo</div>
-            <p class="text-sm text-gray-300 font-medium">Neyrotarmoq tahlili shuni ko'rsatmoqdaki, siz <strong class="text-white">"${tData ? tData.title : 'ushbu mavzu'}"</strong>dagi bazaviy tushunchalarda xatoliklarga yo'l qo'ygansiz. Diqqatni jamlash va nazariy qoidalarni qayta ko'rib chiqish tavsiya etiladi.</p>
+          <div class="bg-red-500/10 border border-red-500/20 rounded-2xl p-4.5 mb-4">
+            <div class="text-[9px] font-bold text-red-400 uppercase tracking-widest mb-2"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Asosiy Muammo Aniqlangan Bo'lim</div>
+            <p class="text-xs text-gray-300 font-medium leading-relaxed">Siz <strong class="text-white">"${tData ? tData.title : 'ushbu test'}"</strong> topshirig'ida tushunchaviy va ba'zi texnik xatoliklarga yo'l qo'ydingiz. Formula va fundamental qoidalarni qaytadan ko'rib chiqishingiz kerak.</p>
           </div>
 
-          <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-4">
-            <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-2"><i class="fa-solid fa-list-check mr-1"></i> Shaxsiy O'quv Rejasi</div>
-            <ul class="text-sm text-gray-300 space-y-2 list-disc pl-5 marker:text-emerald-500">
-              <li>${catName} fanining so'nggi 2 ta darsligi qoidalarini yodlash.</li>
-              <li>Noto'g'ri belgilangan savollarning har biriga o'xshash 3 tadan misol ishlash.</li>
-              <li>Platformadagi navbatdagi testni diqqat bilan, shoshilmasdan topshirish.</li>
+          <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-4.5">
+            <div class="text-[9px] font-bold text-emerald-400 uppercase tracking-widest mb-2"><i class="fa-solid fa-list-check mr-1"></i> Tavsiya Etilgan O'quv Rejasi</div>
+            <ul class="text-xs text-gray-300 space-y-2.5 list-disc pl-5 marker:text-emerald-500">
+              <li>Ushbu mavzuning fundamental darslik qoidalarini konspekt qilib yodlang.</li>
+              <li>Xato qilgan savollarga o'xshash bo'lgan kamida 4-5 ta misol yeching.</li>
+              <li>Platformadagi keyingi urinishlarni shoshilmasdan, elektron qoralama (Canvas)dan keng foydalanib yeching.</li>
             </ul>
           </div>
         `;
-      }, 1500);
+      }, 1600);
     }
 
     function closeAIReview() {
@@ -1300,7 +1260,7 @@
     function renderAdminCatsTable() {
       const tbody = document.getElementById('adminCatsTable');
       tbody.innerHTML = dbCategories.map(c => `
-        <tr class="hover:bg-white/40 dark:hover:bg-white/5 transition-colors">
+        <tr class="hover:bg-white/50 dark:hover:bg-white/5 transition-colors">
           <td class="p-4 font-bold text-gray-900 dark:text-white"><i class="fa-solid ${c.icon} text-accentEmerald w-6 text-center mr-2"></i> ${c.name}</td>
           <td class="p-4 text-right">
             <button onclick="deleteCategory('${c.id}')" class="text-xs bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white border border-red-500/20 px-3 py-1.5 rounded-xl transition-all font-bold">
@@ -1316,7 +1276,7 @@
       tbody.innerHTML = dbTests.map(t => {
         const cat = dbCategories.find(c => c.id === t.categoryId);
         return `
-          <tr class="hover:bg-white/40 dark:hover:bg-white/5 transition-colors">
+          <tr class="hover:bg-white/50 dark:hover:bg-white/5 transition-colors">
             <td class="p-4 font-mono text-xs text-accentBlue font-bold bg-accentBlue/10 rounded-l-xl">${t.id}</td>
             <td class="p-4 font-bold text-gray-900 dark:text-white truncate max-w-[200px]">${t.title}</td>
             <td class="p-4 text-xs text-gray-500 dark:text-gray-400 font-medium">${cat ? cat.name : 'Noma\'lum'}</td>
@@ -1333,18 +1293,18 @@
     }
 
     function deleteCategory(id) {
-      if (confirm('Kategoriyani o\'chirsangiz, barcha tegishli testlar ham o\'chib ketadi. Davom etasizmi?')) {
+      if (confirm('Kategoriyani o\'chirsangiz barcha unga tegishli testlar ham o\'chib ketadi. Ruxsat berasizmi?')) {
         dbCategories = dbCategories.filter(c => c.id !== id);
         dbTests = dbTests.filter(t => t.categoryId !== id);
         saveToStorage();
-        showToast('Kategoriya va testlar o\'chirildi', 'success');
+        showToast('Kategoriya muvaffaqiyatli o\'chirildi', 'success');
         renderAdminView();
         renderHome();
       }
     }
 
     function deleteTest(id) {
-      if (confirm(`"${id}" kodli testni butunlay o'chirib tashlaysizmi?`)) {
+      if (confirm(`"${id}" kodli testni butunlay o'chirib yubormoqchimisiz?`)) {
         dbTests = dbTests.filter(t => t.id !== id);
         saveToStorage();
         showToast('Test muvaffaqiyatli o‘chirildi', 'success');
@@ -1359,8 +1319,8 @@
         select.innerHTML = `<option value="">Testlar mavjud emas</option>`;
         return;
       }
-      select.innerHTML = `<option value="">-- Diagnostika qilish uchun test tanlang --</option>` + dbTests.map(t => `<option value="${t.id}">${t.title} (${t.id})</option>`).join('');
-      document.getElementById('adminStatsTable').innerHTML = `<tr><td colspan="4" class="p-10 text-center text-gray-500 bg-white/20 dark:bg-black/20">Yuqoridan test tanlang</td></tr>`;
+      select.innerHTML = `<option value="">-- Diagnostika va statistika uchun testni tanlang --</option>` + dbTests.map(t => `<option value="${t.id}">${t.title} (${t.id})</option>`).join('');
+      document.getElementById('adminStatsTable').innerHTML = `<tr><td colspan="4" class="p-10 text-center text-gray-500 bg-white/20 dark:bg-black/20">Yuqoridan biron bir testni tanlang</td></tr>`;
       document.getElementById('statSummaryCards').innerHTML = '';
     }
 
@@ -1373,14 +1333,14 @@
       const summaryDiv = document.getElementById('statSummaryCards');
 
       if (!tData) {
-        tbody.innerHTML = `<tr><td colspan="4" class="p-10 text-center text-gray-500">Test topilmadi.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="4" class="p-10 text-center text-gray-500">Ushbu test topilmadi.</td></tr>`;
         summaryDiv.innerHTML = '';
         return;
       }
 
       if (results.length === 0) {
         summaryDiv.innerHTML = '';
-        tbody.innerHTML = `<tr><td colspan="4" class="p-10 text-center text-gray-500">Ushbu testni hali hech kim ishlamagan.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="4" class="p-10 text-center text-gray-500">Ushbu test hali biror marta topshirilmagan.</td></tr>`;
         return;
       }
 
@@ -1391,9 +1351,9 @@
         totalScore += perc;
         if (perc >= 60) passedCount++;
         return `
-          <tr class="hover:bg-white/40 dark:hover:bg-white/5 transition-colors">
+          <tr class="hover:bg-white/50 dark:hover:bg-white/5 transition-colors">
             <td class="p-4 text-xs text-gray-500 font-mono">${r.date}</td>
-            <td class="p-4 font-bold text-gray-900 dark:text-white">${r.userName} <span class="text-[10px] bg-white/40 dark:bg-white/10 px-1.5 py-0.5 rounded text-gray-400 font-mono block mt-0.5 w-fit">${r.userId}</span></td>
+            <td class="p-4 font-bold text-gray-950 dark:text-white">${r.userName} <span class="text-[10px] bg-white/50 dark:bg-white/10 px-1.5 py-0.5 rounded text-gray-400 font-mono block mt-0.5 w-fit">${r.userId}</span></td>
             <td class="p-4 font-mono text-gray-600 dark:text-gray-300 font-bold">${r.score} / ${r.total}</td>
             <td class="p-4">
               <span class="font-mono font-bold ${perc >= 60 ? 'text-accentEmerald' : 'text-accentRose'}">${perc}%</span>
@@ -1406,21 +1366,21 @@
       const passRate = Math.round((passedCount / results.length) * 100);
       
       summaryDiv.innerHTML = `
-        <div class="bg-blue-500/10 border border-blue-500/20 p-5 rounded-[1.5rem] shadow-[0_0_15px_rgba(37,99,235,0.1)]">
-          <div class="text-[10px] font-bold text-accentBlue uppercase mb-1 tracking-widest">Qatnashuvchilar</div>
-          <div class="text-3xl font-black text-gray-900 dark:text-white">${results.length}</div>
+        <div class="bg-blue-500/10 border border-blue-500/20 p-5 rounded-2xl shadow-[0_0_15px_rgba(59,130,246,0.1)]">
+          <div class="text-[9px] font-black text-accentBlue uppercase mb-1 tracking-widest">A'zolar</div>
+          <div class="text-2xl font-black text-gray-900 dark:text-white">${results.length} ta</div>
         </div>
-        <div class="bg-emerald-500/10 border border-emerald-500/20 p-5 rounded-[1.5rem] shadow-[0_0_15px_rgba(16,185,129,0.1)]">
-          <div class="text-[10px] font-bold text-accentEmerald uppercase mb-1 tracking-widest">O'rtacha Ball</div>
-          <div class="text-3xl font-black text-gray-900 dark:text-white">${avgScore}%</div>
+        <div class="bg-emerald-500/10 border border-emerald-500/20 p-5 rounded-2xl shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+          <div class="text-[9px] font-black text-accentEmerald uppercase mb-1 tracking-widest">O'rtacha ko'rsatkich</div>
+          <div class="text-2xl font-black text-gray-900 dark:text-white">${avgScore}%</div>
         </div>
-        <div class="bg-amber-500/10 border border-amber-500/20 p-5 rounded-[1.5rem] shadow-[0_0_15px_rgba(245,158,11,0.1)]">
-          <div class="text-[10px] font-bold text-amber-500 uppercase mb-1 tracking-widest">Savollar</div>
-          <div class="text-3xl font-black text-gray-900 dark:text-white">${tData.qCount}</div>
+        <div class="bg-amber-500/10 border border-amber-500/20 p-5 rounded-2xl shadow-[0_0_15px_rgba(245,158,11,0.1)]">
+          <div class="text-[9px] font-black text-amber-500 uppercase mb-1 tracking-widest">Savollar</div>
+          <div class="text-2xl font-black text-gray-900 dark:text-white">${tData.qCount} ta</div>
         </div>
-        <div class="bg-violet-500/10 border border-violet-500/20 p-5 rounded-[1.5rem] shadow-[0_0_15px_rgba(139,92,246,0.1)]">
-          <div class="text-[10px] font-bold text-accentViolet uppercase mb-1 tracking-widest">Pass Ratio</div>
-          <div class="text-3xl font-black text-gray-900 dark:text-white">${passRate}%</div>
+        <div class="bg-violet-500/10 border border-violet-500/20 p-5 rounded-2xl shadow-[0_0_15px_rgba(139,92,246,0.1)]">
+          <div class="text-[9px] font-black text-accentViolet uppercase mb-1 tracking-widest">Pass Ratio</div>
+          <div class="text-2xl font-black text-gray-900 dark:text-white">${passRate}%</div>
           <div class="w-full bg-black/40 h-1 mt-2 rounded"><div class="bg-accentViolet h-full rounded" style="width:${passRate}%"></div></div>
         </div>
       `;
@@ -1443,8 +1403,8 @@
       const file = inputEl.files[0];
       const statusSpan = document.getElementById(`img-status-${inputEl.dataset.qid}`);
       if (!file) {
-        statusSpan.innerText = 'Rasm biriktirilmadi';
-        statusSpan.className = 'text-[10px] text-gray-400 block mt-1';
+        statusSpan.innerText = 'Rasm yuklanmadi';
+        statusSpan.className = 'text-[9px] text-gray-400 block mt-1';
         inputEl.dataset.b64 = '';
         return;
       }
@@ -1464,7 +1424,7 @@
           ctx.drawImage(img, 0, 0, width, height);
           inputEl.dataset.b64 = canvas.toDataURL('image/jpeg', 0.6);
           statusSpan.innerHTML = '<i class="fa-solid fa-check text-accentEmerald"></i> Bajarildi';
-          statusSpan.className = 'text-[10px] text-accentEmerald block mt-1 font-bold';
+          statusSpan.className = 'text-[9px] text-accentEmerald block mt-1 font-bold';
         };
         img.src = e.target.result;
       };
@@ -1474,46 +1434,46 @@
     function addQuestionRow() {
       questionCounter++;
       const wrapper = document.createElement('div');
-      wrapper.className = 'p-5 border border-gray-200 dark:border-white/10 rounded-2xl bg-white/40 dark:bg-black/30 space-y-4 relative shadow-sm transition-all hover:border-accentBlue/50 text-xs';
+      wrapper.className = 'p-5 border border-gray-200 dark:border-white/10 rounded-2xl bg-white/50 dark:bg-black/40 space-y-4 relative shadow-sm transition-all hover:border-accentBlue/50 text-xs';
       wrapper.id = `qRow-${questionCounter}`;
       wrapper.innerHTML = `
         <div class="flex justify-between items-center mb-2 pb-3 border-b border-gray-200 dark:border-white/10">
-          <span class="font-black text-accentBlue text-sm tracking-wide">Savol #${questionCounter}</span>
+          <span class="font-extrabold text-accentBlue text-sm tracking-wide">Savol #${questionCounter}</span>
           ${questionCounter > 1 ? `<button onclick="this.parentElement.parentElement.remove(); document.getElementById('qBuilderCount').innerText=document.querySelectorAll('[id^=\\'qRow-\\']').length;" class="text-red-500 font-bold bg-red-500/10 px-3 py-1.5 rounded-lg border border-red-500/20 hover:bg-red-500 hover:text-white transition-all"><i class="fa-solid fa-trash"></i></button>` : ''}
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div class="md:col-span-2">
-            <textarea rows="3" placeholder="Savol matnini kiriting (LaTeX $...$ qo'llab quvvatlanadi)" class="q-text-input w-full bg-white/70 dark:bg-[#03040b] border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 outline-none text-gray-900 dark:text-white focus:border-accentBlue focus:ring-1 focus:ring-accentBlue resize-none"></textarea>
+            <textarea rows="3" placeholder="Savol matnini kiriting (LaTeX $...$ va $$...$$ qo'llab quvvatlanadi)" class="q-text-input w-full bg-white/70 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 outline-none text-gray-900 dark:text-white focus:border-accentBlue focus:ring-1 focus:ring-accentBlue resize-none"></textarea>
           </div>
-          <div class="bg-white/70 dark:bg-[#03040b] border border-gray-200 dark:border-white/10 rounded-xl p-3 flex flex-col justify-center items-center border-dashed">
-            <label class="block text-[10px] font-bold text-gray-400 mb-2 uppercase text-center w-full cursor-pointer hover:text-accentBlue">
+          <div class="bg-white/70 dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-xl p-3 flex flex-col justify-center items-center border-dashed">
+            <label class="block text-[9px] font-bold text-gray-400 mb-2 uppercase text-center w-full cursor-pointer hover:text-accentBlue">
               <i class="fa-solid fa-cloud-arrow-up text-xl mb-1 block"></i> Rasm biriktirish
               <input type="file" accept="image/*" data-qid="${questionCounter}" onchange="handleImageUpload(this)" class="q-img-input hidden w-full">
             </label>
-            <span id="img-status-${questionCounter}" class="text-[10px] text-gray-500 block text-center">Ixtiyoriy</span>
+            <span id="img-status-${questionCounter}" class="text-[9px] text-gray-500 block text-center">Ixtiyoriy</span>
           </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
-          <div class="flex items-center bg-white/70 dark:bg-[#03040b] rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden focus-within:border-accentBlue focus-within:ring-1 focus-within:ring-accentBlue">
+          <div class="flex items-center bg-white/70 dark:bg-black/50 rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden focus-within:border-accentBlue focus-within:ring-1 focus-within:ring-accentBlue">
             <span class="px-3 font-black text-gray-400 border-r border-gray-200 dark:border-white/10">A</span>
             <input type="text" placeholder="Variant A" class="q-opt-A w-full px-3 py-2.5 outline-none bg-transparent text-gray-900 dark:text-white">
           </div>
-          <div class="flex items-center bg-white/70 dark:bg-[#03040b] rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden focus-within:border-accentBlue focus-within:ring-1 focus-within:ring-accentBlue">
+          <div class="flex items-center bg-white/70 dark:bg-black/50 rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden focus-within:border-accentBlue focus-within:ring-1 focus-within:ring-accentBlue">
             <span class="px-3 font-black text-gray-400 border-r border-gray-200 dark:border-white/10">B</span>
             <input type="text" placeholder="Variant B" class="q-opt-B w-full px-3 py-2.5 outline-none bg-transparent text-gray-900 dark:text-white">
           </div>
-          <div class="flex items-center bg-white/70 dark:bg-[#03040b] rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden focus-within:border-accentBlue focus-within:ring-1 focus-within:ring-accentBlue">
+          <div class="flex items-center bg-white/70 dark:bg-black/50 rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden focus-within:border-accentBlue focus-within:ring-1 focus-within:ring-accentBlue">
             <span class="px-3 font-black text-gray-400 border-r border-gray-200 dark:border-white/10">C</span>
             <input type="text" placeholder="Variant C" class="q-opt-C w-full px-3 py-2.5 outline-none bg-transparent text-gray-900 dark:text-white">
           </div>
-          <div class="flex items-center bg-white/70 dark:bg-[#03040b] rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden focus-within:border-accentBlue focus-within:ring-1 focus-within:ring-accentBlue">
+          <div class="flex items-center bg-white/70 dark:bg-black/50 rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden focus-within:border-accentBlue focus-within:ring-1 focus-within:ring-accentBlue">
             <span class="px-3 font-black text-gray-400 border-r border-gray-200 dark:border-white/10">D</span>
             <input type="text" placeholder="Variant D" class="q-opt-D w-full px-3 py-2.5 outline-none bg-transparent text-gray-900 dark:text-white">
           </div>
         </div>
         <div class="flex items-center justify-end gap-3 pt-3 border-t border-gray-200 dark:border-white/10 mt-3">
-          <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-500">To'g'ri Javob:</span>
-          <select class="q-correct bg-emerald-500/10 text-emerald-500 border border-emerald-500/30 rounded-xl px-4 py-2 font-black outline-none cursor-pointer focus:ring-1 focus:ring-emerald-500 text-xs">
+          <span class="text-[9px] font-black uppercase tracking-widest text-emerald-500">To'g'ri Javob:</span>
+          <select class="q-correct bg-emerald-500/10 text-emerald-500 border border-emerald-500/30 rounded-xl px-4 py-2 font-black outline-none cursor-pointer focus:ring-1 focus:ring-emerald-500 text-[10px]">
             <option value="0">A varianti</option><option value="1">B varianti</option><option value="2">C varianti</option><option value="3">D varianti</option>
           </select>
         </div>
@@ -1529,7 +1489,7 @@
       const time = parseInt(document.getElementById('addTestTime').value);
       
       if (!title || !code || !categoryId || isNaN(time) || time <= 0) return showToast("Barcha maydonlarni to'g'ri to'ldiring!", 'error');
-      if (dbTests.find(t => t.id === code)) return showToast('Bu kodli test bazada mavjud!', 'error');
+      if (dbTests.find(t => t.id === code)) return showToast('Bunday kodli test bazada mavjud!', 'error');
 
       const questionRows = document.querySelectorAll('[id^="qRow-"]');
       const constructedQuestions = [];
@@ -1553,7 +1513,7 @@
 
       dbTests.unshift({ id: code, title, categoryId, qCount: constructedQuestions.length, time, questions: constructedQuestions });
       saveToStorage();
-      showToast('Test muvaffaqiyatli yaratildi!', 'success');
+      showToast('Yangi test bazaga qo‘shildi!', 'success');
       
       document.getElementById('addTestTitle').value = '';
       document.getElementById('addTestCode').value = '';
@@ -1563,7 +1523,7 @@
     }
 
     /* =========================================
-       10. QUIZ WORKSPACE & LOGIC
+       10. QUIZ WORKSPACE & RUNNING
        ========================================= */
     async function initQuiz(testId) {
       quizData = dbTests.find(t => t.id === testId);
@@ -1587,9 +1547,9 @@
       
       loadQuizQuestion();
 
-      try { if(!isMobileDevice) { await enterFullscreen(); } } catch (e) { console.warn('Fullscreen blocked', e); }
+      try { if(!isMobileDevice) { await enterFullscreen(); } } catch (e) { console.warn('Fullscreen entry blocked', e); }
       if (!document.fullscreenElement && !document.webkitFullscreenElement && !isMobileDevice) {
-        showToast('Iltimos, maksimal darajada diqqat qilish uchun F11 tugmasini bosing', 'info');
+        showToast('Tavsiya: Maksimal e\'tibor uchun F11 bilan to\'liq ekranga o\'ting', 'info');
       }
     }
 
@@ -1642,9 +1602,9 @@
       document.getElementById('qOptions').innerHTML = qObj.options.map((optText, idx) => {
         const isSelected = userAnswers[activeQIndex] === idx;
         return `
-          <button onclick="selectOption(${idx})" class="w-full flex items-center p-4 rounded-2xl border text-left transition-all duration-300 select-none ${isSelected ? 'border-accentBlue bg-accentBlue/10 text-white font-bold ring-2 ring-accentBlue/30 shadow-[0_0_15px_rgba(37,99,235,0.2)] scale-[1.02]' : 'border-white/10 bg-white/5 text-gray-300 hover:bg-white/10 hover:border-white/30'}">
+          <button onclick="selectOption(${idx})" class="w-full flex items-center p-4 rounded-2xl border text-left transition-all duration-300 select-none ${isSelected ? 'border-accentBlue bg-accentBlue/10 text-white font-bold ring-2 ring-accentBlue/30 shadow-[0_0_15px_rgba(59,130,246,0.2)] scale-[1.01]' : 'border-white/10 bg-white/5 text-gray-300 hover:bg-white/10 hover:border-white/30'}">
             <div class="h-10 w-10 rounded-xl border flex-shrink-0 ${isSelected ? 'border-transparent bg-accentBlue text-white shadow-glowBlue' : 'border-white/20 bg-black/40 text-gray-400'} flex justify-center items-center text-sm mr-4 font-black transition-all">${optsLetters[idx]}</div>
-            <div class="leading-relaxed break-words font-medium w-full">${optText}</div>
+            <div class="leading-relaxed break-words font-medium w-full text-xs sm:text-sm">${optText}</div>
           </button>
         `;
       }).join('');
@@ -1652,17 +1612,17 @@
       document.getElementById('btnPrev').disabled = activeQIndex === 0;
       const btnNext = document.getElementById('btnNext');
       if (activeQIndex === quizData.qCount - 1) {
-        btnNext.innerHTML = 'Yakunlash (Enter) <i class="fa-solid fa-flag-checkered ml-2"></i>';
+        btnNext.innerHTML = 'Yakunlash <i class="fa-solid fa-flag-checkered ml-2"></i>';
         btnNext.classList.replace('bg-accentBlue', 'bg-accentEmerald');
         btnNext.classList.replace('shadow-glowBlue', 'shadow-glowEmerald');
       } else {
-        btnNext.innerHTML = 'Keyingi (→) <i class="fa-solid fa-arrow-right ml-2"></i>';
+        btnNext.innerHTML = 'Keyingi <i class="fa-solid fa-arrow-right ml-2"></i>';
         btnNext.classList.replace('bg-accentEmerald', 'bg-accentBlue');
         btnNext.classList.replace('shadow-glowEmerald', 'shadow-glowBlue');
       }
       
       const card = document.getElementById('questionCardAnim');
-      card.style.transform = 'scale(0.98)';
+      card.style.transform = 'scale(0.99)';
       card.style.opacity = '0';
       setTimeout(() => {
         card.style.transform = 'scale(1)';
@@ -1688,7 +1648,7 @@
       pal.innerHTML = userAnswers.map((ans, idx) => {
         const isCurrent = idx === activeQIndex;
         const isAnswered = ans !== null;
-        let classes = 'w-11 h-11 rounded-2xl flex items-center justify-center text-sm font-black cursor-pointer transition-all border shadow-sm select-none ';
+        let classes = 'w-11 h-11 rounded-2xl flex items-center justify-center text-xs font-black cursor-pointer transition-all border shadow-sm select-none ';
         if (isCurrent) {
           classes += 'border-transparent ring-2 ring-white bg-white text-black scale-110 shadow-[0_0_15px_rgba(255,255,255,0.6)]';
         } else if (isAnswered) {
@@ -1714,12 +1674,12 @@
       if (!isAutoTimeOut && tabViolationCount < 3) {
         const unselectedCount = userAnswers.filter(a => a === null).length;
         if (unselectedCount > 0) {
-          if (!confirm(`Diqqat! ${unselectedCount} ta savolga javob belgilanmadi. Baribir testni yakunlaysizmi?`)) return;
+          if (!confirm(`Diqqat! Siz ${unselectedCount} ta savolga javob belgilamadingiz. Testni yakunlaysizmi?`)) return;
         } else {
-          if (!confirm('Barcha savollarga javob berdingiz. Testni yakunlashni tasdiqlaysizmi?')) return;
+          if (!confirm('Testni yakunlashga rozimisiz?')) return;
         }
       } else if (isAutoTimeOut && tabViolationCount < 3) {
-        showToast('Vaqt tugadi! Test avtomatik yakunlandi.', 'error');
+        showToast('Vaqt yakuniga yetdi! Test avtomatik to\'xtatildi.', 'error');
       }
 
       clearInterval(timerInterval);
@@ -1729,7 +1689,7 @@
       
       if (tabViolationCount >= 3) {
         correctScore = 0; 
-        resultStatus = 'YIQILDI (Cheat)';
+        resultStatus = 'YIQILDI (Nusxa/Cheat)';
       } else {
         quizData.questions.forEach((qObj, idx) => { 
           if (userAnswers[idx] === qObj.correct) correctScore++; 
@@ -1738,27 +1698,30 @@
         resultStatus = perc >= 60 ? 'O\'TDI' : 'YIQILDI';
       }
 
-      // 🔴 NATIJANI BOT BAZASIGA (SQLITE GA) YUBORISH
-      const currentUID = appState.currentUser.uid;
-      if (currentUID && tabViolationCount < 3) {
+      // BOT SERVER BILAN NATIJANI SINXRONIZATSIYA QILISH
+      if (appState.currentUser.uid && tabViolationCount < 3) {
         try {
-          await fetch(`${BOT_API_BASE}/api/save_result`, {
+          const syncRes = await fetch(`${BOT_API_BASE}/api/save_result`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              uid: currentUID,
+              uid: appState.currentUser.uid,
               test_kod: quizData.id,
               ball: correctScore,
               total: quizData.qCount
             })
           });
-          console.log("Natijalar muvaffaqiyatli bot bazasida saqlandi.");
+          const syncData = await syncRes.json();
+          if(!syncData.success) {
+            console.error("Serverga natijani yozishda xato:", syncData.error);
+          } else {
+            console.log("Natija bot bazasida saqlandi!");
+          }
         } catch (err) {
-          console.error("Natijani bazaga yozishda tarmoq xatosi:", err);
+          console.error("Tarmoq xatosi, sinxronizatsiya bajarilmadi:", err);
         }
       }
 
-      // Tarixni mahalliy saqlash
       const todayStr = new Date().toLocaleString('uz-UZ', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
       dbResults.push({ 
         userId: appState.currentUser.id, 
@@ -1777,7 +1740,7 @@
         saveToStorage(); 
       }
       
-      showToast(`Natijangiz: ${correctScore} / ${quizData.qCount}`, tabViolationCount >= 3 ? 'error' : 'success');
+      showToast(`Natija: ${correctScore} / ${quizData.qCount}`, tabViolationCount >= 3 ? 'error' : 'success');
       
       exitFullscreen();
       document.getElementById('quizWorkspace').classList.add('hidden');
@@ -1787,7 +1750,7 @@
     }
 
     /* =========================================
-       11. NAVIGATSIYA VA SWIPE
+       11. KEYBOARD & MOBILE SWIPE NAVIGATION
        ========================================= */
     window.addEventListener('keydown', (e) => {
       if (!quizData || document.getElementById('quizWorkspace').classList.contains('hidden')) return;
@@ -1797,6 +1760,7 @@
       else if (['b', '2'].includes(key)) selectOption(1);
       else if (['c', '3'].includes(key)) selectOption(2);
       else if (['d', '4'].includes(key)) selectOption(3);
+      
       else if (e.key === 'ArrowLeft') quizPrev();
       else if (e.key === 'ArrowRight' || e.key === 'Enter') quizNext();
       else if (e.key === 'Escape') {
@@ -1831,8 +1795,8 @@
     /* =========================================
        12. SCRATCH CANVAS DRAWER
        ========================================= */
-    const cvs = document.getElementById('scratchCanvas');
-    const ctx = cvs.getContext('2d', { willReadFrequently: true });
+    const canvasObj = document.getElementById('scratchCanvas');
+    const canvasCtx = canvasObj.getContext('2d', { willReadFrequently: true });
     let isDrawing = false;
     let currentCtxColor = '#06B6D4';
     let currentCtxWidth = 3;
@@ -1841,11 +1805,11 @@
       const drawer = document.getElementById('canvasDrawer');
       drawer.classList.remove('translate-x-full');
       setTimeout(() => {
-        const rect = cvs.parentElement.getBoundingClientRect();
-        cvs.width = rect.width;
-        cvs.height = rect.height - 130; 
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
+        const rect = canvasObj.parentElement.getBoundingClientRect();
+        canvasObj.width = rect.width;
+        canvasObj.height = rect.height - 130; 
+        canvasCtx.lineCap = 'round';
+        canvasCtx.lineJoin = 'round';
         setCanvasTool('draw', '#06B6D4', 3);
       }, 300);
     }
@@ -1856,14 +1820,14 @@
 
     function setCanvasTool(mode, color, width) {
       if(mode === 'erase') {
-        currentCtxColor = '#03040b'; 
+        currentCtxColor = '#020308'; 
         currentCtxWidth = 30;
       } else {
         currentCtxColor = color;
         currentCtxWidth = width;
       }
-      ctx.strokeStyle = currentCtxColor;
-      ctx.lineWidth = currentCtxWidth;
+      canvasCtx.strokeStyle = currentCtxColor;
+      canvasCtx.lineWidth = currentCtxWidth;
 
       if(mode === 'draw') {
         document.querySelectorAll('.canvas-color-btn').forEach(b => {
@@ -1877,22 +1841,22 @@
       }
     }
 
-    function clearDraw() { ctx.clearRect(0, 0, cvs.width, cvs.height); }
+    function clearDraw() { canvasCtx.clearRect(0, 0, canvasObj.width, canvasObj.height); }
 
     function getPos(e) {
-      const rect = cvs.getBoundingClientRect();
+      const rect = canvasObj.getBoundingClientRect();
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       const clientY = e.touches ? e.touches[0].clientY : e.clientY;
       return { x: clientX - rect.left, y: clientY - rect.top };
     }
 
-    cvs.addEventListener('mousedown', e => { isDrawing = true; ctx.strokeStyle=currentCtxColor; ctx.lineWidth=currentCtxWidth; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
-    cvs.addEventListener('mousemove', e => { if (!isDrawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); });
-    cvs.addEventListener('mouseup', () => isDrawing = false);
-    cvs.addEventListener('mouseleave', () => isDrawing = false);
-    cvs.addEventListener('touchstart', e => { isDrawing = true; ctx.strokeStyle=currentCtxColor; ctx.lineWidth=currentCtxWidth; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); e.preventDefault(); }, { passive: false });
-    cvs.addEventListener('touchmove', e => { if (!isDrawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); e.preventDefault(); }, { passive: false });
-    cvs.addEventListener('touchend', () => isDrawing = false);
+    canvasObj.addEventListener('mousedown', e => { isDrawing = true; canvasCtx.strokeStyle=currentCtxColor; canvasCtx.lineWidth=currentCtxWidth; const p = getPos(e); canvasCtx.beginPath(); canvasCtx.moveTo(p.x, p.y); });
+    canvasObj.addEventListener('mousemove', e => { if (!isDrawing) return; const p = getPos(e); canvasCtx.lineTo(p.x, p.y); canvasCtx.stroke(); });
+    canvasObj.addEventListener('mouseup', () => isDrawing = false);
+    canvasObj.addEventListener('mouseleave', () => isDrawing = false);
+    canvasObj.addEventListener('touchstart', e => { isDrawing = true; canvasCtx.strokeStyle=currentCtxColor; canvasCtx.lineWidth=currentCtxWidth; const p = getPos(e); canvasCtx.beginPath(); canvasCtx.moveTo(p.x, p.y); e.preventDefault(); }, { passive: false });
+    canvasObj.addEventListener('touchmove', e => { if (!isDrawing) return; const p = getPos(e); canvasCtx.lineTo(p.x, p.y); canvasCtx.stroke(); e.preventDefault(); }, { passive: false });
+    canvasObj.addEventListener('touchend', () => isDrawing = false);
 
     /* =========================================
        13. ANTI-CHEAT PROTOCOLS
@@ -1915,13 +1879,13 @@
       const isQuizActive = quizData !== null && !document.getElementById('quizWorkspace').classList.contains('hidden');
       if (isQuizActive && !isExitingQuizInput) {
         if (document.hidden) {
-          triggerViolation("Test jarayonida boshqa sahifalarga o'tish qat'iyan taqiqlanadi!");
+          triggerViolation("Boshqa ilovaga yoki varaqqa o'tish qat'iyan man etiladi!");
         } 
         else if (!document.fullscreenElement && !document.webkitFullscreenElement) {
           if (!isMobileDevice) {
-            triggerViolation("To'liq ekran rejimidan chiqish taqiqlangan!");
+            triggerViolation("To'liq ekran rejimidan chiqish qoidabuzarlik hisoblanadi!");
           } else {
-            showToast("Ogohlantirish: Iltimos to'liq ekran rejimidan chiqmang!", "warning");
+            showToast("Diqqat: Iltimos to'liq ekran rejimidan chiqmang!", "warning");
           }
         }
       }
@@ -1930,10 +1894,10 @@
     function triggerViolation(reason) {
       tabViolationCount++;
       if (tabViolationCount >= 3) {
-        alert("Tizim jiddiy qoidabuzarlik aniqladi! 3 marta qoida buzilganligi sababli, testingiz 0% natija bilan avtomatik ravishda yakunlandi.");
+        alert("Platforma xavfsizlik tizimi jiddiy qoidabuzarlikni qayd etdi. 3 marta ogohlantirildingiz! Testingiz avtomatik tarzda bekor qilindi.");
         endQuiz(true); 
       } else {
-        alert(`DIQQAT! Xavfsizlik qoidasi buzildi! ${reason}\n\nOgohlantirish: ${tabViolationCount}/3. Agarda 3 taga yetsa test avtomatik ravishda yakunlanadi!`);
+        alert(`DIQQAT! Xavfsizlik qoidasi buzildi!\nSabab: ${reason}\n\nOgohlantirish: ${tabViolationCount}/3. Agarda 3 taga yetsa, testingiz 0% natija bilan tugatiladi!`);
         try { if (!document.fullscreenElement && !isMobileDevice) enterFullscreen(); } catch(e){}
       }
     }
@@ -1945,15 +1909,9 @@
     window.addEventListener('contextmenu', (e) => {
       if (quizData && !document.getElementById('quizWorkspace').classList.contains('hidden')) { 
         e.preventDefault(); 
-        showToast("Xavfsizlik: Test paytida o'ng tugmani bosish taqiqlangan!", 'error'); 
+        showToast("Tizim: Test rejimida o'ng tugmadan foydalanish taqiqlanadi!", 'error'); 
       }
     });
-
-    window.addEventListener('touchstart', function(e) {
-      const isQuizActive = quizData !== null && !document.getElementById('quizWorkspace').classList.contains('hidden');
-      if(isQuizActive && e.target.tagName !== 'INPUT' && e.target.tagName !== 'BUTTON' && !e.target.closest('button')) {
-      }
-    }, {passive: true});
 
     window.addEventListener('keydown', (e) => {
       if (quizData && !document.getElementById('quizWorkspace').classList.contains('hidden')) {
@@ -1961,24 +1919,23 @@
         const key = e.key.toLowerCase();
         if (isMod && (key === 'c' || key === 'v' || key === 'u' || key === 'x' || key === 's' || key === 'a')) {
           e.preventDefault();
-          showToast("Xavfsizlik: Matnni nusxalash yoki saqlash taqiqlangan!", 'error');
+          showToast("Xavfsizlik: Matndan nusxa ko'chirish yoki saqlash mutlaqo taqiqlanadi!", 'error');
         }
         if (e.key === 'F12' || (isMod && e.shiftKey && (key === 'i' || key === 'j' || key === 'c'))) {
           e.preventDefault();
-          showToast('Xavfsizlik: Dasturchilar asboblar panelini ochish taqiqlangan!', 'error');
+          showToast('Xavfsizlik: Dasturchilar uskunalarini ochish taqiqlanadi!', 'error');
         }
       }
     });
 
     /* =========================================
-       14. BOOTSTRAP INITIALIZATION
+       14. INITIALIZATION
        ========================================= */
     window.onload = function () {
       initTheme();
       if (appState.currentUser) initAppView();
       else renderHome();
     };
-
   </script>
 </body>
 </html>
